@@ -1,0 +1,89 @@
+URL list from Wednesday, Mar. 25 2026 14:31 PM
+To copy this list, type [Ctrl] A, then type [Ctrl] C.
+
+SPX price option - Google Scholar
+https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=SPX+price+option&btnG=
+
+HEDGE PERFORMANCE OF SPX INDEX OPTIONS AND S&P 500 FUTURES - ProQuest
+https://www.proquest.com/openview/6fb55c678f59ef9651b900a674bb393d/1?cbl=47957&pq-origsite=gscholar
+
+Option Price Theory: A Quantitative Study of Volatility, Interest Rate, Exchange Rate, and S&P 500 Index Prices - ProQuest
+https://www.proquest.com/openview/6c1d78cd656fa673b2080b671e22c27f/1?pq-origsite=gscholar&cbl=18750&diss=y
+
+(PDF) Intraday Volatility Analysis on S&P 500 Stock Index Future
+https://www.researchgate.net/publication/43199033_Intraday_Volatility_Analysis_on_SP_500_Stock_Index_Future
+
+VolForec_May_08.pdf
+https://www.citystgeorges.ac.uk/__data/assets/pdf_file/0011/79157/VolForec_May_08.pdf
+
+OP-JFIN230005 492..530
+https://ora.ox.ac.uk/objects/uuid%3A09619aca-a61b-465a-931f-feaacf50e880/files/rh415pb63b
+
+28.pdf
+https://cs229.stanford.edu/proj2019spr/report/28.pdf
+
+[2112.15108] Modeling and Forecasting Intraday Market Returns: a Machine Learning Approach
+https://arxiv.org/abs/2112.15108
+
+[1912.07165] Predicting intraday jumps in stock prices using liquidity measures and technical indicators
+https://arxiv.org/abs/1912.07165
+
+VolatilityML_Tang.pdf
+https://fmai.memberclicks.net/assets/docs/Derivatives2021/VolatilityML_Tang.pdf
+
+Prediction of realized volatility and implied volatility indices using AI and machine learning: A review - ScienceDirect
+https://www.sciencedirect.com/science/article/pii/S1057521924001534
+
+[2210.04797] DeepVol: Volatility Forecasting from High-Frequency Data with Dilated Causal Convolutions
+https://arxiv.org/abs/2210.04797
+
+Joint pricing of VIX and SPX options with stochastic volatility and jump models | The Journal of Risk Finance | Emerald Publishing
+https://www.emerald.com/jrf/article-abstract/16/1/27/245961/Joint-pricing-of-VIX-and-SPX-options-with?redirectedFrom=fulltext
+
+ΨΗΦΙΔΑ: Research on the effectiveness of forecasting models on exchange prices in the SPX Index
+https://dspace.lib.uom.gr/handle/2159/30231
+
+Consistent and efficient pricing of SPX and VIX options under multiscale stochastic volatility - Jeon - 2021 - Journal of Futures Markets - Wiley Online Library
+https://onlinelibrary.wiley.com/doi/full/10.1002/fut.22190?casa_token=USKJlAqgcEMAAAAA%3An4fHydHJ0LhbTcH8pDwZ7CSl4TVwTYG37IBWTtEU3rj3PnGKJ_xJPqdeAje7X6zge0ZU3ko63xLGIcDD
+
+Joint SPX & VIX calibration with Gaussian polynomial volatility models: Deep pricing with quantization hints - Abi Jaber - 2025 - Mathematical Finance - Wiley Online Library
+https://onlinelibrary.wiley.com/doi/full/10.1111/mafi.12451?casa_token=dpqPGHGkcxwAAAAA%3AOo-ENx9GrmP7FY759KHCEKDIqhtfhf0YGZeh-ZgsgPnYS9nCfUtlVCRFc5o1wj-EoZyxR-nQb1yBuWhP
+
+Intraday Trading and Bid-Ask Spread Characteristics for SPX and SPY Options - ProQuest
+https://www.proquest.com/openview/0ad55ea4b3c161c7320e5aef9cd90bfe/1/advanced
+
+Monte Carlo and Longstaff–Schwartz pricing for SPX and SPY options : performance, early-exercise dynamics, and time-series robustness - LUTPub
+https://lutpub.lut.fi/handle/10024/171027
+
+S&P 500 Index Gamma Exposure (GEX) - Barchart.com
+https://www.barchart.com/stocks/quotes/$SPX/gamma-exposure
+
+SPX 6,606.89 ▲ +0.77% Unnamed
+https://www.tradingview.com/chart/9L8W2cZc/?symbol=SP%3ASPX
+
+$660 —> 170k 3 days of 0DTE SPX trades : r/wallstreetbets
+https://www.reddit.com/r/wallstreetbets/comments/1j3mnhw/660_170k_3_days_of_0dte_spx_trades/
+
+$132k -> $1.4m SPX 0DTE : r/wallstreetbets
+https://www.reddit.com/r/wallstreetbets/comments/1qjh4h9/132k_14m_spx_0dte/
+
+$15k+ in 2 min 0dte SPX - finally caught one : r/wallstreetbets
+https://www.reddit.com/r/wallstreetbets/comments/1ryzrfp/15k_in_2_min_0dte_spx_finally_caught_one/
+
+What we learned analyzing 1,000+ days of SPX 0DTE data : r/options_trading
+https://www.reddit.com/r/options_trading/comments/1rodoii/what_we_learned_analyzing_1000_days_of_spx_0dte/
+
+GARCH - Google Search
+https://www.google.com/search?q=GARCH&oq=GARCH&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIMCAEQABhDGIAEGIoFMgwIAhAAGEMYgAQYigUyDAgDEAAYQxiABBiKBTIMCAQQABhDGIAEGIoFMgcIBRAuGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgcICBAAGIAEMgcICRAAGIAE0gEHNjc4ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8
+
+Dessertation-Draft - Online LaTeX Editor Overleaf
+https://www.overleaf.com/project/69c3cb4ea8481282b856a2e2
+
+API Reference — yfinance
+https://ranaroussi.github.io/yfinance/reference/index.html
+
+Multi-Level Column Index — yfinance
+https://ranaroussi.github.io/yfinance/advanced/multi_level_columns.html
+
+ChatGPT - Dissertation Masters Trading
+https://chatgpt.com/g/g-p-69b13acd8124819189981a16766d185c-dissertation-masters-trading/c/69c3f10c-81e8-8385-9c2a-001fbbdd4321
