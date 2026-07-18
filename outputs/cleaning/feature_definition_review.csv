@@ -1,0 +1,10 @@
+feature,current_definition,comparison_issue,recommended_action
+final_hour_return,14:59 SPX close to 15:59 SPX close,Confirm original timestamp convention,Retain completed-bar convention
+ret_open_to_1500,First regular-session SPX open to 14:59 close,Confirm original cutoff,Retain current definition
+ret_last_15m/30m/60m,Timestamp-window returns ending at 14:59,Original may use row offsets or 15-minute candles,Prefer timestamp windows
+vix_ret_last_15m/30m/60m,Backward-aligned VIX returns ending at 14:59,Original may forward-fill,Retain backward matching
+realized_volatility,Square root of sum of squared one-minute log returns,Check annualisation/scaling,Document units and freeze definition
+spy_volume_accel_60m_vs_avg,Last-60m volume versus earlier-session average minute volume scaled to 60m,Likely formula difference,Confirm or rename
+spy_dist_from_vwap_pct,14:59 SPY close versus minute-VWAP weighted cumulative VWAP,Check original VWAP construction,Validate on sample dates
+momentum_accel_60m_vs_prior,Recent 60m return minus preceding 60m return,Check whether original used slope or ratio,Retain only with explicit formula
+atr_open_to_1500,Mean one-minute true range from open through 14:59,Not conventional 14-period ATR,Rename or reproduce original ATR

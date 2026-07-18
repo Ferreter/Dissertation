@@ -1,0 +1,17 @@
+{
+  "source_daily_rows": 496,
+  "strict_session_rows": 434,
+  "binary_target_rows": 434,
+  "removed_exact_zero_rows": 0,
+  "required_session_minutes": 390,
+  "feature_cutoff_et": "14:59:00",
+  "target_end_et": "15:59:00",
+  "critical_missingness_window": "13:00:00-14:59:00 ET",
+  "primary_target": "binary sign of final_hour_return",
+  "train_share": 0.7,
+  "validation_share": 0.15,
+  "test_share": 0.15000000000000005,
+  "imputation": "training median",
+  "outlier_treatment": "training 1st/99th percentile clipping",
+  "high_correlation_threshold": 0.9
+}
