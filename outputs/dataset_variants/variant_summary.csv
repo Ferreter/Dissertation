@@ -1,0 +1,3 @@
+dataset_variant,rows,first_date,last_date,up_sessions,down_sessions,additional_rows_vs_strict
+strict,434,2024-07-18,2026-07-17,216,218,0
+relaxed,486,2024-07-18,2026-07-17,240,246,52
