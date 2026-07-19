@@ -1,0 +1,67 @@
+research_question,dataset_variant,model,feature,feature_group,importance_mean,importance_std
+RQ1 Direction,Relaxed,Extra Trees,ret_open_to_1500,Momentum,0.006370192307692283,0.015431130019839244
+RQ1 Direction,Relaxed,Extra Trees,ret_last_15m,Momentum,-0.001268696581196597,0.016413275068816693
+RQ1 Direction,Relaxed,Extra Trees,ret_last_30m,Momentum,0.008480235042734988,0.017350449759008818
+RQ1 Direction,Relaxed,Extra Trees,ret_last_60m,Momentum,0.04501869658119658,0.025863849551501585
+RQ1 Direction,Relaxed,Extra Trees,momentum_accel_60m_vs_prior,Momentum,0.023010149572649515,0.015150618245127881
+RQ1 Direction,Relaxed,Extra Trees,vix_level_1500,VIX,-0.009027777777777768,0.014536786647871334
+RQ1 Direction,Relaxed,Extra Trees,vix_ret_last_15m,VIX,-0.002884615384615393,0.01342691479861268
+RQ1 Direction,Relaxed,Extra Trees,vix_ret_last_30m,VIX,0.00774572649572646,0.01738503036681459
+RQ1 Direction,Relaxed,Extra Trees,vix_ret_last_60m,VIX,0.03464209401709395,0.017983303509365098
+RQ1 Direction,Relaxed,Extra Trees,realized_vol_30m,Volatility,0.018255876068376038,0.017941587069501986
+RQ1 Direction,Relaxed,Extra Trees,realized_vol_60m,Volatility,0.033226495726495685,0.015453506796986064
+RQ1 Direction,Relaxed,Extra Trees,realized_vol_120m,Volatility,0.014369658119658091,0.010633092995380199
+RQ1 Direction,Relaxed,Extra Trees,rv_open_to_1500,Volatility,0.00022702991452986746,0.01834530060153636
+RQ1 Direction,Relaxed,Extra Trees,spy_volume_last_30m,Volume and VWAP,0.016760149572649576,0.020211557726239393
+RQ1 Direction,Relaxed,Extra Trees,spy_volume_last_60m,Volume and VWAP,0.013354700854700852,0.017309464600089836
+RQ1 Direction,Relaxed,Extra Trees,spy_cum_volume_to_1500,Volume and VWAP,0.0022035256410256054,0.023250933061375777
+RQ1 Direction,Relaxed,Extra Trees,spy_volume_accel_60m_vs_avg,Volume and VWAP,0.012713675213675188,0.021416610279189424
+RQ1 Direction,Relaxed,Extra Trees,spy_dist_from_vwap_pct,Volume and VWAP,0.011778846153846112,0.01563136786743145
+RQ1 Direction,Relaxed,Extra Trees,position_in_day_range,Price positioning,0.01907051282051281,0.037954275984756536
+RQ1 Direction,Relaxed,Extra Trees,dist_from_day_high_pct,Price positioning,0.005902777777777786,0.015882754204420927
+RQ1 Direction,Relaxed,Extra Trees,dist_from_day_low_pct,Price positioning,0.012967414529914493,0.01404701879563056
+RQ1 Direction,Relaxed,Extra Trees,atr_pct_open_to_1500,Volatility,0.0049545940170939795,0.0151013797522598
+RQ2 Magnitude,Relaxed,Elastic Net,ret_open_to_1500,Momentum,-0.007656528464029518,0.04945743190454109
+RQ2 Magnitude,Relaxed,Elastic Net,ret_last_15m,Momentum,2.697536986324624,0.45033841032191435
+RQ2 Magnitude,Relaxed,Elastic Net,ret_last_30m,Momentum,0.03378826666449068,0.2293451843008789
+RQ2 Magnitude,Relaxed,Elastic Net,ret_last_60m,Momentum,0.5250051900438459,0.16749704596498058
+RQ2 Magnitude,Relaxed,Elastic Net,momentum_accel_60m_vs_prior,Momentum,-0.0341511517995387,0.013212961234753866
+RQ2 Magnitude,Relaxed,Elastic Net,vix_level_1500,VIX,0.2697075128861274,0.14619151915913703
+RQ2 Magnitude,Relaxed,Elastic Net,vix_ret_last_15m,VIX,2.2033371625303904,0.5145807719120061
+RQ2 Magnitude,Relaxed,Elastic Net,vix_ret_last_30m,VIX,0.17814238321674872,0.09034237544983442
+RQ2 Magnitude,Relaxed,Elastic Net,vix_ret_last_60m,VIX,-0.08164761057174902,0.08459475658169428
+RQ2 Magnitude,Relaxed,Elastic Net,realized_vol_30m,Volatility,0.022838966550926543,0.14143702742628922
+RQ2 Magnitude,Relaxed,Elastic Net,realized_vol_60m,Volatility,0.08270146032172955,0.160444747414339
+RQ2 Magnitude,Relaxed,Elastic Net,realized_vol_120m,Volatility,0.7007816086783332,0.2838155296725515
+RQ2 Magnitude,Relaxed,Elastic Net,rv_open_to_1500,Volatility,1.2310256552837358,0.4491560086567435
+RQ2 Magnitude,Relaxed,Elastic Net,spy_volume_last_30m,Volume and VWAP,0.12103248542480974,0.07230069500824651
+RQ2 Magnitude,Relaxed,Elastic Net,spy_volume_last_60m,Volume and VWAP,0.30850176108432853,0.24966682916284166
+RQ2 Magnitude,Relaxed,Elastic Net,spy_cum_volume_to_1500,Volume and VWAP,0.22449944226457377,0.17620326674412037
+RQ2 Magnitude,Relaxed,Elastic Net,spy_volume_accel_60m_vs_avg,Volume and VWAP,0.0,0.0
+RQ2 Magnitude,Relaxed,Elastic Net,spy_dist_from_vwap_pct,Volume and VWAP,0.3347477806545521,0.23935402399204528
+RQ2 Magnitude,Relaxed,Elastic Net,position_in_day_range,Price positioning,0.1348294227836187,0.13902429613829254
+RQ2 Magnitude,Relaxed,Elastic Net,dist_from_day_high_pct,Price positioning,1.8953829403419225,0.42388430044130504
+RQ2 Magnitude,Relaxed,Elastic Net,dist_from_day_low_pct,Price positioning,1.5077159231132529,0.4994237194903403
+RQ2 Magnitude,Relaxed,Elastic Net,atr_pct_open_to_1500,Volatility,0.20033846630482863,0.11525058568828107
+RQ3 Large Movement,Strict,K-Nearest Neighbours,ret_open_to_1500,Momentum,0.02586207923702039,0.03293453407918013
+RQ3 Large Movement,Strict,K-Nearest Neighbours,ret_last_15m,Momentum,0.008149195197318214,0.03672417500038646
+RQ3 Large Movement,Strict,K-Nearest Neighbours,ret_last_30m,Momentum,0.034674082360828806,0.03239339931831624
+RQ3 Large Movement,Strict,K-Nearest Neighbours,ret_last_60m,Momentum,0.04018206659945853,0.04987942018965721
+RQ3 Large Movement,Strict,K-Nearest Neighbours,momentum_accel_60m_vs_prior,Momentum,0.06196585733452693,0.03234097207251455
+RQ3 Large Movement,Strict,K-Nearest Neighbours,vix_level_1500,VIX,0.026792876855885286,0.031046903612305814
+RQ3 Large Movement,Strict,K-Nearest Neighbours,vix_ret_last_15m,VIX,0.01176847989953005,0.042699933226311375
+RQ3 Large Movement,Strict,K-Nearest Neighbours,vix_ret_last_30m,VIX,-0.02136453110646327,0.034867432356438056
+RQ3 Large Movement,Strict,K-Nearest Neighbours,vix_ret_last_60m,VIX,0.0008792514053360882,0.0457651377118982
+RQ3 Large Movement,Strict,K-Nearest Neighbours,realized_vol_30m,Volatility,0.05247565013196721,0.030958603597484313
+RQ3 Large Movement,Strict,K-Nearest Neighbours,realized_vol_60m,Volatility,0.05059360126205323,0.029535722127683604
+RQ3 Large Movement,Strict,K-Nearest Neighbours,realized_vol_120m,Volatility,0.035110543464798735,0.034397953525734624
+RQ3 Large Movement,Strict,K-Nearest Neighbours,rv_open_to_1500,Volatility,0.023491746420040805,0.02597159977960173
+RQ3 Large Movement,Strict,K-Nearest Neighbours,spy_volume_last_30m,Volume and VWAP,0.039083887107640596,0.04021068406936957
+RQ3 Large Movement,Strict,K-Nearest Neighbours,spy_volume_last_60m,Volume and VWAP,0.03304624593333891,0.023459311337023583
+RQ3 Large Movement,Strict,K-Nearest Neighbours,spy_cum_volume_to_1500,Volume and VWAP,0.05208795298131104,0.027322563185336133
+RQ3 Large Movement,Strict,K-Nearest Neighbours,spy_volume_accel_60m_vs_avg,Volume and VWAP,0.06143080160950803,0.02595073744092024
+RQ3 Large Movement,Strict,K-Nearest Neighbours,spy_dist_from_vwap_pct,Volume and VWAP,-0.011817368058812212,0.0352404666621491
+RQ3 Large Movement,Strict,K-Nearest Neighbours,position_in_day_range,Price positioning,-0.011931391217405886,0.028221157297739045
+RQ3 Large Movement,Strict,K-Nearest Neighbours,dist_from_day_high_pct,Price positioning,-0.06279132829671003,0.04413579231508207
+RQ3 Large Movement,Strict,K-Nearest Neighbours,dist_from_day_low_pct,Price positioning,-0.003954830157988791,0.03619994132625263
+RQ3 Large Movement,Strict,K-Nearest Neighbours,atr_pct_open_to_1500,Volatility,0.01994244921738096,0.031095225134693535

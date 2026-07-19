@@ -1,0 +1,111 @@
+{
+  "RQ1": {
+    "dataset_variant": "Relaxed",
+    "feature_set": "Full",
+    "features": [
+      "ret_open_to_1500",
+      "ret_last_15m",
+      "ret_last_30m",
+      "ret_last_60m",
+      "momentum_accel_60m_vs_prior",
+      "vix_level_1500",
+      "vix_ret_last_15m",
+      "vix_ret_last_30m",
+      "vix_ret_last_60m",
+      "realized_vol_30m",
+      "realized_vol_60m",
+      "realized_vol_120m",
+      "rv_open_to_1500",
+      "spy_volume_last_30m",
+      "spy_volume_last_60m",
+      "spy_cum_volume_to_1500",
+      "spy_volume_accel_60m_vs_avg",
+      "spy_dist_from_vwap_pct",
+      "position_in_day_range",
+      "dist_from_day_high_pct",
+      "dist_from_day_low_pct",
+      "atr_pct_open_to_1500"
+    ],
+    "model": "Histogram Gradient Boosting",
+    "best_parameters": {
+      "model__l2_regularization": 0.0827065762651575,
+      "model__learning_rate": 0.013491814589575175,
+      "model__max_bins": 128,
+      "model__max_iter": 187,
+      "model__max_leaf_nodes": 25,
+      "model__min_samples_leaf": 11
+    },
+    "best_inner_score": 0.5823551633257955
+  },
+  "RQ2": {
+    "dataset_variant": "Relaxed",
+    "feature_set": "Reduced",
+    "features": [
+      "ret_open_to_1500",
+      "ret_last_15m",
+      "ret_last_60m",
+      "momentum_accel_60m_vs_prior",
+      "vix_level_1500",
+      "vix_ret_last_15m",
+      "vix_ret_last_60m",
+      "realized_vol_30m",
+      "realized_vol_120m",
+      "rv_open_to_1500",
+      "spy_volume_last_60m",
+      "spy_volume_accel_60m_vs_avg",
+      "spy_dist_from_vwap_pct",
+      "position_in_day_range",
+      "atr_pct_open_to_1500"
+    ],
+    "model": "Extra Trees",
+    "best_parameters": {
+      "model__bootstrap": true,
+      "model__max_depth": 12,
+      "model__max_features": 0.8,
+      "model__min_samples_leaf": 4,
+      "model__min_samples_split": 15,
+      "model__n_estimators": 280
+    },
+    "best_inner_score": -13.162792708553141
+  },
+  "RQ3": {
+    "dataset_variant": "Strict",
+    "feature_set": "Full",
+    "features": [
+      "ret_open_to_1500",
+      "ret_last_15m",
+      "ret_last_30m",
+      "ret_last_60m",
+      "momentum_accel_60m_vs_prior",
+      "vix_level_1500",
+      "vix_ret_last_15m",
+      "vix_ret_last_30m",
+      "vix_ret_last_60m",
+      "realized_vol_30m",
+      "realized_vol_60m",
+      "realized_vol_120m",
+      "rv_open_to_1500",
+      "spy_volume_last_30m",
+      "spy_volume_last_60m",
+      "spy_cum_volume_to_1500",
+      "spy_volume_accel_60m_vs_avg",
+      "spy_dist_from_vwap_pct",
+      "position_in_day_range",
+      "dist_from_day_high_pct",
+      "dist_from_day_low_pct",
+      "atr_pct_open_to_1500"
+    ],
+    "model": "RBF SVC",
+    "best_parameters": {
+      "model__C": 0.0629064429458615,
+      "model__gamma": 0.011400863701127324
+    },
+    "best_inner_score": 0.5713478857988227
+  },
+  "large_move_threshold_bps": 27.504041884352514,
+  "outer_splits": 3,
+  "inner_splits": 3,
+  "random_search_iterations": 8,
+  "primary_evidence": "Nested expanding-window development-period performance",
+  "existing_test_status": "Previously viewed in baseline notebook; not fresh"
+}

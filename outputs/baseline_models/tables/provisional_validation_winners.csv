@@ -1,0 +1,4 @@
+research_question,dataset_variant,model,primary_metric,validation_score,cv_score
+RQ1 Direction,Relaxed,Extra Trees,Balanced accuracy,0.6001602564102564,0.4966259136915059
+RQ2 Magnitude,Relaxed,Elastic Net,MAE in basis points,10.694730402788396,15.854353770457717
+RQ3 Large Movement,Strict,K-Nearest Neighbours,Average precision,0.4523068108362226,0.5269616114725599

@@ -1,0 +1,4 @@
+research_question,dataset_variant,feature_set,model,primary_metric,outer_score,outer_standard_deviation
+RQ1 Direction,Relaxed,Full,Histogram Gradient Boosting,Balanced accuracy,0.5436910183420265,0.04758305081120812
+RQ2 Magnitude,Relaxed,Reduced,Extra Trees,MAE in basis points,13.766881414968148,4.664371517493886
+RQ3 Large Movement,Strict,Full,RBF SVC,Average precision,0.49941267708042375,

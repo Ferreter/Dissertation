@@ -1,0 +1,27 @@
+{
+  "RQ1": {
+    "best_variant": "Relaxed",
+    "best_model": "Extra Trees",
+    "validation_balanced_accuracy": 0.6001602564102564,
+    "best_rule_baseline": "60m Mean Reversion",
+    "best_rule_balanced_accuracy": 0.5953065134099617
+  },
+  "RQ2": {
+    "best_variant": "Relaxed",
+    "best_model": "Elastic Net",
+    "validation_mae_bps": 10.694730402788396,
+    "best_dummy_mae_bps": 12.01330841494144,
+    "mae_improvement_bps": 1.3185780121530435,
+    "validation_r2": 0.21580585602222357,
+    "validation_spearman": 0.4457746478873239
+  },
+  "RQ3": {
+    "large_move_threshold_bps": 27.504041884352514,
+    "best_variant": "Strict",
+    "best_model": "K-Nearest Neighbours",
+    "validation_average_precision": 0.4523068108362226,
+    "validation_large_move_prevalence": 0.23076923076923078,
+    "average_precision_improvement": 0.2215375800669918,
+    "top_feature_group": "Volume and VWAP"
+  }
+}
