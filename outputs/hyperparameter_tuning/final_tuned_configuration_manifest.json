@@ -28,14 +28,14 @@
     ],
     "model": "Histogram Gradient Boosting",
     "best_parameters": {
-      "model__l2_regularization": 0.0827065762651575,
-      "model__learning_rate": 0.013491814589575175,
-      "model__max_bins": 128,
-      "model__max_iter": 187,
-      "model__max_leaf_nodes": 25,
-      "model__min_samples_leaf": 11
+      "model__l2_regularization": 2.990542595437359,
+      "model__learning_rate": 0.06669254439997736,
+      "model__max_bins": 64,
+      "model__max_iter": 383,
+      "model__max_leaf_nodes": 16,
+      "model__min_samples_leaf": 19
     },
-    "best_inner_score": 0.5823551633257955
+    "best_inner_score": 0.5896156881877901
   },
   "RQ2": {
     "dataset_variant": "Relaxed",
@@ -57,16 +57,13 @@
       "position_in_day_range",
       "atr_pct_open_to_1500"
     ],
-    "model": "Extra Trees",
+    "model": "RBF SVR",
     "best_parameters": {
-      "model__bootstrap": true,
-      "model__max_depth": 12,
-      "model__max_features": 0.8,
-      "model__min_samples_leaf": 4,
-      "model__min_samples_split": 15,
-      "model__n_estimators": 280
+      "model__C": 88.62326508576255,
+      "model__epsilon": 2.5181994911882457,
+      "model__gamma": 0.0006235377135673159
     },
-    "best_inner_score": -13.162792708553141
+    "best_inner_score": -13.010025199415486
   },
   "RQ3": {
     "dataset_variant": "Strict",
@@ -97,15 +94,15 @@
     ],
     "model": "RBF SVC",
     "best_parameters": {
-      "model__C": 0.0629064429458615,
-      "model__gamma": 0.011400863701127324
+      "model__C": 0.1808939009276715,
+      "model__gamma": 0.010821382910613988
     },
-    "best_inner_score": 0.5713478857988227
+    "best_inner_score": 0.5729053466408058
   },
   "large_move_threshold_bps": 27.504041884352514,
   "outer_splits": 3,
   "inner_splits": 3,
-  "random_search_iterations": 8,
+  "random_search_iterations": 30,
   "primary_evidence": "Nested expanding-window development-period performance",
   "existing_test_status": "Previously viewed in baseline notebook; not fresh"
 }
