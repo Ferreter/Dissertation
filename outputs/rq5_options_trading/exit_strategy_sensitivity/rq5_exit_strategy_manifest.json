@@ -1,0 +1,107 @@
+{
+  "research_question": "RQ5",
+  "analysis": "exit_strategy_sensitivity",
+  "fresh_holdout_used": false,
+  "primary_baseline": "hold_to_close",
+  "primary_alternative": "stop50_tp100",
+  "primary_strike_offset_points": 0,
+  "primary_execution_scenario": "medium_cost",
+  "ambiguous_intrabar_policy": "stop_first",
+  "entry_window_et": [
+    "15:00",
+    "15:05"
+  ],
+  "close_exit_window_et": [
+    "15:55",
+    "15:59"
+  ],
+  "exit_policies": {
+    "hold_to_close": {
+      "kind": "hold",
+      "primary_alternative": false
+    },
+    "stop50_only": {
+      "kind": "stop_target",
+      "stop_pct": -0.5,
+      "target_pct": null,
+      "primary_alternative": false
+    },
+    "tp100_only": {
+      "kind": "stop_target",
+      "stop_pct": null,
+      "target_pct": 1.0,
+      "primary_alternative": false
+    },
+    "stop50_tp100": {
+      "kind": "stop_target",
+      "stop_pct": -0.5,
+      "target_pct": 1.0,
+      "primary_alternative": true
+    },
+    "stop40_tp80": {
+      "kind": "stop_target",
+      "stop_pct": -0.4,
+      "target_pct": 0.8,
+      "primary_alternative": false
+    },
+    "stop60_tp120": {
+      "kind": "stop_target",
+      "stop_pct": -0.6,
+      "target_pct": 1.2,
+      "primary_alternative": false
+    },
+    "breakeven_after_50": {
+      "kind": "breakeven",
+      "initial_stop_pct": -0.5,
+      "activation_gain_pct": 0.5,
+      "primary_alternative": false
+    },
+    "trail25_after_50": {
+      "kind": "trailing",
+      "initial_stop_pct": -0.5,
+      "activation_gain_pct": 0.5,
+      "trail_pct": 0.25,
+      "primary_alternative": false
+    },
+    "time_exit_1530": {
+      "kind": "time",
+      "exit_time": "15:30",
+      "primary_alternative": false
+    },
+    "time_exit_1545": {
+      "kind": "time",
+      "exit_time": "15:45",
+      "primary_alternative": false
+    }
+  },
+  "execution_scenarios": {
+    "frictionless": {
+      "min_penalty_points": 0.0,
+      "pct_of_reference_price": 0.0,
+      "commission_per_side_usd": 0.0
+    },
+    "low_cost": {
+      "min_penalty_points": 0.05,
+      "pct_of_reference_price": 0.02,
+      "commission_per_side_usd": 1.0
+    },
+    "medium_cost": {
+      "min_penalty_points": 0.1,
+      "pct_of_reference_price": 0.05,
+      "commission_per_side_usd": 1.5
+    },
+    "severe_cost": {
+      "min_penalty_points": 0.2,
+      "pct_of_reference_price": 0.1,
+      "commission_per_side_usd": 2.0
+    }
+  },
+  "methodology_notes": [
+    "Stop and target percentages are based on executed entry premium.",
+    "If both fixed stop and target are touched in the same one-minute bar, stop is assumed first.",
+    "Break-even and newly tightened trailing stops become active on the next minute bar.",
+    "Stop gaps use the lower of stop level and bar open as the reference exit.",
+    "All policies except stop50_tp100 are sensitivity analyses.",
+    "No historical NBBO quotes are available; execution penalties are synthetic sensitivity assumptions."
+  ]
+}
