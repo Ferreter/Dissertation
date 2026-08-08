@@ -1,0 +1,69 @@
+{
+  "research_question": "RQ5",
+  "fresh_holdout_used": false,
+  "primary_rule": {
+    "rq1_confidence_coverage": 0.3,
+    "rq2_min_predicted_move_bps": 20.0,
+    "rq3_large_move_required": true
+  },
+  "primary_direction_model": "RQ1_ML",
+  "direction_benchmark": "60-minute mean reversion",
+  "primary_strike_offset_points": 0,
+  "strike_sensitivity_offsets_points": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30
+  ],
+  "entry_window_et": [
+    "15:00",
+    "15:05"
+  ],
+  "entry_reference": "open",
+  "exit_window_et": [
+    "15:55",
+    "15:59"
+  ],
+  "exit_reference": "close",
+  "primary_execution_scenario": "medium_cost",
+  "execution_scenarios": {
+    "frictionless": {
+      "min_penalty_points": 0.0,
+      "pct_of_reference_price": 0.0,
+      "commission_per_side_usd": 0.0
+    },
+    "low_cost": {
+      "min_penalty_points": 0.05,
+      "pct_of_reference_price": 0.02,
+      "commission_per_side_usd": 1.0
+    },
+    "medium_cost": {
+      "min_penalty_points": 0.1,
+      "pct_of_reference_price": 0.05,
+      "commission_per_side_usd": 1.5
+    },
+    "severe_cost": {
+      "min_penalty_points": 0.2,
+      "pct_of_reference_price": 0.1,
+      "commission_per_side_usd": 2.0
+    }
+  },
+  "default_contract_multiplier": 100.0,
+  "near_total_loss_return_threshold": -0.8,
+  "affordability_thresholds_usd": [
+    250,
+    500,
+    1000,
+    2000
+  ],
+  "historical_nbbo_used": false,
+  "notes": [
+    "Trade-derived minute aggregates are used as reference prices.",
+    "Synthetic adverse-execution scenarios are sensitivity assumptions, not reconstructed historical spreads.",
+    "ATM remains the primary specification; OTM results are sensitivity analyses.",
+    "RQ2 >=25 and >=30 bps results are sensitivity analyses only."
+  ]
+}
