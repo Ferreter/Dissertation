@@ -1,0 +1,34 @@
+{
+  "created_at_local": "2026-08-09T00:13:25.293280+01:00",
+  "research_question": "RQ5",
+  "stage": "options_data_retrieval",
+  "fresh_holdout_used": false,
+  "massive_plan_assumption": "Options Starter",
+  "nominal_options_history_years": 2,
+  "nominal_history_start_on_run_date": "2024-08-08",
+  "primary_rq1_coverage": 0.3,
+  "primary_rq2_min_bps": 20.0,
+  "primary_rq3_required": true,
+  "primary_contract_specification": "0DTE nearest available ATM strike",
+  "sensitivity_strike_offsets_points": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30
+  ],
+  "option_bar_window_et": [
+    "14:55",
+    "16:00"
+  ],
+  "candidate_sessions_total": 20,
+  "candidate_sessions_within_nominal_history": 20,
+  "selected_contract_rows": 280,
+  "unique_contracts_requested": 256,
+  "option_bar_rows_downloaded": 15279,
+  "historical_quotes_used": false,
+  "historical_trades_used": false,
+  "execution_note": "Minute aggregates are trade-derived OHLC/VWAP. Historical bid/ask quotes are not available on Options Starter. RQ5 backtest must use explicit transaction-cost/slippage sensitivity."
+}
