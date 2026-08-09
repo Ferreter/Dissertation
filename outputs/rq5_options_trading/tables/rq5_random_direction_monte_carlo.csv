@@ -1,0 +1,7 @@
+metric,value
+Actual ML total P&L,9551.0
+Random-direction mean total P&L,4082.1605799999998
+Random-direction median total P&L,4056.3749999999995
+Random-direction 5th percentile,-6295.122499999998
+Random-direction 95th percentile,14477.147499999994
+Share random simulations below ML,0.7929

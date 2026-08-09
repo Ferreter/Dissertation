@@ -1,0 +1,6 @@
+metric,count,share_of_stop_touches
+Trades touching -50%,9,1.0
+Later recovered to entry,4,0.4444444444444444
+Later reached +50%,4,0.4444444444444444
+Later reached +100%,2,0.2222222222222222
+Eventually closed above entry,3,0.3333333333333333

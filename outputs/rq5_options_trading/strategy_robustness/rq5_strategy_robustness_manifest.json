@@ -1,0 +1,101 @@
+{
+  "research_question": "RQ5",
+  "analysis": "strategy_robustness_and_multi_contract",
+  "fresh_holdout_used": false,
+  "primary_strategy_preserved": true,
+  "primary_strike_offset_points": 0,
+  "primary_execution_scenario": "medium_cost",
+  "primary_multi_contract_sensitivity": "2C_TP100_RUNNER_CLOSE",
+  "multi_contract_rules": {
+    "1C_HOLD_CLOSE": {
+      "contracts": 1,
+      "initial_stop_pct": null,
+      "tp1_pct": null,
+      "tp1_contracts": 0,
+      "tp2_pct": null,
+      "tp2_contracts": 0,
+      "runner_mode": "close"
+    },
+    "1C_STOP50_HOLD_CLOSE": {
+      "contracts": 1,
+      "initial_stop_pct": -0.5,
+      "tp1_pct": null,
+      "tp1_contracts": 0,
+      "tp2_pct": null,
+      "tp2_contracts": 0,
+      "runner_mode": "close"
+    },
+    "2C_TP100_RUNNER_CLOSE": {
+      "contracts": 2,
+      "initial_stop_pct": -0.5,
+      "tp1_pct": 1.0,
+      "tp1_contracts": 1,
+      "tp2_pct": null,
+      "tp2_contracts": 0,
+      "runner_mode": "close"
+    },
+    "2C_TP100_RUNNER_BE": {
+      "contracts": 2,
+      "initial_stop_pct": -0.5,
+      "tp1_pct": 1.0,
+      "tp1_contracts": 1,
+      "tp2_pct": null,
+      "tp2_contracts": 0,
+      "runner_mode": "breakeven_after_tp1"
+    },
+    "2C_TP100_RUNNER_TRAIL25": {
+      "contracts": 2,
+      "initial_stop_pct": -0.5,
+      "tp1_pct": 1.0,
+      "tp1_contracts": 1,
+      "tp2_pct": null,
+      "tp2_contracts": 0,
+      "runner_mode": "trail_after_tp1",
+      "trail_pct": 0.25
+    },
+    "3C_TP50_TP100_RUNNER_CLOSE": {
+      "contracts": 3,
+      "initial_stop_pct": -0.5,
+      "tp1_pct": 0.5,
+      "tp1_contracts": 1,
+      "tp2_pct": 1.0,
+      "tp2_contracts": 1,
+      "runner_mode": "close"
+    }
+  },
+  "time_checkpoints": [
+    "15:05",
+    "15:10",
+    "15:15",
+    "15:20",
+    "15:30",
+    "15:40",
+    "15:45",
+    "15:50",
+    "15:55",
+    "15:59"
+  ],
+  "random_direction_simulations": 10000,
+  "hypothetical_accounts_usd": [
+    2500,
+    5000,
+    10000,
+    25000
+  ],
+  "break_even_cost_grid": {
+    "start": 0.0,
+    "stop": 0.3,
+    "step": 0.005,
+    "commission_per_side_usd": 1.5
+  },
+  "methodology_notes": [
+    "Multi-contract strategies use multiple copies of the same option contract.",
+    "Raw multi-contract dollar P&L is not treated as evidence of better capital efficiency.",
+    "Each multi-contract rule is compared with an equal-number-of-contracts hold-to-close counterfactual.",
+    "If stop and take-profit are touched in the same one-minute bar before scale-out, stop is assumed first.",
+    "Runner break-even/trailing changes become active on the next minute.",
+    "Same-date random-direction Monte Carlo tests direction value, not day-selection value.",
+    "A full random-day benchmark requires new option retrieval on non-candidate sessions.",
+    "Hypothetical account-size outputs are descriptive exposure analysis, not personalised investment advice."
+  ]
+}
