@@ -1,11 +1,11 @@
 # RQ5 Exit Strategy Sensitivity
 
 **Executable:** `notebooks/rq5_exit_strategy_sensitivity.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I compare hold-to-close with a pre-specified 50% stop-loss and 100% take-profit, then use other exit rules only as sensitivities.
+I compare the normal hold-to-close trade with a 50% stop and 100% target here. The other exit ideas are included as checks, not as a search for whichever rule looks best afterwards.
 
 ## Workflow
 
@@ -23,9 +23,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Simulate path-dependent exits with conservative same-minute ambiguity handling.
-- Compare policies on the same trades, strikes and costs.
-- Record trigger frequency, holding time, P&L and drawdown effects.
+- I replay the minute path and use a conservative rule if a stop and target could both have happened in the same bar.
+- I compare every policy on the same trades, strikes and cost assumptions.
+- I record how often each rule triggers, how long it holds and what it changes for P&L and drawdown.
 
 ## Outputs
 
@@ -36,23 +36,23 @@ flowchart LR
 
 ![Hold versus stop and target](../../outputs/rq5_options_trading/figures/rq5_hold_vs_stop50_tp100.png)
 
-*Figure: the paired trade-level effect of the principal stop-loss and take-profit rule.*
+*This plot shows the paired trade-level effect of the principal stop-loss and take-profit rule.*
 
 ![Exit-policy risk and return](../../outputs/rq5_options_trading/figures/rq5_exit_policy_risk_return.png)
 
-*Figure: the return and drawdown trade-offs across the pre-specified exit policies.*
+*This plot shows the return and drawdown trade-offs across the pre-specified exit policies.*
 
 ## Findings and decisions
 
-- The medium-cost ATM hold-to-close baseline produced $9,551 in the recorded comparison.
-- The primary stop/take-profit rule changes both return and drawdown, but I compare it with holding the same trades rather than selecting the best rule after seeing results.
-- One-minute ambiguity is handled conservatively by assuming the stop is reached first.
+- The medium-cost ATM hold-to-close comparison produced $9,551 in the saved run.
+- The main stop/target rule changes both return and drawdown, but I compare it with holding those exact same trades.
+- If the one-minute bar is ambiguous, I assume the stop happened first. That is the less favourable choice.
 
 ## Limitations
 
-- Minute OHLC bars do not reveal the within-minute order of stop and target touches.
-- The alternative policies are development-period sensitivities, not independently validated strategies.
+- Minute OHLC bars don't show whether the stop or target was touched first inside the minute.
+- The extra exit policies are development checks and haven't been validated on new trades.
 
 ## Next steps
 
-- Assess dependence on extreme winners, post-stop recovery and equal-capital multi-contract counterfactuals.
+- I next look at the biggest winners, what happened after a stop and equal-capital multi-contract examples.

@@ -1,11 +1,11 @@
 # RQ5 Strategy Robustness and Multi-Contract Scaling
 
 **Executable:** `notebooks/rq5_strategy_robustness_and_multi_contract.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I examine profit concentration, path recovery, timing, option side, random-direction benchmarks and multi-contract scale-out rules.
+The backtest only has a small number of trades, so I use this notebook to see what is driving the result. I look at big winners, recoveries, timing, option side, random directions and multi-contract exits.
 
 ## Workflow
 
@@ -23,9 +23,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Run top-winner and leave-one-out concentration tests.
-- Measure recovery after stop or target touches and P&L development through the hour.
-- Compare multi-contract rules with holding the same number of contracts and report hypothetical account exposure.
+- I remove the top trades one at a time and check how concentrated the profit is.
+- I track what happens after a stop or target touch and how P&L develops through the hour.
+- For the multi-contract ideas, I compare them with simply holding the same number of contracts and show the capital that would have been needed.
 
 ## Outputs
 
@@ -36,23 +36,23 @@ flowchart LR
 
 ![MFE versus MAE](../../outputs/rq5_options_trading/figures/rq5_mfe_vs_mae.png)
 
-*Figure: the favourable and adverse intraday paths behind the final trade outcomes.*
+*This plot shows the favourable and adverse intraday paths behind the final trade outcomes.*
 
 ![Time-of-hour development](../../outputs/rq5_options_trading/figures/rq5_time_of_hour_development.png)
 
-*Figure: when gains and losses develop during the final trading hour.*
+*This plot shows when gains and losses develop during the final trading hour.*
 
 ## Findings and decisions
 
-- The largest trade contributed about 41.6% of the primary strategy's net P&L.
-- Among trades touching -50%, about 44.4% recovered to entry and 22.2% later reached +100%, showing why hard stops materially alter 0DTE outcomes.
-- Multi-contract rules increased raw dollars through added capital but underperformed equal-size hold-to-close counterfactuals in the recorded comparison.
+- The largest trade made up about 41.6% of the main strategy's net P&L.
+- Of the trades that touched -50%, around 44.4% got back to entry and 22.2% later reached +100%. That shows why a hard stop changes the result so much.
+- The multi-contract rules made more raw dollars by using more capital, but they did worse than holding the same number of contracts in this sample.
 
 ## Limitations
 
-- The same 17 candidate dates underpin most robustness checks.
-- Hypothetical account exposures are descriptive and not personalised investment advice.
+- Most of these checks still come from the same 17 dates.
+- The account-size examples are there to show scale and aren't personal investment advice.
 
 ## Next steps
 
-- Keep the primary strategy frozen and evaluate it only on genuinely fresh option data.
+- I keep the main rule fixed from here and only judge it again when genuinely new option data is available.

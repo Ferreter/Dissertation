@@ -1,11 +1,11 @@
 # RQ5 0DTE SPX Options Backtest
 
 **Executable:** `notebooks/rq5_options_backtest.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I test whether the frozen RQ1-RQ3 opportunity rule produces economically meaningful 0DTE option results after execution-cost sensitivity.
+Here I finally test the frozen RQ1-RQ3 rule with 0DTE SPX options. I wanted to see what the result looks like after adding less generous entry and exit prices, not just under perfect execution.
 
 ## Workflow
 
@@ -24,9 +24,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Choose the pre-specified ATM contract and deterministic entry/exit bars.
-- Apply frictionless, low, medium and severe adverse-execution scenarios.
-- Compare ML and mean reversion, affordability, strike offsets, regimes and bootstrap uncertainty.
+- I use the planned ATM contract and the same entry and exit bars for every trade.
+- I run frictionless, low, medium and severe cost assumptions.
+- I also compare the ML direction with mean reversion and check affordability, strike choice, regimes and bootstrap uncertainty.
 
 ## Outputs
 
@@ -38,23 +38,23 @@ flowchart LR
 
 ![Cumulative PnL under medium costs](../../outputs/rq5_options_trading/figures/rq5_cumulative_pnl_medium_cost.png)
 
-*Figure: the cumulative path of the frozen strategy after the medium transaction-cost assumption.*
+*This plot shows the cumulative path of the frozen strategy after the medium transaction-cost assumption.*
 
 ![OTM affordability sensitivity](../../outputs/rq5_options_trading/figures/rq5_otm_affordability_sensitivity.png)
 
-*Figure: the trade-off between cheaper contracts and the resulting strategy outcomes.*
+*This plot shows the trade-off between cheaper contracts and the resulting strategy outcomes.*
 
 ## Findings and decisions
 
-- The ATM ML strategy produced $11,855 before costs across 17 historical trades and remained profitable under the pre-specified medium-cost assumptions.
-- On the same dates, ML did not consistently outperform the 60-minute mean-reversion direction benchmark.
-- Bootstrap intervals were wide, so the positive historical P&L is not treated as a precise expectation.
+- Across 17 historical trades, the ATM ML strategy made $11,855 before costs and was still positive under the planned medium-cost case.
+- On those same dates, the ML direction didn't consistently beat the 60-minute mean-reversion rule.
+- The bootstrap ranges were wide, so I wouldn't treat the positive P&L as a reliable expected return.
 
 ## Limitations
 
-- There are only 17 primary trades and no historical bid-ask quotes.
-- Synthetic execution penalties, development-period selection and 0DTE path dependence limit generalisation.
+- The biggest issue is that there are only 17 main trades and no historical bid-ask quotes.
+- The costs are synthetic, the dates are from development, and 0DTE results depend heavily on the path taken during the hour.
 
 ## Next steps
 
-- Test the pre-specified stop/take-profit alternative and examine concentration and path dependence.
+- Next I test the planned stop/take-profit rule and check how much the result depends on a few trades.
