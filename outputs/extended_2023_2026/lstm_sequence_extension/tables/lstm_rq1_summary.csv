@@ -1,0 +1,2 @@
+model,outer_balanced_accuracy_mean,outer_balanced_accuracy_std,outer_accuracy_mean,outer_mcc_mean,outer_roc_auc_mean,mean_best_epoch,15m_mean_reversion_ba_mean,60m_mean_reversion_ba_mean
+LSTM 120-minute sequence,0.5236078037702069,0.017316032616452013,0.5268065268065268,0.053053825868517666,0.5329171582257102,1.0,0.5524020487859759,0.5486840174841814

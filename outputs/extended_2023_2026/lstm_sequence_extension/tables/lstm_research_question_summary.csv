@@ -1,0 +1,4 @@
+research_question,primary_metric,lstm_score,simple_benchmark_score,higher_is_better,secondary_metric,secondary_score
+RQ1 Direction,Balanced accuracy,0.5236078037702069,0.5524020487859759,True,ROC AUC,0.5329171582257102
+RQ2 Magnitude,MAE (bps),14.396754264831543,14.16549384713798,False,Spearman,0.20281772218391933
+RQ3 Large Movement,Average precision,0.4339296190567425,0.2400932400932401,True,Recall,0.7474747474747474

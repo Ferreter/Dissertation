@@ -1,0 +1,2 @@
+model,outer_average_precision_mean,outer_average_precision_std,outer_prevalence_mean,outer_ap_lift_mean,outer_ap_lift_ratio_mean,outer_recall_mean,outer_f1_mean,outer_roc_auc_mean,mean_best_epoch
+LSTM 120-minute sequence,0.4339296190567425,0.1739668535106193,0.2400932400932401,0.19383637896350245,1.8142782656697,0.7474747474747474,0.43028267112425533,0.6913931332808932,15.666666666666666

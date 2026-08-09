@@ -1,0 +1,4 @@
+research_question,metric,overlap_sessions,lstm_metric,classical_metric,classical_model,classical_dataset,classical_feature_set
+RQ1 Direction,balanced_accuracy,427,0.5307987711213518,0.542089093701997,Extra Trees,Strict,Full
+RQ2 Magnitude,mae_bps,416,14.29636933355449,12.81853912212885,RBF SVR,Relaxed,Full
+RQ3 Large Movement,average_precision,427,0.3868237166760005,0.5354785182228314,RBF SVC,Strict,Reduced

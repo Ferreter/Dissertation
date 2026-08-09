@@ -1,0 +1,61 @@
+{
+  "analysis": "Exploratory LSTM intraday sequence extension",
+  "extended_underlying_period": "2023 through 2026-07-17 source data",
+  "development_splits_used": [
+    "Train",
+    "Validation"
+  ],
+  "existing_test_used": false,
+  "fresh_post_2026_07_17_holdout_used": false,
+  "sequence_window_et": [
+    "13:00",
+    "14:59"
+  ],
+  "sequence_length_minutes": 120,
+  "sequence_features": [
+    "spx_logret_1m",
+    "spx_logret_5m",
+    "spy_logret_1m",
+    "vix_logret_1m",
+    "vix_logret_5m",
+    "vix_level",
+    "spx_from_open_pct",
+    "spy_from_open_pct",
+    "spx_running_range_position",
+    "spx_rv_15m",
+    "spx_rv_30m",
+    "spy_log_volume",
+    "spy_log_cum_volume",
+    "spx_staleness_seconds",
+    "vix_staleness_seconds",
+    "sequence_time_fraction"
+  ],
+  "outer_splits": 3,
+  "inner_validation_fraction": 0.2,
+  "architecture": {
+    "lstm_units": 32,
+    "dense_units": 16,
+    "dropout_rate": 0.2,
+    "learning_rate": 0.001
+  },
+  "training": {
+    "max_epochs": 150,
+    "early_stopping_patience": 15,
+    "batch_size": 32,
+    "shuffle": false
+  },
+  "rq1_primary_metric": "balanced_accuracy",
+  "rq2_primary_metric": "mae_bps",
+  "rq3_primary_metric": "average_precision",
+  "rq3_large_move_threshold_bps": 27.575607227454114,
+  "random_state": 42,
+  "tensorflow_version": "2.15.0",
+  "methodology_notes": [
+    "Scaling is fitted only on the chronological fit portion of each outer fold.",
+    "The final 20% of each outer-training fold is used for early stopping and classification-threshold selection.",
+    "Outer-test observations are not used for training, scaling, early stopping, or threshold selection.",
+    "The previously inspected Test block is excluded from the main LSTM evaluation.",
+    "The fresh post-17-Jul-2026 holdout remains untouched.",
+    "The LSTM architecture is intentionally small and is not subjected to a large hyperparameter search."
+  ]
+}

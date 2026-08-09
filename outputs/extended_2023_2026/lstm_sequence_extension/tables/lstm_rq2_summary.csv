@@ -1,0 +1,2 @@
+model,outer_mae_bps_mean,outer_mae_bps_std,outer_rmse_bps_mean,outer_r2_mean,outer_spearman_mean,training_median_benchmark_mae_mean,mae_improvement_bps,mean_best_epoch
+LSTM 120-minute sequence,14.396754,5.0827117,24.19941790226194,-0.13741399157452647,0.20281772218391933,14.16549384713798,-0.2312604176935622,28.666666666666668
