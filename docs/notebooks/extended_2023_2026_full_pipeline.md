@@ -7,6 +7,15 @@
 
 I repeat the underlying retrieval, alignment, cleaning, modelling and robustness workflow on an isolated 2023-2026 dataset.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Isolated 2023-2026 market data"] --> B["Repeat alignment, cleaning, splitting and tuning"]
+    B --> C["Extended evidence bundle"]
+    C --> D["LSTM and extended RQ4 checks"]
+```
+
 ## Inputs
 
 - Massive API access through `main.env`
@@ -23,6 +32,16 @@ I repeat the underlying retrieval, alignment, cleaning, modelling and robustness
 
 - `data_extended_2023_2026/`
 - `outputs/extended_2023_2026/`
+
+## Representative outputs
+
+![Extended feature-target correlations](../../outputs/extended_2023_2026/eda_figures/15_feature_target_correlations.png)
+
+*Figure: the descriptive relationships after expanding the underlying-market history.*
+
+![Extended RQ1 nested performance](../../outputs/extended_2023_2026/hyperparameter_tuning/figures/rq1_nested_balanced_accuracy.png)
+
+*Figure: the time-aware RQ1 performance across extended-history outer folds.*
 
 ## Findings and decisions
 

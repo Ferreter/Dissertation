@@ -7,6 +7,15 @@
 
 I test whether the out-of-fold RQ1-RQ3 predictions concentrate larger or more directionally predictable SPX moves into a smaller set of sessions.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Original out-of-fold RQ1-RQ3 signals"] --> B["Confidence, move-size, lift and bootstrap analysis"]
+    B --> C["RQ4 economic evidence"]
+    C --> D["Options-strategy evaluation"]
+```
+
 ## Inputs
 
 - Selected-winner outer-fold predictions
@@ -23,6 +32,16 @@ I test whether the out-of-fold RQ1-RQ3 predictions concentrate larger or more di
 
 - `outputs/rq4_economic_meaningfulness/`
 - RQ4 tables, plots, bootstrap summary and dissertation draft
+
+## Representative outputs
+
+![Confidence and economic opportunity](../../outputs/rq4_economic_meaningfulness/figures/rq4_confidence_vs_accuracy_and_move_size.png)
+
+*Figure: whether higher RQ1 confidence coincides with better direction accuracy and larger realised moves.*
+
+![Thirty-basis-point opportunity lift](../../outputs/rq4_economic_meaningfulness/figures/rq4_30bps_opportunity_lift.png)
+
+*Figure: the precision and lift of selected signals for economically larger opportunities.*
 
 ## Findings and decisions
 

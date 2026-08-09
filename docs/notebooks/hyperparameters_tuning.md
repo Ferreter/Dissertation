@@ -7,6 +7,15 @@
 
 I tune the selected RQ1-RQ3 model families while keeping the previously viewed test block disabled.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Strict and relaxed development datasets"] --> B["Nested time-aware tuning and threshold selection"]
+    B --> C["Selected RQ1-RQ3 configurations"]
+    C --> D["Robustness checks and model persistence"]
+```
+
 ## Inputs
 
 - Strict and relaxed split datasets
@@ -24,6 +33,16 @@ I tune the selected RQ1-RQ3 model families while keeping the previously viewed t
 - `outputs/hyperparameter_tuning/figures/`
 - `outputs/hyperparameter_tuning/final_tuned_configuration_manifest.json`
 - `outputs/hyperparameter_tuning/nested_tuning_dissertation_draft.md`
+
+## Representative outputs
+
+![RQ1 nested balanced accuracy](../../outputs/hyperparameter_tuning/figures/rq1_nested_balanced_accuracy.png)
+
+*Figure: RQ1 balanced accuracy across the nested chronological folds used for model selection.*
+
+![RQ3 nested average precision](../../outputs/hyperparameter_tuning/figures/rq3_nested_average_precision.png)
+
+*Figure: RQ3 average precision relative to the class-imbalance challenge.*
 
 ## Findings and decisions
 

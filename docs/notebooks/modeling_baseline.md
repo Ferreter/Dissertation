@@ -7,6 +7,15 @@
 
 I compare rule-based, dummy and machine-learning baselines for direction, magnitude and large-movement prediction.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Strict and relaxed modelling variants"] --> B["Rule, dummy and ML baseline comparison"]
+    B --> C["Validation winners and diagnostic evidence"]
+    C --> D["Nested tuning"]
+```
+
 ## Inputs
 
 - Strict and relaxed chronological split datasets
@@ -23,6 +32,16 @@ I compare rule-based, dummy and machine-learning baselines for direction, magnit
 - `outputs/baseline_models/tables/`
 - `outputs/baseline_models/figures/`
 - `outputs/baseline_models/validation_research_question_summary.json`
+
+## Representative outputs
+
+![RQ1 baseline comparison](../../outputs/baseline_models/figures/rq1_direction_models_relaxed.png)
+
+*Figure: the relaxed-sample RQ1 comparison between rule, dummy and machine-learning baselines.*
+
+![RQ3 feature-group importance](../../outputs/baseline_models/figures/rq3_validation_group_importance.png)
+
+*Figure: the validation-period feature groups associated with identifying larger final-hour moves.*
 
 ## Findings and decisions
 

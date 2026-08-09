@@ -7,6 +7,15 @@
 
 I test whether a small LSTM using the ordered 13:00-14:59 minute path adds information beyond engineered tabular features.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Extended minute sequences and daily targets"] --> B["Expanding-fold LSTM evaluation and development refit"]
+    B --> C["Exploratory evidence and model artifacts"]
+    C --> D["Compare with classical evidence"]
+```
+
 ## Inputs
 
 - Extended aligned one-minute data
@@ -23,6 +32,16 @@ I test whether a small LSTM using the ordered 13:00-14:59 minute path adds infor
 
 - `outputs/extended_2023_2026/lstm_sequence_extension/`
 - LSTM fold, prediction, importance, history and manifest files
+
+## Representative outputs
+
+![Example LSTM input sequence](../../outputs/extended_2023_2026/lstm_sequence_extension/figures/lstm_example_input_sequence.png)
+
+*Figure: the minute-by-minute channels presented to the sequence model before the decision time.*
+
+![LSTM validation loss](../../outputs/extended_2023_2026/lstm_sequence_extension/figures/lstm_validation_loss_curves.png)
+
+*Figure: the chronological training and validation behaviour used to assess overfitting and choose epochs.*
 
 ## Findings and decisions
 
