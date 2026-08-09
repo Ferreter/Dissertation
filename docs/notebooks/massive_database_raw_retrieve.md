@@ -1,11 +1,11 @@
 # Massive Raw Data Retrieval
 
 **Executable:** `notebooks/massive_database_raw_retrieve.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I retrieve the dissertation's underlying and selected option history incrementally and register it for later analysis.
+This notebook does the longer data download. I use it to collect the underlying history and the option samples in small restartable pieces instead of relying on one very long API call.
 
 ## Workflow
 
@@ -24,9 +24,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Download SPY, SPX and VIX minute aggregates by business day.
-- Normalise timestamps and write partitioned Parquet files.
-- Discover SPX contracts, collect permitted snapshots or samples and update DuckDB views.
+- I request SPY, SPX and VIX minute data one business day at a time.
+- I standardise the timestamps, save each day as Parquet and register the files in DuckDB.
+- For options, I find the SPX contracts first, then save whatever snapshots or minute samples the account can return.
 
 ## Outputs
 
@@ -40,14 +40,14 @@ The maintained downstream audit is stored as [underlying session audit Parquet](
 
 ## Findings and decisions
 
-- The collection is restartable because successful ticker-date requests are logged and skipped on rerun.
-- API errors and empty sessions remain explicit for later quality review.
+- Completed ticker-date requests are logged, so rerunning the notebook doesn't download the same day again.
+- Errors and empty days stay visible in the log. I don't silently count them as good data.
 
 ## Limitations
 
-- Historical Greeks, open interest and quote-level bid-ask data are not backfilled by this workflow.
-- Long downloads depend on API entitlements, rate limits and network availability.
+- This setup couldn't backfill historical Greeks, open interest or full quote-level spreads.
+- A long download can still be interrupted by the API plan, rate limits or the internet connection.
 
 ## Next steps
 
-- Run alignment and EDA after the required underlying views are available.
+- Once the required underlying views exist, I can move on to alignment and EDA.

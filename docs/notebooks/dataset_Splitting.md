@@ -1,11 +1,11 @@
 # Strict and Relaxed Modelling Datasets
 
 **Executable:** `notebooks/dataset_Splitting.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I build two defensible session-quality variants so I can test whether a modest increase in sample size changes the modelling conclusions.
+I made two versions of the dataset here. One is stricter on session quality, while the other keeps a few more days so I can see whether the conclusions depend on that choice.
 
 ## Workflow
 
@@ -24,9 +24,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Apply strict and relaxed session-eligibility rules.
-- Use the strict sample to set common chronological train, validation and test dates.
-- Verify feature completeness, target consistency and the pre-15:00 cutoff.
+- I apply the strict and relaxed session rules separately.
+- I take the date boundaries from the strict sample, then use those same dates for both versions so the comparison stays fair.
+- Before saving anything, I recheck the feature timing, targets and missing values.
 
 ## Outputs
 
@@ -38,21 +38,21 @@ flowchart LR
 
 ![Strict and relaxed observation counts](../../outputs/dataset_variants/figures/strict_relaxed_observation_counts.png)
 
-*Figure: the sample-size trade-off created by the two data-quality definitions.*
+*This plot shows the sample-size trade-off created by the two data-quality definitions.*
 
 The complete rules are recorded in the [dataset-variant manifest](../../outputs/dataset_variants/dataset_variant_manifest.json).
 
 ## Findings and decisions
 
-- The recorded run retained 434 strict sessions and 486 relaxed sessions.
-- Both variants passed missingness, non-finite and look-ahead checks.
-- I carry both variants into modelling and select between them using development-period evidence only.
+- The strict dataset has 434 sessions and the relaxed one has 486.
+- Both versions passed the missing-value, infinite-value and look-ahead checks.
+- I carry both versions into modelling and only choose between them using the development period.
 
 ## Limitations
 
-- The relaxed rule accepts limited VIX gaps and therefore trades sample size against data quality.
-- Neither variant removes the need for time-aware validation.
+- The relaxed version gives me more rows, but it also accepts small gaps in VIX. That is the trade-off.
+- Having two versions doesn't remove the need for time-aware validation.
 
 ## Next steps
 
-- Run identical baseline models and benchmarks on both variants.
+- I can now run the same baseline models on both versions and compare them properly.

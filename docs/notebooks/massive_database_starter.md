@@ -1,11 +1,11 @@
 # Massive Database Starter
 
 **Executable:** `notebooks/massive_database_starter.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I validate Massive access and test the incremental Parquet and DuckDB storage workflow before a full download.
+I use this as a small test run before starting a full download. It checks what the Massive account can actually access and whether the Parquet/DuckDB storage works as expected.
 
 ## Workflow
 
@@ -23,9 +23,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Probe recent underlying data and option entitlements.
-- Download a small proof-of-concept sample and register DuckDB views.
-- Test contract discovery, chain snapshots and a controlled option-bar sample.
+- I try a few recent underlying requests and check the option entitlements.
+- I save a small sample and make sure DuckDB can see it.
+- I also test contract discovery, chain snapshots and one controlled option-bar example.
 
 ## Outputs
 
@@ -39,15 +39,15 @@ The successful storage path feeds the [underlying session audit Parquet](../../d
 
 ## Findings and decisions
 
-- The notebook makes access limitations visible instead of treating empty results as valid data.
-- Successful sessions are logged so reruns can skip completed downloads.
-- It establishes the storage convention used by the rest of the project.
+- If an endpoint returns nothing, the notebook shows that clearly instead of pretending the request worked.
+- Successful dates are logged, which makes later reruns much easier.
+- The storage layout tested here is the same one used in the rest of the project.
 
 ## Limitations
 
-- Endpoint access depends on the current Massive subscription and rolling history window.
-- A successful probe does not prove that every session is complete.
+- What works depends on the Massive subscription and its rolling history window.
+- Getting rows back for a test date doesn't guarantee that every full session is complete.
 
 ## Next steps
 
-- Run the full retrieval notebook only after the proof-of-concept checks pass.
+- I only move to the full retrieval notebook after these small checks work.

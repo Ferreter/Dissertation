@@ -1,11 +1,11 @@
 # Look-Ahead-Safe Alignment and Exploratory Data Analysis
 
 **Executable:** `notebooks/aligned_eda.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I align SPY, SPX and VIX minute observations without using future information, build the daily modelling table and examine the initial relationships with the final-hour SPX target.
+This is where I line up the SPY, SPX and VIX minute data and build the daily table I use later on. The main thing I wanted to avoid here was accidentally matching a row with information that wasn't available yet.
 
 ## Workflow
 
@@ -23,9 +23,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Use SPY as the minute clock and backward as-of match SPX and VIX within two minutes.
-- Audit regular-session completeness and create features using bars strictly before 15:00 ET.
-- Summarise distributions, missingness, class balance, time patterns and feature correlations.
+- I use SPY as the minute-by-minute clock, then match SPX and VIX backwards within a two-minute window.
+- I check whether each trading session looks complete and only build features from bars before 15:00 ET.
+- I then look through the distributions, missing values, class balance and basic correlations to get a feel for the data.
 
 ## Outputs
 
@@ -38,23 +38,23 @@ flowchart LR
 
 ![SPX alignment staleness](../../outputs/eda_figures/02_spx_alignment_staleness.png)
 
-*Figure: the age of backward-looking SPX matches, used to confirm that the alignment is timely without looking forward.*
+*This plot shows the age of backward-looking SPX matches, used to confirm that the alignment is timely without looking forward.*
 
 ![Feature-target correlations](../../outputs/eda_figures/15_feature_target_correlations.png)
 
-*Figure: the univariate relationships that guided later modelling while remaining descriptive rather than causal.*
+*This plot shows the univariate relationships that guided later modelling while remaining descriptive rather than causal.*
 
 ## Findings and decisions
 
-- The recorded run created 194,495 aligned minute rows, audited 501 sessions and retained 496 daily modelling sessions.
-- Individual feature correlations with the final-hour return were weak, so I treat the EDA as evidence for careful validation rather than strong standalone predictability.
-- The look-ahead checks passed and no Massive API calls were needed for this stage.
+- When I ran it, I ended up with 194,495 aligned minute rows. That covered 501 checked sessions and 496 sessions in the daily modelling table.
+- Most of the single-feature correlations with the final-hour return were weak. Because of that, I don't treat the EDA as proof that the market is predictable.
+- The look-ahead checks passed, and this stage didn't need to make any new Massive API calls.
 
 ## Limitations
 
-- As-of matching can retain stale observations within the allowed tolerance.
-- EDA relationships are descriptive and do not establish out-of-sample predictive value.
+- A match can still be slightly stale, even though it falls inside the two-minute limit.
+- These plots only show what is in this sample. They don't tell me how well a model will work on later data.
 
 ## Next steps
 
-- Review problem sessions, remove partial sessions and freeze chronological modelling splits.
+- Next I need to review the awkward sessions, remove partial days and lock in the chronological splits.

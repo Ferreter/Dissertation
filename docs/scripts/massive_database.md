@@ -1,11 +1,11 @@
 # Massive Database Helpers
 
 **Executable:** `scripts/massive_database.py`  
-**Status:** Reusable support code for the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I keep the common Massive API, normalisation, Parquet and DuckDB operations in one module so that every retrieval notebook follows the same rules.
+I put the repeated Massive API and database jobs in this script so the notebooks don't each do them in a slightly different way. It handles the requests, tidy-up, Parquet files and DuckDB registration.
 
 ## Workflow
 
@@ -24,11 +24,11 @@ flowchart LR
 
 ## Processing and rationale
 
-- Wrap REST requests with pagination, retry and rate-limit handling.
-- Normalise underlying, option and contract responses into consistent tables.
-- Write partitioned daily Parquet files and record download status in DuckDB.
-- Register views only when the corresponding Parquet dataset exists.
-- Select near-ATM contracts and retrieve deterministic reference prices.
+- I wrap the API calls with pagination, retries and basic rate-limit handling.
+- I turn the underlying, option and contract responses into consistent tables.
+- I save one Parquet partition per day and keep the download result in DuckDB.
+- I only create a view if its Parquet data is actually there.
+- I also use the helper to choose near-ATM contracts and fetch repeatable reference prices.
 
 ## Outputs
 
@@ -42,17 +42,17 @@ The reusable functions feed the [underlying session audit](../../data/derived/un
 
 ## Findings and decisions
 
-- I use `timestamp_utc` as the canonical instant and keep New York wall-clock time for session filtering.
-- Successful ticker-date downloads are skipped unless overwrite is explicitly requested.
-- Empty and failed requests are logged rather than silently treated as valid observations.
+- I keep `timestamp_utc` as the main timestamp and use New York time when filtering the trading session.
+- A successful ticker-date download is skipped next time unless I explicitly ask to overwrite it.
+- Empty and failed requests are logged instead of being hidden.
 
 ## Limitations
 
-- The helper cannot provide data outside the connected account's entitlements.
-- Retry handling improves resilience but does not guarantee completion during long outages.
-- API response-schema changes may require updates to the normalisation functions.
+- The script can't get anything outside the account's data entitlement.
+- Retries help with short failures but won't solve a long outage.
+- If the API response format changes, the normalising functions may need to be updated.
 
 ## Next steps
 
-- Add focused unit tests if the retrieval layer is extended beyond the current dissertation scope.
-- Keep endpoint and schema assumptions aligned with the provider documentation.
+- I would add focused tests if this retrieval layer grows beyond the dissertation.
+- I also need to keep the endpoint assumptions in step with the provider's documentation.

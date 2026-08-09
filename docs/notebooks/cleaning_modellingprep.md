@@ -1,11 +1,11 @@
 # Dataset Cleaning and Pre-Modelling Setup
 
 **Executable:** `notebooks/cleaning_modellingprep.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I clean the aligned daily data, document session exclusions and prepare leakage-safe chronological datasets for modelling.
+Here I tidy up the aligned daily data and get it ready for modelling. I also keep a record of the sessions I remove, as I didn't want the cleaning choices to become a hidden part of the project.
 
 ## Workflow
 
@@ -23,9 +23,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Remove duplicate, incomplete, early-close and timing-inconsistent sessions.
-- Audit missing, non-finite, constant and highly correlated features.
-- Fit median imputation and 1st/99th percentile clipping on training rows only.
+- I remove duplicates, partial sessions, early closes and rows where the timing doesn't make sense.
+- I check for missing values, infinite values, constant columns and features that are almost copies of each other.
+- For imputation and clipping, I learn the values from the training rows only. This is important because using later rows would leak information backwards.
 
 ## Outputs
 
@@ -38,21 +38,21 @@ flowchart LR
 
 ![Neutral-threshold sensitivity](../../outputs/cleaning/figures/neutral_threshold_sensitivity.png)
 
-*Figure: how the direction-label balance changes across plausible neutral-return thresholds.*
+*This plot shows how the direction-label balance changes across plausible neutral-return thresholds.*
 
 The exact cleaning rules and retained rows are recorded in the [cleaning manifest](../../outputs/cleaning/cleaning_manifest.json).
 
 ## Findings and decisions
 
-- The recorded run retained 434 strict binary-target sessions.
-- Look-ahead, target-formula and duplicate checks passed.
-- Several feature pairs were highly correlated, so the modelling stage must keep preprocessing inside each training fold.
+- The strict version left me with 434 sessions for the binary target.
+- The duplicate, target formula and look-ahead checks all passed in the saved run.
+- Some features were very highly correlated, so I keep the preprocessing inside each training fold later on.
 
 ## Limitations
 
-- The strict eligibility rule reduces an already limited daily sample.
-- The precomputed model-ready table is suitable only for simple benchmarks; formal validation should fit preprocessing inside the pipeline.
+- The strict checks make the already small daily sample even smaller.
+- The ready-made table is handy for quick benchmarks, but it isn't a replacement for fitting preprocessing properly inside validation.
 
 ## Next steps
 
-- Create strict and relaxed variants on identical calendar boundaries.
+- The next job is to make strict and relaxed versions using the same date boundaries.
