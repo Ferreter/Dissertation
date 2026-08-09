@@ -73,3 +73,37 @@ Every notebook and executable script has its own guide under `docs/notebooks/` o
 The two tuning notebooks can save the chosen RQ1-RQ3 classical models with `SAVE_MODEL_ARTIFACTS`. The LSTM notebook has the same switch for its exploratory refits and scalers. I haven't included the binary model files in this documentation change; they appear when those cells are actually run.
 
 The main things to keep in mind are the small daily sample, changing market conditions, missing historical option quotes, made-up execution penalties and the lack of a completely fresh post-selection holdout so far.
+
+## Results: how a signal became a trade
+
+I did not make a trade just because one model predicted the market would go up or down. A session only reached the RQ5 backtest when the earlier research questions agreed that it was worth looking at:
+
+```mermaid
+flowchart LR
+    A["RQ1: predict direction"] --> B["Choose a Call or Put"]
+    C["RQ2: predict at least a 20 bps move"] --> F["Trade candidate"]
+    D["RQ3: flag a large-move session"] --> F
+    E["RQ4: keep the most confident 30% of RQ1 signals"] --> F
+    B --> F
+    F --> G["RQ5: buy the nearest ATM 0DTE contract"]
+    G --> H["Test holding, exits and contract scaling"]
+```
+
+RQ1 decided the direction: an upward prediction became a Call and a downward prediction became a Put. RQ2 and RQ3 acted as filters for the size of the opportunity, while RQ4 checked whether the combined signal picked out more economically meaningful final-hour moves. I froze those rules before checking the option result. This left 17 usable trades, entered between 15:00 and 15:05 ET and normally closed between 15:55 and 15:59 ET.
+
+### A mix of strategy results
+
+These examples are all from the same 17 historical opportunities. I have included the main one-contract result, alternative exits, multi-contract ideas and loss-making cases rather than only showing the best performers.
+
+| Type | Strategy | What I tested | Total P&L | Win rate | Median premium at risk |
+|---|---|---|---:|---:|---:|
+| One contract | ATM hold to close | Buy one ATM contract in the RQ1 direction and hold it to the normal close. | $9,551 | 64.7% | $947 |
+| One contract | -50% stop / +100% target | Close the trade when either the stop or target is reached. | $3,026 | 52.9% | $947 |
+| Two contracts | +100% target with break-even runner | Sell one contract at +100%, then move the second contract's stop to break-even. | $11,730 | 52.9% | $1,893 |
+| Three contracts | +50% / +100% scale-out | Sell one at +50%, one at +100%, then hold the last contract to the close. | $12,556 | 52.9% | $2,839 |
+| Losing case | RQ1 ML, 30-point OTM, medium costs | Use a cheaper contract farther out of the money under the main cost assumption. | -$19 | 11.8% | $127 |
+| Losing case | Mean reversion, 30-point OTM, severe costs | Use the simple direction benchmark with the cheapest tested strike and harsher execution costs. | -$562 | 11.8% | $137 |
+
+The main one-contract ATM trade was the clearest result in this sample. The multi-contract versions made more raw dollars, but they also put roughly two or three times as much premium at risk and did not beat simply holding the same number of contracts to the close. The losing OTM examples are important too: lowering the entry cost made near-total losses much more common, and harsher execution costs pushed the result further below zero. With only 17 trades and synthetic cost assumptions, I treat all of this as development evidence rather than proof of a profitable live strategy.
+
+The figures come from the [RQ5 backtest rules](outputs/rq5_options_trading/rq5_backtest_manifest.json), [one-contract and strike results](outputs/rq5_options_trading/tables/rq5_strategy_summary.csv), [exit-policy results](outputs/rq5_options_trading/tables/rq5_exit_policy_primary_atm_medium_cost.csv) and [multi-contract results](outputs/rq5_options_trading/tables/rq5_multi_contract_summary.csv).
