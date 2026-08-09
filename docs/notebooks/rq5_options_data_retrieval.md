@@ -7,6 +7,15 @@
 
 I freeze the RQ5 candidate dates, discover same-day SPX contracts and download the minute bars required for the backtest.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Frozen candidate sessions and option API"] --> B["Discover contracts, retrieve bars and audit quality"]
+    B --> C["Option-bar dataset and retrieval manifest"]
+    C --> D["Frozen options backtest"]
+```
+
 ## Inputs
 
 - RQ4 combined outer-fold predictions
@@ -24,6 +33,10 @@ I freeze the RQ5 candidate dates, discover same-day SPX contracts and download t
 - `outputs/rq5_options_trading/raw/rq5_option_minute_bars.parquet`
 - Contract-selection, download-log, quality and candidate-session tables
 - `outputs/rq5_options_trading/rq5_retrieval_manifest.json`
+
+## Representative outputs
+
+The retrieved minute bars are stored in [Parquet format](../../outputs/rq5_options_trading/raw/rq5_option_minute_bars.parquet), with scope and data-quality decisions in the [retrieval manifest](../../outputs/rq5_options_trading/rq5_retrieval_manifest.json).
 
 ## Findings and decisions
 

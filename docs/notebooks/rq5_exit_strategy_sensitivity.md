@@ -7,6 +7,15 @@
 
 I compare hold-to-close with a pre-specified 50% stop-loss and 100% take-profit, then use other exit rules only as sensitivities.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Frozen RQ5 trade paths"] --> B["Apply pre-specified stops, targets and exits"]
+    B --> C["Paired exit-policy evidence"]
+    C --> D["Strategy robustness"]
+```
+
 ## Inputs
 
 - RQ5 candidate sessions, contract selection and option-minute bars
@@ -22,6 +31,16 @@ I compare hold-to-close with a pre-specified 50% stop-loss and 100% take-profit,
 
 - `outputs/rq5_options_trading/exit_strategy_sensitivity/`
 - Exit-policy, paired-comparison, trigger and path-diagnostic tables
+
+## Representative outputs
+
+![Hold versus stop and target](../../outputs/rq5_options_trading/figures/rq5_hold_vs_stop50_tp100.png)
+
+*Figure: the paired trade-level effect of the principal stop-loss and take-profit rule.*
+
+![Exit-policy risk and return](../../outputs/rq5_options_trading/figures/rq5_exit_policy_risk_return.png)
+
+*Figure: the return and drawdown trade-offs across the pre-specified exit policies.*
 
 ## Findings and decisions
 

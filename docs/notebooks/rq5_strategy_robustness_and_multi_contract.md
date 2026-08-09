@@ -7,6 +7,15 @@
 
 I examine profit concentration, path recovery, timing, option side, random-direction benchmarks and multi-contract scale-out rules.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["RQ5 trades and intraday paths"] --> B["Concentration, timing, Monte Carlo and scaling checks"]
+    B --> C["Robustness and multi-contract evidence"]
+    C --> D["Future holdout evaluation"]
+```
+
 ## Inputs
 
 - Primary RQ5 trade log
@@ -22,6 +31,16 @@ I examine profit concentration, path recovery, timing, option side, random-direc
 
 - `outputs/rq5_options_trading/strategy_robustness/`
 - Concentration, recovery, timing, random-direction, break-even-cost and multi-contract tables
+
+## Representative outputs
+
+![MFE versus MAE](../../outputs/rq5_options_trading/figures/rq5_mfe_vs_mae.png)
+
+*Figure: the favourable and adverse intraday paths behind the final trade outcomes.*
+
+![Time-of-hour development](../../outputs/rq5_options_trading/figures/rq5_time_of_hour_development.png)
+
+*Figure: when gains and losses develop during the final trading hour.*
 
 ## Findings and decisions
 

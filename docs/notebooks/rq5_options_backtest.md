@@ -7,6 +7,15 @@
 
 I test whether the frozen RQ1-RQ3 opportunity rule produces economically meaningful 0DTE option results after execution-cost sensitivity.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Frozen signals and audited option bars"] --> B["Simulate ATM strategy, comparator and costs"]
+    B --> C["Trade logs and RQ5 evidence"]
+    C --> D["Exit and robustness checks"]
+```
+
 ## Inputs
 
 - Saved RQ5 option bars and contract map
@@ -24,6 +33,16 @@ I test whether the frozen RQ1-RQ3 opportunity rule produces economically meaning
 - `outputs/rq5_options_trading/backtest/`
 - RQ5 summary, comparator, cost, affordability, regime and bootstrap tables
 - `outputs/rq5_options_trading/rq5_backtest_manifest.json`
+
+## Representative outputs
+
+![Cumulative PnL under medium costs](../../outputs/rq5_options_trading/figures/rq5_cumulative_pnl_medium_cost.png)
+
+*Figure: the cumulative path of the frozen strategy after the medium transaction-cost assumption.*
+
+![OTM affordability sensitivity](../../outputs/rq5_options_trading/figures/rq5_otm_affordability_sensitivity.png)
+
+*Figure: the trade-off between cheaper contracts and the resulting strategy outcomes.*
 
 ## Findings and decisions
 
