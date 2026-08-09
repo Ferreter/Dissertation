@@ -1,0 +1,4 @@
+research_question,dataset_variant,model,primary_metric,validation_score,cv_score
+RQ1 Direction,Relaxed,Decision Tree,Balanced accuracy,0.5705337690631809,0.5131796321750467
+RQ2 Magnitude,Relaxed,RBF SVR,MAE in basis points,9.658576728476245,12.558747133115165
+RQ3 Large Movement,Relaxed,Random Forest,Average precision,0.5359544988036672,0.5123750194142531

@@ -1,0 +1,35 @@
+{
+  "strict_rule": {
+    "regular_session_rows": 390,
+    "exact_spx_1459": true,
+    "exact_spx_1559": true,
+    "maximum_missing_spx_final_120m": 0,
+    "maximum_missing_vix_final_120m": 0
+  },
+  "relaxed_rule": {
+    "regular_session_rows": 390,
+    "exact_spx_1459": true,
+    "exact_spx_1559": true,
+    "maximum_missing_spx_final_120m": 0,
+    "maximum_missing_vix_final_120m": 5,
+    "required_vix_anchor_times_et": [
+      "13:59:00",
+      "14:29:00",
+      "14:44:00",
+      "14:59:00"
+    ],
+    "maximum_vix_anchor_staleness_seconds": 120
+  },
+  "target": "Binary Up/Down based on sign of 14:59-to-15:59 SPX return",
+  "common_split_dates": {
+    "train_end_date": "2025-07-25",
+    "validation_end_date": "2026-01-28",
+    "test_start_date": "2026-01-29"
+  },
+  "strict_rows": 680,
+  "relaxed_rows": 810,
+  "relaxed_additional_rows": 130,
+  "preprocessing_applied": false,
+  "strict_split_path": "C:\\Users\\hkhat\\OneDrive\\Desktop\\Project\\Dissertation\\data_extended_2023_2026\\derived\\daily_underlying_model_dataset_strict_split.parquet",
+  "relaxed_split_path": "C:\\Users\\hkhat\\OneDrive\\Desktop\\Project\\Dissertation\\data_extended_2023_2026\\derived\\daily_underlying_model_dataset_relaxed_split.parquet"
+}

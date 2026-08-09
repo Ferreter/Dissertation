@@ -1,0 +1,67 @@
+research_question,dataset_variant,model,feature,feature_group,importance_mean,importance_std
+RQ1 Direction,Relaxed,Decision Tree,ret_open_to_1500,Momentum,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,ret_last_15m,Momentum,-9.077705156087154e-06,0.011744280826483388
+RQ1 Direction,Relaxed,Decision Tree,ret_last_30m,Momentum,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,ret_last_60m,Momentum,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,momentum_accel_60m_vs_prior,Momentum,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,vix_level_1500,VIX,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,vix_ret_last_15m,VIX,0.016521423384168527,0.025047887319962665
+RQ1 Direction,Relaxed,Decision Tree,vix_ret_last_30m,VIX,0.013053740014524366,0.003813889547411302
+RQ1 Direction,Relaxed,Decision Tree,vix_ret_last_60m,VIX,-0.007144153957879396,0.009855148215026957
+RQ1 Direction,Relaxed,Decision Tree,realized_vol_30m,Volatility,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,realized_vol_60m,Volatility,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,realized_vol_120m,Volatility,-0.008360566448801725,0.008672553697223287
+RQ1 Direction,Relaxed,Decision Tree,rv_open_to_1500,Volatility,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,spy_volume_last_30m,Volume and VWAP,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,spy_volume_last_60m,Volume and VWAP,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,spy_cum_volume_to_1500,Volume and VWAP,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,spy_volume_accel_60m_vs_avg,Volume and VWAP,0.0026960784313726062,0.009300378069899072
+RQ1 Direction,Relaxed,Decision Tree,spy_dist_from_vwap_pct,Volume and VWAP,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,position_in_day_range,Price positioning,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,dist_from_day_high_pct,Price positioning,0.06132897603485843,0.036636749814996684
+RQ1 Direction,Relaxed,Decision Tree,dist_from_day_low_pct,Price positioning,0.0,0.0
+RQ1 Direction,Relaxed,Decision Tree,atr_pct_open_to_1500,Volatility,0.006862745098039255,0.012748938028303796
+RQ2 Magnitude,Relaxed,RBF SVR,ret_open_to_1500,Momentum,0.025543031089046646,0.04975357503280557
+RQ2 Magnitude,Relaxed,RBF SVR,ret_last_15m,Momentum,-0.08361621133846443,0.10056915137857292
+RQ2 Magnitude,Relaxed,RBF SVR,ret_last_30m,Momentum,0.10155837342620692,0.11488384821086219
+RQ2 Magnitude,Relaxed,RBF SVR,ret_last_60m,Momentum,0.011209056970959115,0.11469311756464072
+RQ2 Magnitude,Relaxed,RBF SVR,momentum_accel_60m_vs_prior,Momentum,-0.0015126914167623202,0.12691279112149953
+RQ2 Magnitude,Relaxed,RBF SVR,vix_level_1500,VIX,0.05980902264432544,0.061750214685547554
+RQ2 Magnitude,Relaxed,RBF SVR,vix_ret_last_15m,VIX,0.0166397492032664,0.12646864770311428
+RQ2 Magnitude,Relaxed,RBF SVR,vix_ret_last_30m,VIX,0.15646437497447288,0.1316667102891402
+RQ2 Magnitude,Relaxed,RBF SVR,vix_ret_last_60m,VIX,0.035565066221718664,0.1472015472793229
+RQ2 Magnitude,Relaxed,RBF SVR,realized_vol_30m,Volatility,0.002780723201238781,0.08055399010682035
+RQ2 Magnitude,Relaxed,RBF SVR,realized_vol_60m,Volatility,0.051409588464190276,0.09570102970465823
+RQ2 Magnitude,Relaxed,RBF SVR,realized_vol_120m,Volatility,0.09088923010947844,0.11029581044902169
+RQ2 Magnitude,Relaxed,RBF SVR,rv_open_to_1500,Volatility,0.07955183188964672,0.10259682478815889
+RQ2 Magnitude,Relaxed,RBF SVR,spy_volume_last_30m,Volume and VWAP,0.0836606565758767,0.11999651338337002
+RQ2 Magnitude,Relaxed,RBF SVR,spy_volume_last_60m,Volume and VWAP,0.03628986061629386,0.09051079238279353
+RQ2 Magnitude,Relaxed,RBF SVR,spy_cum_volume_to_1500,Volume and VWAP,-0.0025550724275003487,0.04719232384687366
+RQ2 Magnitude,Relaxed,RBF SVR,spy_volume_accel_60m_vs_avg,Volume and VWAP,0.09921263650858396,0.13936521816974806
+RQ2 Magnitude,Relaxed,RBF SVR,spy_dist_from_vwap_pct,Volume and VWAP,0.012029568006964138,0.05988649962400589
+RQ2 Magnitude,Relaxed,RBF SVR,position_in_day_range,Price positioning,0.005240053681297792,0.05881834372955116
+RQ2 Magnitude,Relaxed,RBF SVR,dist_from_day_high_pct,Price positioning,0.07344161531227093,0.08547017198181812
+RQ2 Magnitude,Relaxed,RBF SVR,dist_from_day_low_pct,Price positioning,0.10558042550499695,0.09188999420411974
+RQ2 Magnitude,Relaxed,RBF SVR,atr_pct_open_to_1500,Volatility,0.3729741224307897,0.17069375793280042
+RQ3 Large Movement,Relaxed,Random Forest,ret_open_to_1500,Momentum,0.011627871850824988,0.008144068714491344
+RQ3 Large Movement,Relaxed,Random Forest,ret_last_15m,Momentum,0.026086960146112538,0.012686091493031914
+RQ3 Large Movement,Relaxed,Random Forest,ret_last_30m,Momentum,0.0012222959395831918,0.00679957210743565
+RQ3 Large Movement,Relaxed,Random Forest,ret_last_60m,Momentum,0.012157005223030226,0.0041364045617307155
+RQ3 Large Movement,Relaxed,Random Forest,momentum_accel_60m_vs_prior,Momentum,0.01090459411308506,0.004253744011581916
+RQ3 Large Movement,Relaxed,Random Forest,vix_level_1500,VIX,0.007952591684985562,0.007353589049102525
+RQ3 Large Movement,Relaxed,Random Forest,vix_ret_last_15m,VIX,0.018051954584125403,0.011391379673276202
+RQ3 Large Movement,Relaxed,Random Forest,vix_ret_last_30m,VIX,0.00933752064058229,0.009897341645418195
+RQ3 Large Movement,Relaxed,Random Forest,vix_ret_last_60m,VIX,0.007785979561793773,0.004458385130925792
+RQ3 Large Movement,Relaxed,Random Forest,realized_vol_30m,Volatility,0.01820068528639216,0.03636155622268198
+RQ3 Large Movement,Relaxed,Random Forest,realized_vol_60m,Volatility,0.03316901028532859,0.040281523073657864
+RQ3 Large Movement,Relaxed,Random Forest,realized_vol_120m,Volatility,0.044417684871952745,0.03476040106799705
+RQ3 Large Movement,Relaxed,Random Forest,rv_open_to_1500,Volatility,0.09076701751132417,0.04439465765647848
+RQ3 Large Movement,Relaxed,Random Forest,spy_volume_last_30m,Volume and VWAP,-0.0017339046666579186,0.006084603928828281
+RQ3 Large Movement,Relaxed,Random Forest,spy_volume_last_60m,Volume and VWAP,0.005295872432683857,0.00568286785209762
+RQ3 Large Movement,Relaxed,Random Forest,spy_cum_volume_to_1500,Volume and VWAP,0.013236581069168871,0.013269126957668251
+RQ3 Large Movement,Relaxed,Random Forest,spy_volume_accel_60m_vs_avg,Volume and VWAP,-0.006451776875101115,0.003026400918830907
+RQ3 Large Movement,Relaxed,Random Forest,spy_dist_from_vwap_pct,Volume and VWAP,-0.0042007987670145425,0.004688741577746924
+RQ3 Large Movement,Relaxed,Random Forest,position_in_day_range,Price positioning,0.00173471837013837,0.011463522382379637
+RQ3 Large Movement,Relaxed,Random Forest,dist_from_day_high_pct,Price positioning,0.003748171764979243,0.023341550415295582
+RQ3 Large Movement,Relaxed,Random Forest,dist_from_day_low_pct,Price positioning,0.021114352651955413,0.007128633896468981
+RQ3 Large Movement,Relaxed,Random Forest,atr_pct_open_to_1500,Volatility,0.11106053007329517,0.04865020097225215

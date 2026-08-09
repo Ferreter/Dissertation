@@ -1,0 +1,178 @@
+research_question,dataset_variant,feature_set,model,outer_fold,feature,feature_group,importance_mean,importance_std_within_fold
+RQ1 Direction,Strict,Full,Extra Trees,1,ret_open_to_1500,SPX momentum,0.009036377708978301,0.006725595357028134
+RQ1 Direction,Strict,Full,Extra Trees,1,ret_last_15m,SPX momentum,0.0,0.0
+RQ1 Direction,Strict,Full,Extra Trees,1,ret_last_30m,SPX momentum,0.0016447368421052544,0.002848767775606691
+RQ1 Direction,Strict,Full,Extra Trees,1,ret_last_60m,SPX momentum,0.004934210526315763,0.005042667669985464
+RQ1 Direction,Strict,Full,Extra Trees,1,momentum_accel_60m_vs_prior,SPX momentum,0.0063273993808049215,0.0034403023523896844
+RQ1 Direction,Strict,Full,Extra Trees,1,vix_level_1500,VIX,0.012674148606811089,0.006091821757114023
+RQ1 Direction,Strict,Full,Extra Trees,1,vix_ret_last_15m,VIX,0.008649380804953513,0.007541253079952425
+RQ1 Direction,Strict,Full,Extra Trees,1,vix_ret_last_30m,VIX,0.009868421052631532,0.004879077952036606
+RQ1 Direction,Strict,Full,Extra Trees,1,vix_ret_last_60m,VIX,0.004605263157894712,0.0036630028702828894
+RQ1 Direction,Strict,Full,Extra Trees,1,realized_vol_30m,Realised volatility,0.005166408668730626,0.0048494819688693356
+RQ1 Direction,Strict,Full,Extra Trees,1,realized_vol_60m,Realised volatility,0.0037345201238389914,0.004039022372707056
+RQ1 Direction,Strict,Full,Extra Trees,1,realized_vol_120m,Realised volatility,0.005495356037151677,0.005197297821733582
+RQ1 Direction,Strict,Full,Extra Trees,1,rv_open_to_1500,Realised volatility,0.0061532507739937795,0.004281347291434396
+RQ1 Direction,Strict,Full,Extra Trees,1,spy_volume_last_30m,SPY volume,0.0013157894736842036,0.002631578947368407
+RQ1 Direction,Strict,Full,Extra Trees,1,spy_volume_last_60m,SPY volume,0.0016447368421052544,0.0028487677756066907
+RQ1 Direction,Strict,Full,Extra Trees,1,spy_cum_volume_to_1500,SPY volume,0.007410990712074272,0.004721163968328768
+RQ1 Direction,Strict,Full,Extra Trees,1,spy_volume_accel_60m_vs_avg,SPY volume,0.007527089783281704,0.0040946302483224175
+RQ1 Direction,Strict,Full,Extra Trees,1,spy_dist_from_vwap_pct,Price position,0.007352941176470562,0.004027371746361501
+RQ1 Direction,Strict,Full,Extra Trees,1,position_in_day_range,Price position,0.011609907120742998,0.005219439166953949
+RQ1 Direction,Strict,Full,Extra Trees,1,dist_from_day_high_pct,Price position,0.005514705882352922,0.003183916925678072
+RQ1 Direction,Strict,Full,Extra Trees,1,dist_from_day_low_pct,Price position,0.006249999999999978,0.004207912919948366
+RQ1 Direction,Strict,Full,Extra Trees,1,atr_pct_open_to_1500,True range,0.004179566563467474,0.004515774658146982
+RQ1 Direction,Strict,Full,Extra Trees,2,ret_open_to_1500,SPX momentum,0.004758674161659265,0.011153948998849124
+RQ1 Direction,Strict,Full,Extra Trees,2,ret_last_15m,SPX momentum,0.003978484202364812,0.008875460662686071
+RQ1 Direction,Strict,Full,Extra Trees,2,ret_last_30m,SPX momentum,0.010888738127544133,0.007508067011618803
+RQ1 Direction,Strict,Full,Extra Trees,2,ret_last_60m,SPX momentum,0.011751308393099453,0.008690950398922138
+RQ1 Direction,Strict,Full,Extra Trees,2,momentum_accel_60m_vs_prior,SPX momentum,0.005723008334948654,0.01077436555058832
+RQ1 Direction,Strict,Full,Extra Trees,2,vix_level_1500,VIX,0.031871486722233014,0.018271429264119392
+RQ1 Direction,Strict,Full,Extra Trees,2,vix_ret_last_15m,VIX,0.011761000193836047,0.011893039070202746
+RQ1 Direction,Strict,Full,Extra Trees,2,vix_ret_last_30m,VIX,0.021486722232990908,0.009040902175199388
+RQ1 Direction,Strict,Full,Extra Trees,2,vix_ret_last_60m,VIX,0.026938360147315387,0.008642536622367705
+RQ1 Direction,Strict,Full,Extra Trees,2,realized_vol_30m,Realised volatility,0.01694126768753638,0.014289034360816471
+RQ1 Direction,Strict,Full,Extra Trees,2,realized_vol_60m,Realised volatility,0.00822833882535377,0.007521230778463379
+RQ1 Direction,Strict,Full,Extra Trees,2,realized_vol_120m,Realised volatility,0.007491761969373944,0.011323370917374842
+RQ1 Direction,Strict,Full,Extra Trees,2,rv_open_to_1500,Realised volatility,0.0077292110874200735,0.0077167597026400695
+RQ1 Direction,Strict,Full,Extra Trees,2,spy_volume_last_30m,SPY volume,0.0020401240550494528,0.014255564080926741
+RQ1 Direction,Strict,Full,Extra Trees,2,spy_volume_last_60m,SPY volume,-0.013156619499903049,0.015957627906120864
+RQ1 Direction,Strict,Full,Extra Trees,2,spy_cum_volume_to_1500,SPY volume,-0.006837565419654934,0.01828258668138368
+RQ1 Direction,Strict,Full,Extra Trees,2,spy_volume_accel_60m_vs_avg,SPY volume,-0.005301415002907495,0.013918691268607961
+RQ1 Direction,Strict,Full,Extra Trees,2,spy_dist_from_vwap_pct,Price position,0.00915875169606517,0.01169284731037897
+RQ1 Direction,Strict,Full,Extra Trees,2,position_in_day_range,Price position,0.01638883504555149,0.021580049579939323
+RQ1 Direction,Strict,Full,Extra Trees,2,dist_from_day_high_pct,Price position,-0.0018947470440007386,0.015003755079281984
+RQ1 Direction,Strict,Full,Extra Trees,2,dist_from_day_low_pct,Price position,0.005432254312851348,0.017989989213472134
+RQ1 Direction,Strict,Full,Extra Trees,2,atr_pct_open_to_1500,True range,0.0035181236673774265,0.013277912031613987
+RQ1 Direction,Strict,Full,Extra Trees,3,ret_open_to_1500,SPX momentum,0.009999999999999998,0.008539417726898696
+RQ1 Direction,Strict,Full,Extra Trees,3,ret_last_15m,SPX momentum,0.00950724637681159,0.00850397438497229
+RQ1 Direction,Strict,Full,Extra Trees,3,ret_last_30m,SPX momentum,0.015000000000000008,0.006624868971450606
+RQ1 Direction,Strict,Full,Extra Trees,3,ret_last_60m,SPX momentum,0.011289855072463767,0.006949558713299627
+RQ1 Direction,Strict,Full,Extra Trees,3,momentum_accel_60m_vs_prior,SPX momentum,0.0009710144927536302,0.003977752666782213
+RQ1 Direction,Strict,Full,Extra Trees,3,vix_level_1500,VIX,-0.004405797101449232,0.00691327134798995
+RQ1 Direction,Strict,Full,Extra Trees,3,vix_ret_last_15m,VIX,0.012130434782608713,0.00707048855763195
+RQ1 Direction,Strict,Full,Extra Trees,3,vix_ret_last_30m,VIX,0.011797101449275366,0.008587295902300892
+RQ1 Direction,Strict,Full,Extra Trees,3,vix_ret_last_60m,VIX,0.003753623188405808,0.0056729273395553104
+RQ1 Direction,Strict,Full,Extra Trees,3,realized_vol_30m,Realised volatility,-0.0014347826086956671,0.004917701182375224
+RQ1 Direction,Strict,Full,Extra Trees,3,realized_vol_60m,Realised volatility,0.0030869565217391147,0.007738791177495925
+RQ1 Direction,Strict,Full,Extra Trees,3,realized_vol_120m,Realised volatility,-0.0012173913043478312,0.005163652392265119
+RQ1 Direction,Strict,Full,Extra Trees,3,rv_open_to_1500,Realised volatility,0.0026521739130434875,0.005597487208916186
+RQ1 Direction,Strict,Full,Extra Trees,3,spy_volume_last_30m,SPY volume,-0.0013478260869565217,0.003988299417185974
+RQ1 Direction,Strict,Full,Extra Trees,3,spy_volume_last_60m,SPY volume,-0.0028550724637681213,0.0039042036490384924
+RQ1 Direction,Strict,Full,Extra Trees,3,spy_cum_volume_to_1500,SPY volume,0.004028985507246385,0.00634901716044236
+RQ1 Direction,Strict,Full,Extra Trees,3,spy_volume_accel_60m_vs_avg,SPY volume,-0.004913043478260876,0.004358898943540679
+RQ1 Direction,Strict,Full,Extra Trees,3,spy_dist_from_vwap_pct,Price position,-0.00037681159420289154,0.005390914743597522
+RQ1 Direction,Strict,Full,Extra Trees,3,position_in_day_range,Price position,0.006884057971014485,0.010298577646126253
+RQ1 Direction,Strict,Full,Extra Trees,3,dist_from_day_high_pct,Price position,0.008594202898550707,0.008664327637442387
+RQ1 Direction,Strict,Full,Extra Trees,3,dist_from_day_low_pct,Price position,0.0046666666666666965,0.004268749491621901
+RQ1 Direction,Strict,Full,Extra Trees,3,atr_pct_open_to_1500,True range,0.010521739130434771,0.0067106926874433495
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,ret_open_to_1500,SPX momentum,-0.027078401672479123,0.024563525218285948
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,ret_last_15m,SPX momentum,0.05891610834719394,0.04169839847040413
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,ret_last_30m,SPX momentum,0.0023893197908829043,0.005706833000445029
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,ret_last_60m,SPX momentum,-0.0035838642088505956,0.006762968598717659
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,momentum_accel_60m_vs_prior,SPX momentum,0.009570505936806573,0.03574188611075872
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,vix_level_1500,VIX,-0.006325322057778582,0.03204652087576373
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,vix_ret_last_15m,VIX,0.03551252625789329,0.018277435460576093
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,vix_ret_last_30m,VIX,-0.0033107085652758885,0.01191176773326994
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,vix_ret_last_60m,VIX,-0.007188761306110259,0.014720757520218368
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,realized_vol_30m,Realised volatility,0.25875595055580236,0.08087206466424235
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,realized_vol_60m,Realised volatility,0.16225317732160532,0.06605492402206638
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,realized_vol_120m,Realised volatility,0.08181411408175938,0.04958641213379177
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,rv_open_to_1500,Realised volatility,0.060202473645327895,0.05637213632741294
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,spy_volume_last_30m,SPY volume,-0.007754765697584265,0.008395786430388158
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,spy_volume_last_60m,SPY volume,-0.06350517367309871,0.03456062051986078
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,spy_cum_volume_to_1500,SPY volume,-0.027723694302166636,0.016664650374347726
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,spy_volume_accel_60m_vs_avg,SPY volume,-0.0069541283053803585,0.014500514618369986
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,spy_dist_from_vwap_pct,Price position,0.017932438982026698,0.019023587672947085
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,position_in_day_range,Price position,0.024825112602325828,0.01248052743101294
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,dist_from_day_high_pct,Price position,0.018344629598339955,0.01979410665659111
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,dist_from_day_low_pct,Price position,0.0023427111096783193,0.0015409675968925103
+RQ2 Magnitude,Relaxed,Full,RBF SVR,1,atr_pct_open_to_1500,True range,0.05464424015490419,0.05340997012239269
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,ret_open_to_1500,SPX momentum,-0.0010233318794292678,0.07029491085701893
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,ret_last_15m,SPX momentum,0.115301476062879,0.0998742143286147
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,ret_last_30m,SPX momentum,-0.027240051843201572,0.0661932700106836
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,ret_last_60m,SPX momentum,0.04531149241103707,0.06299645188394497
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,momentum_accel_60m_vs_prior,SPX momentum,0.20852700794568485,0.10157632825745842
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,vix_level_1500,VIX,0.4605548041843785,0.17448639049171236
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,vix_ret_last_15m,VIX,0.08252279337032782,0.10679267052596926
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,vix_ret_last_30m,VIX,0.1220268073744692,0.10381616998457463
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,vix_ret_last_60m,VIX,0.03483166669493132,0.10162831594189416
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,realized_vol_30m,Realised volatility,0.27832355895174554,0.17361795579049633
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,realized_vol_60m,Realised volatility,0.36491255061142913,0.19161833911591777
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,realized_vol_120m,Realised volatility,0.2711430180316941,0.18159584244067803
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,rv_open_to_1500,Realised volatility,0.3318681183062977,0.16267566715145995
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,spy_volume_last_30m,SPY volume,-0.04535775659309058,0.026219488109646045
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,spy_volume_last_60m,SPY volume,0.005880664819477133,0.04265188490479975
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,spy_cum_volume_to_1500,SPY volume,0.002133045257208366,0.06277920680400247
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,spy_volume_accel_60m_vs_avg,SPY volume,0.15111919224995313,0.08733644456947728
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,spy_dist_from_vwap_pct,Price position,0.028665450086645183,0.07201879137568389
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,position_in_day_range,Price position,0.023937091719265613,0.042129215242792666
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,dist_from_day_high_pct,Price position,0.12034723893260502,0.10041316860064195
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,dist_from_day_low_pct,Price position,0.1267338710371499,0.11183909968392482
+RQ2 Magnitude,Relaxed,Full,RBF SVR,2,atr_pct_open_to_1500,True range,0.6708308729848578,0.1906563146909178
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,ret_open_to_1500,SPX momentum,0.0014787423306133363,0.002444132318261476
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,ret_last_15m,SPX momentum,-0.03097685152903269,0.04773387117335445
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,ret_last_30m,SPX momentum,-0.0037067582568112377,0.022937883841106073
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,ret_last_60m,SPX momentum,-0.0030458840274924627,0.0025171483234809086
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,momentum_accel_60m_vs_prior,SPX momentum,0.007821741040589192,0.024226116386486068
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,vix_level_1500,VIX,0.01960797368121021,0.019961374735622504
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,vix_ret_last_15m,VIX,-0.005068078673706911,0.06886375912317137
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,vix_ret_last_30m,VIX,0.012795276307240488,0.026813184080347593
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,vix_ret_last_60m,VIX,0.011787029978407393,0.028403931872099518
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,realized_vol_30m,Realised volatility,-0.0644289941830424,0.0821537733655702
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,realized_vol_60m,Realised volatility,-0.032197252258481156,0.06671726698208337
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,realized_vol_120m,Realised volatility,0.02369129143859805,0.06300013877734896
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,rv_open_to_1500,Realised volatility,0.04345216686229873,0.04280149925681741
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,spy_volume_last_30m,SPY volume,-0.03741695482805385,0.04429799333788717
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,spy_volume_last_60m,SPY volume,-0.026176095783445152,0.02584968455161302
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,spy_cum_volume_to_1500,SPY volume,0.00087516069494189,0.0027596442882358487
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,spy_volume_accel_60m_vs_avg,SPY volume,-0.12907878240099455,0.08189353756107494
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,spy_dist_from_vwap_pct,Price position,-0.0016061646962634234,0.004789978080432608
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,position_in_day_range,Price position,-0.005583066671338166,0.01685872433368427
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,dist_from_day_high_pct,Price position,0.012309094510775243,0.0263022056100291
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,dist_from_day_low_pct,Price position,0.027876865297614285,0.017663720207374983
+RQ2 Magnitude,Relaxed,Full,RBF SVR,3,atr_pct_open_to_1500,True range,0.08306124743317636,0.052852650825264275
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,ret_open_to_1500,SPX momentum,0.0008430418656296846,0.0012384044637668264
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,ret_last_15m,SPX momentum,-0.0030497170618701552,0.021277201990492208
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,ret_last_60m,SPX momentum,0.025148841518763072,0.006645915431648132
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,momentum_accel_60m_vs_prior,SPX momentum,0.010561211380567915,0.0069599432251867925
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,vix_level_1500,VIX,0.005719890736866346,0.004880723780009722
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,vix_ret_last_15m,VIX,0.014554549078394185,0.01948457366322432
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,vix_ret_last_60m,VIX,0.03526736632603412,0.009286463501103754
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,realized_vol_30m,Realised volatility,0.012357532238793306,0.007696741235176023
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,realized_vol_120m,Realised volatility,0.020000615978620073,0.01406500093291645
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,rv_open_to_1500,Realised volatility,0.02610517931738431,0.016133526037902253
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,spy_volume_last_60m,SPY volume,-0.0012499086775922042,0.003230492350422116
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,spy_volume_accel_60m_vs_avg,SPY volume,0.10898934592968106,0.03326172665956756
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,spy_dist_from_vwap_pct,Price position,-0.011119910034736346,0.005969387520728411
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,position_in_day_range,Price position,-0.0025473022055901517,0.002024098133306375
+RQ3 Large Movement,Strict,Reduced,RBF SVC,1,atr_pct_open_to_1500,True range,0.05995051904710824,0.02152321202772539
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,ret_open_to_1500,SPX momentum,-0.0024247692020269718,0.0033628594070047343
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,ret_last_15m,SPX momentum,0.00446420232516041,0.0052374738723869625
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,ret_last_60m,SPX momentum,-0.0030017151270099406,0.003649153335416074
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,momentum_accel_60m_vs_prior,SPX momentum,-0.012324926018928001,0.006999552239821829
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,vix_level_1500,VIX,-0.0003954652128034308,0.0051790091625345935
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,vix_ret_last_15m,VIX,0.020101586158835116,0.007649955032231037
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,vix_ret_last_60m,VIX,-0.003203024405471061,0.004050324511829515
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,realized_vol_30m,Realised volatility,0.002276941016550704,0.010924310539413003
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,realized_vol_120m,Realised volatility,0.01744691883764398,0.019648276165817075
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,rv_open_to_1500,Realised volatility,0.027215021678059104,0.020796666152363634
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,spy_volume_last_60m,SPY volume,0.0021006219659015337,0.006219832309449705
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,spy_volume_accel_60m_vs_avg,SPY volume,-0.011208859203801647,0.007677698381488243
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,spy_dist_from_vwap_pct,Price position,-0.004282905862146846,0.0021514196967328024
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,position_in_day_range,Price position,-0.0013655904063335055,0.0017920795502106438
+RQ3 Large Movement,Strict,Reduced,RBF SVC,2,atr_pct_open_to_1500,True range,0.040729342544102105,0.02080894226124015
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,ret_open_to_1500,SPX momentum,-0.015622467720411601,0.005363095579413449
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,ret_last_15m,SPX momentum,-0.07986144850124047,0.015210652971526673
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,ret_last_60m,SPX momentum,-0.006036750593327622,0.01403679204188444
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,momentum_accel_60m_vs_prior,SPX momentum,-0.021481286946395915,0.004907464850855738
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,vix_level_1500,VIX,0.00743400734258545,0.01290646775795611
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,vix_ret_last_15m,VIX,-0.08148678077569424,0.028630246762976767
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,vix_ret_last_60m,VIX,-0.013456832814170464,0.007721975295234831
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,realized_vol_30m,Realised volatility,-0.008915687195603308,0.02185330933540987
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,realized_vol_120m,Realised volatility,0.019587059507903647,0.013075573309678073
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,rv_open_to_1500,Realised volatility,0.04037609539131791,0.01668290124969442
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,spy_volume_last_60m,SPY volume,-0.005613090956699046,0.013711900488995685
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,spy_volume_accel_60m_vs_avg,SPY volume,-0.04636039883679668,0.013867998552588709
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,spy_dist_from_vwap_pct,Price position,-0.014479546672998334,0.011171097379193615
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,position_in_day_range,Price position,-0.0058899248543267555,0.010309740872325156
+RQ3 Large Movement,Strict,Reduced,RBF SVC,3,atr_pct_open_to_1500,True range,0.05386827595289397,0.021287827934690987

@@ -1,0 +1,27 @@
+{
+  "RQ1": {
+    "best_variant": "Relaxed",
+    "best_model": "Decision Tree",
+    "validation_balanced_accuracy": 0.5705337690631809,
+    "best_rule_baseline": "60m Mean Reversion",
+    "best_rule_balanced_accuracy": 0.6422872340425532
+  },
+  "RQ2": {
+    "best_variant": "Relaxed",
+    "best_model": "RBF SVR",
+    "validation_mae_bps": 9.658576728476245,
+    "best_dummy_mae_bps": 10.08344456787935,
+    "mae_improvement_bps": 0.424867839403106,
+    "validation_r2": 0.24361803717061348,
+    "validation_spearman": 0.2984359975018257
+  },
+  "RQ3": {
+    "large_move_threshold_bps": 27.575607227454114,
+    "best_variant": "Relaxed",
+    "best_model": "Random Forest",
+    "validation_average_precision": 0.5359544988036672,
+    "validation_large_move_prevalence": 0.13934426229508196,
+    "average_precision_improvement": 0.39661023650858523,
+    "top_feature_group": "Volatility"
+  }
+}

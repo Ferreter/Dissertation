@@ -1,0 +1,4 @@
+research_question,dataset_variant,feature_set,model,primary_metric,outer_score,outer_standard_deviation
+RQ1 Direction,Strict,Full,Extra Trees,Balanced accuracy,0.5373039261129501,0.02555223817409289
+RQ2 Magnitude,Relaxed,Full,RBF SVR,MAE in basis points,11.879532733074258,2.6197900366705915
+RQ3 Large Movement,Strict,Reduced,RBF SVC,Average precision,0.5381480747956617,0.1510806998095093
