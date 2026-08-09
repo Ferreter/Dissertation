@@ -2,11 +2,11 @@
 
 **Executable:** `scripts/model_artifacts.py`
 
-**Status:** Reusable support code for the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I use this module to save fitted scikit-learn and Keras models consistently, verify that each artifact reloads, and record enough metadata to reproduce how it was trained.
+I use this small helper so I don't save each model in a different way. It writes the scikit-learn or Keras file, checks that it opens again and stores the details I would need later.
 
 ## Workflow
 
@@ -27,11 +27,11 @@ flowchart LR
 
 ## Processing and rationale
 
-- Write each binary artifact to a temporary file before replacing the canonical file.
-- Reload the saved estimator, Keras model or scaler immediately.
-- Calculate SHA-256 hashes so later changes can be detected.
-- Convert numpy values, paths and nested parameter structures into JSON-safe values.
-- Write one manifest describing the complete set of saved research-question models.
+- I write to a temporary file first, then replace the normal filename once the save has finished.
+- I immediately reload the model and scaler and try the expected prediction interface.
+- I hash the files so I can tell if an artifact has changed.
+- I tidy numpy values and paths before putting them into JSON.
+- Finally, I write one manifest for the three research-question models.
 
 ## Outputs
 
@@ -45,16 +45,16 @@ The canonical filenames and manifest fields are listed in [the model-artifact RE
 
 ## Findings and decisions
 
-- Canonical filenames are replaced on rerun rather than producing ambiguous timestamped duplicates.
-- A model is not reported as saved successfully unless it reloads with the expected prediction interface.
-- Model selection and fitting decisions remain in the notebooks; this module only handles persistence and verification.
+- Rerunning a notebook replaces the normal filename instead of leaving lots of timestamped copies.
+- I only report the save as successful if the artifact reloads properly.
+- The notebooks still decide which model to fit. This script only deals with saving and checking it.
 
 ## Limitations
 
-- Binary artifacts can require compatible Python and library versions when loaded later.
-- Reload verification confirms file integrity and interfaces, not future predictive performance.
-- The helper does not permit Test or holdout data automatically; the calling notebook must enforce its research split.
+- A saved binary can stop loading if the Python or library versions change too much.
+- Reloading proves the file is usable, not that the model will work well on new data.
+- The notebook still has to enforce the Test and holdout rules before it calls this helper.
 
 ## Next steps
 
-- Run the relevant tuning or LSTM notebook with `SAVE_MODEL_ARTIFACTS = True` when the final binary files are required.
+- When I need the actual binaries, I run the tuning or LSTM notebook with `SAVE_MODEL_ARTIFACTS = True`.
