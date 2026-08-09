@@ -1,11 +1,11 @@
 # RQ4 Economic Meaningfulness
 
 **Executable:** `notebooks/rq4_economic_meaningfulness.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I test whether the out-of-fold RQ1-RQ3 predictions concentrate larger or more directionally predictable SPX moves into a smaller set of sessions.
+A model score on its own doesn't say whether a signal is useful. Here I check whether the RQ1-RQ3 out-of-fold predictions pick out days with bigger or more predictable final-hour SPX moves.
 
 ## Workflow
 
@@ -24,9 +24,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Measure directional accuracy conditional on realised movement and confidence.
-- Combine RQ1 direction, RQ2 magnitude and RQ3 large-move signals.
-- Estimate opportunity lift, regime sensitivity and moving-block bootstrap uncertainty.
+- I check direction accuracy at different realised moves and confidence levels.
+- I combine the RQ1 direction, RQ2 magnitude and RQ3 large-move signals in a few fixed ways.
+- I then look at opportunity lift, regimes and moving-block bootstrap ranges.
 
 ## Outputs
 
@@ -37,23 +37,23 @@ flowchart LR
 
 ![Confidence and economic opportunity](../../outputs/rq4_economic_meaningfulness/figures/rq4_confidence_vs_accuracy_and_move_size.png)
 
-*Figure: whether higher RQ1 confidence coincides with better direction accuracy and larger realised moves.*
+*This plot checks whether higher RQ1 confidence coincides with better direction accuracy and larger realised moves.*
 
 ![Thirty-basis-point opportunity lift](../../outputs/rq4_economic_meaningfulness/figures/rq4_30bps_opportunity_lift.png)
 
-*Figure: the precision and lift of selected signals for economically larger opportunities.*
+*This plot shows the precision and lift of selected signals for economically larger opportunities.*
 
 ## Findings and decisions
 
-- Unconditional RQ1 balanced accuracy was 0.532 versus 0.567 for the matched 60-minute mean-reversion rule.
-- At 30% confidence coverage, RQ1 balanced accuracy rose to 0.592 across 93 sessions, but those sessions did not also have a larger mean realised move.
-- The strongest qualifying three-model rule showed development-period enrichment, which I treat as potential relevance rather than proof of profitability.
+- Overall RQ1 balanced accuracy was 0.532, while the matched 60-minute mean-reversion rule reached 0.567.
+- At 30% coverage the RQ1 result rose to 0.592 across 93 sessions, although those days didn't also have a bigger average realised move.
+- The strongest three-model rule found a more concentrated set of opportunities in development. I treat that as interesting, not as proof of profit.
 
 ## Limitations
 
-- The strongest combined rule is identified from development diagnostics and is not independently confirmed.
-- This stage does not model option premiums, spreads, slippage, commissions or time decay.
+- The best combined rule came from development checks and hasn't been confirmed independently.
+- This notebook doesn't include option premiums, spreads, slippage, commission or time decay.
 
 ## Next steps
 
-- Freeze the opportunity rule and test it at option level in RQ5.
+- I freeze the opportunity rule here, then test what it looks like with actual option bars in RQ5.

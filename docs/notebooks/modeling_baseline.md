@@ -1,11 +1,11 @@
 # Underlying Baseline Models for RQ1-RQ3
 
 **Executable:** `notebooks/modeling_baseline.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I compare rule-based, dummy and machine-learning baselines for direction, magnitude and large-movement prediction.
+I start with simple rules, dummy models and a few standard machine-learning models here. This gives me something sensible to beat for direction, magnitude and large-move prediction.
 
 ## Workflow
 
@@ -23,9 +23,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Evaluate classification and regression families with expanding-window validation.
-- Compare RQ1 with persistence, momentum and mean-reversion rules.
-- Measure RQ3 permutation importance and feature-group importance.
+- I compare the classification and regression models with expanding-window validation.
+- For RQ1, I also include persistence, momentum and mean-reversion rules.
+- For RQ3, I look at permutation importance and broader feature groups so the result isn't just a score.
 
 ## Outputs
 
@@ -37,23 +37,23 @@ flowchart LR
 
 ![RQ1 baseline comparison](../../outputs/baseline_models/figures/rq1_direction_models_relaxed.png)
 
-*Figure: the relaxed-sample RQ1 comparison between rule, dummy and machine-learning baselines.*
+*This plot shows the relaxed-sample RQ1 comparison between rule, dummy and machine-learning baselines.*
 
 ![RQ3 feature-group importance](../../outputs/baseline_models/figures/rq3_validation_group_importance.png)
 
-*Figure: the validation-period feature groups associated with identifying larger final-hour moves.*
+*This plot shows the validation-period feature groups associated with identifying larger final-hour moves.*
 
 ## Findings and decisions
 
-- The relaxed Extra Trees model reached 0.600 validation balanced accuracy for RQ1, only slightly above the 0.595 mean-reversion rule.
-- Relaxed Elastic Net improved RQ2 validation MAE by about 1.32 bps over the dummy benchmark.
-- Strict K-nearest neighbours improved RQ3 average precision over the large-move prevalence, with volume and VWAP as the leading feature group.
+- Relaxed Extra Trees reached 0.600 balanced accuracy for RQ1, only just above the 0.595 mean-reversion rule.
+- Relaxed Elastic Net improved the RQ2 validation MAE by about 1.32 bps against the dummy result.
+- For RQ3, strict K-nearest neighbours beat the large-move prevalence on average precision, with volume and VWAP leading the feature groups.
 
 ## Limitations
 
-- The validation sample is small and model rankings may be regime-sensitive.
-- The baseline test period was inspected, so it is not fresh evidence for later tuning choices.
+- The validation period is small, so the model ranking could change in another market regime.
+- I had already looked at the baseline test period, which means it can't be treated as fresh evidence during tuning.
 
 ## Next steps
 
-- Tune a limited set of model families with nested expanding-window validation.
+- I take a small shortlist forward and tune it with nested expanding-window validation.

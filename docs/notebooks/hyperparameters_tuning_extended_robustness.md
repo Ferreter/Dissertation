@@ -1,11 +1,11 @@
 # Tuned-Model Robustness Analysis
 
 **Executable:** `notebooks/hyperparameters_tuning_extended_robustness.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I test whether the selected tuned models remain credible under fold-matched benchmarks, feature-stability checks, market regimes and confidence-based coverage.
+After tuning, I wanted to check whether the chosen models still looked believable from a few different angles. This notebook covers matched benchmarks, regimes, feature stability and the idea of only acting on higher-confidence days.
 
 ## Workflow
 
@@ -23,9 +23,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Reproduce selected winners inside the same outer folds as their benchmarks.
-- Estimate feature importance and regime thresholds using training information only.
-- Measure RQ1 performance as coverage is reduced to higher-confidence sessions.
+- I rebuild each chosen model inside the same outer folds as its benchmark.
+- I calculate feature importance and market-regime cut-offs using training information only.
+- For RQ1, I gradually keep fewer, more confident sessions and check what happens to accuracy and coverage.
 
 ## Outputs
 
@@ -37,23 +37,23 @@ flowchart LR
 
 ![RQ1 selective-prediction coverage](../../outputs/hyperparameter_tuning/figures/rq1_selective_prediction_coverage.png)
 
-*Figure: the trade-off between acting on fewer high-confidence sessions and retaining usable coverage.*
+*This plot shows the trade-off between acting on fewer high-confidence sessions and retaining usable coverage.*
 
 ![RQ1 permutation importance](../../outputs/hyperparameter_tuning/figures/rq1_outer_fold_permutation_importance.png)
 
-*Figure: the stability of feature contributions across chronological outer folds.*
+*This plot shows the stability of feature contributions across chronological outer folds.*
 
 ## Findings and decisions
 
-- RQ1 confidence filtering improved balanced accuracy at some lower-coverage levels, but the relationship was not uniformly stable.
-- Regime results vary, reinforcing that unconditional directional performance is weak.
-- The selected outputs become the bridge into the economic-meaningfulness analysis.
+- RQ1 did improve at some of the lower-coverage confidence levels, but the pattern wasn't consistent all the way through.
+- The regime results moved around as well, which fits with the fairly weak overall direction result.
+- I use these saved predictions as the link between the modelling work and the RQ4 economic analysis.
 
 ## Limitations
 
-- All checks use development-period observations after model-family selection.
-- Subgroup and high-confidence samples are small and descriptive.
+- These are still development-period checks carried out after choosing the model families.
+- Once I split the data into regimes or confidence groups, some of the groups become very small.
 
 ## Next steps
 
-- Freeze configurations for a future holdout and evaluate economic opportunity concentration in RQ4.
+- The next step is to freeze the setup for a future holdout and see whether the signals concentrate useful opportunities in RQ4.

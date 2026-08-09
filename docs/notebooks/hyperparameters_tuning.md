@@ -1,11 +1,11 @@
 # Hyperparameter Tuning and Threshold Optimisation
 
 **Executable:** `notebooks/hyperparameters_tuning.ipynb`  
-**Status:** Part of the maintained dissertation workflow.
+**Status:** I use this in the main dissertation workflow.
 
 ## Purpose
 
-I tune the selected RQ1-RQ3 model families while keeping the previously viewed test block disabled.
+This is where I tune the shortlisted RQ1-RQ3 models. I leave the test switch off because that test period had already been looked at in the baseline work.
 
 ## Workflow
 
@@ -23,9 +23,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Run nested expanding-window searches for classification and regression.
-- Select classification thresholds inside development folds.
-- Freeze the final parameter manifests without using a fresh holdout.
+- I run nested expanding-window searches for the classification and regression models.
+- For RQ1 and RQ3, I choose the classification cut-off inside the development folds rather than using 0.5 automatically.
+- Once the searches are done, I save the chosen settings without using a fresh holdout.
 
 ## Outputs
 
@@ -38,23 +38,23 @@ flowchart LR
 
 ![RQ1 nested balanced accuracy](../../outputs/hyperparameter_tuning/figures/rq1_nested_balanced_accuracy.png)
 
-*Figure: RQ1 balanced accuracy across the nested chronological folds used for model selection.*
+*This plot shows RQ1 balanced accuracy across the nested chronological folds used for model selection.*
 
 ![RQ3 nested average precision](../../outputs/hyperparameter_tuning/figures/rq3_nested_average_precision.png)
 
-*Figure: RQ3 average precision relative to the class-imbalance challenge.*
+*This plot shows RQ3 average precision relative to the class-imbalance challenge.*
 
 ## Findings and decisions
 
-- The selected specifications were relaxed Histogram Gradient Boosting for RQ1, relaxed RBF SVR for RQ2 and strict RBF SVC for RQ3.
-- Mean outer-fold RQ1 balanced accuracy was about 0.544, indicating limited and unstable directional evidence.
-- I treat nested development performance, not the previously viewed test block, as the primary evidence.
+- The chosen models were relaxed Histogram Gradient Boosting for RQ1, relaxed RBF SVR for RQ2 and strict RBF SVC for RQ3.
+- RQ1 averaged roughly 0.544 balanced accuracy across the outer folds. That is some evidence, but it is weak and not very stable.
+- I treat the nested development results as the main evidence here, not the test block that had already been seen.
 
 ## Limitations
 
-- Only three outer and three inner time splits are available.
-- Hyperparameter search cannot compensate for a small sample or missing options-derived information.
+- There are only three outer and three inner splits, mainly because the daily sample is small.
+- More tuning can't fix a limited sample or create options information that isn't in the features.
 
 ## Next steps
 
-- Add fold-matched benchmarks, feature stability, regime checks and selective-prediction analysis.
+- Next I check the winners against matched benchmarks, changing regimes, feature stability and confidence coverage.
