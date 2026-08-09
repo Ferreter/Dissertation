@@ -1,0 +1,10 @@
+ticker,asset_class,year,overall_status,probe_dates,available_dates,no_row_dates,error_dates,max_rows_returned,example_error
+I:SPX,index,2023,AVAILABLE,4,4,0,0,394,
+I:VIX,index,2023,AVAILABLE,4,4,0,0,735,
+SPY,stock,2023,AVAILABLE,4,4,0,0,851,
+I:SPX,index,2022,NO_ROWS,4,0,4,0,0,
+I:VIX,index,2022,NO_ROWS,4,0,4,0,0,
+SPY,stock,2022,AVAILABLE,4,4,0,0,918,
+I:SPX,index,2021,NO_ROWS,4,0,4,0,0,
+I:VIX,index,2021,NO_ROWS,4,0,4,0,0,
+SPY,stock,2021,MIXED,4,2,0,2,784,Massive API returned HTTP 403: Your plan doesn't include this data timeframe. Please upgrade your plan at https://polygon.io/pricing

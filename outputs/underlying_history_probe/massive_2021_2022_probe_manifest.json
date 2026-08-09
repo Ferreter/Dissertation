@@ -1,0 +1,36 @@
+{
+  "purpose": "Check historical SPY/SPX/VIX minute-data access before expanding dissertation history",
+  "years_tested": [
+    2021,
+    2022,
+    2023
+  ],
+  "tickers": [
+    "SPY",
+    "I:SPX",
+    "I:VIX"
+  ],
+  "probe_dates": {
+    "2023": [
+      "2023-02-15",
+      "2023-05-15",
+      "2023-08-15",
+      "2023-11-15"
+    ],
+    "2022": [
+      "2022-02-15",
+      "2022-05-16",
+      "2022-08-15",
+      "2022-11-15"
+    ],
+    "2021": [
+      "2021-02-16",
+      "2021-05-17",
+      "2021-08-16",
+      "2021-11-15"
+    ]
+  },
+  "database_modified": false,
+  "raw_data_folders_modified": false,
+  "interpretation_note": "The probe reports observed API responses. A successful date indicates that historical aggregate data were returned for that ticker/date; it does not itself guarantee every trading day in the year is complete."
+}
