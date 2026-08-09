@@ -15,6 +15,7 @@ models/                  Saved trained models, when a workflow exports them
 outputs/                 Tables, plots, manifests and dissertation drafts
 docs/notebooks/          A companion guide for every notebook
 docs/scripts/            A companion guide for every Python script
+docs/workflow.md          End-to-end artefact workflow and evidence map
 config.yaml              Stable project paths and research timing settings
 requirements.txt         Python dependencies
 ```
@@ -32,6 +33,8 @@ The notebooks find the repository root by looking for `config.yaml`, then run fr
 The large market datasets are intentionally kept outside package installation. Existing data and research outputs remain in `data/`, `data_extended_2023_2026/` and `outputs/`.
 
 ## Main workflow
+
+The linked [workflow guide](docs/workflow.md) provides an end-to-end diagram, the companion documentation for every maintained stage and representative existing evidence.
 
 The core analysis is designed to run in this order:
 
@@ -65,6 +68,8 @@ The core analysis is designed to run in this order:
 
 ## Documentation and outputs
 
-Every executable has a matching file under `docs/notebooks/` or `docs/scripts/`. Each guide records its purpose, inputs, processing, outputs, findings or decisions, limitations and next steps. Generated evidence remains under `outputs/`; trained model files belong under `models/`.
+Every executable has a matching file under `docs/notebooks/` or `docs/scripts/`. Each guide records its purpose, workflow, inputs, processing, outputs, representative evidence, findings or decisions, limitations and next steps. Generated evidence remains under `outputs/`; the canonical model filenames and metadata contract are documented in [models/README.md](models/README.md).
+
+The tuning notebooks expose a `SAVE_MODEL_ARTIFACTS` switch for the selected RQ1-RQ3 classical models. The LSTM notebook uses the same switch for exploratory development refits and matching scalers. No model binaries are included by this refactor; they are generated only when those notebook cells are run.
 
 The main limitations are the relatively small daily sample, changing market regimes, incomplete historical quote information for options, synthetic execution-cost assumptions and the absence of a genuinely fresh post-selection holdout in the current results.
