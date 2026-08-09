@@ -1,75 +1,75 @@
 # Dissertation Trading Project
 
-This repository contains the reproducible artefact for my dissertation on whether intraday SPX, SPY and VIX information can predict final-hour SPX movements and support an economically meaningful 0DTE options strategy.
+This repo is the practical side of my dissertation. I am looking at whether intraday SPX, SPY and VIX data can say anything useful about the final hour of SPX trading, and whether those signals still make sense once I apply them to 0DTE options.
 
 ## Repository structure
 
+I split the project up like this:
+
 ```text
 data/                    Raw and derived data used by the main analysis
-data_extended_2023_2026/ Isolated extended-history dataset
-notebooks/               Main executable research notebooks
-notebooks/legacy/        Earlier exploratory notebooks kept for provenance
-scripts/                 Reusable Python code
-scripts/legacy/          Earlier browser-automation experiments
-models/                  Saved trained models, when a workflow exports them
+data_extended_2023_2026/ Separate longer-history dataset
+notebooks/               Main research notebooks
+notebooks/legacy/        Older experiments kept to show how the work developed
+scripts/                 Python helpers used by the notebooks
+scripts/legacy/          Older browser-automation experiments
+models/                  Saved models, once the model cells are run
 outputs/                 Tables, plots, manifests and dissertation drafts
-docs/notebooks/          A companion guide for every notebook
-docs/scripts/            A companion guide for every Python script
-docs/workflow.md          End-to-end artefact workflow and evidence map
-config.yaml              Stable project paths and research timing settings
-requirements.txt         Python dependencies
+docs/notebooks/          One guide for each notebook
+docs/scripts/            One guide for each Python script
+docs/workflow.md          A map of the full workflow
+config.yaml              Shared paths and timing settings
+requirements.txt         Python packages used by the project
 ```
 
-The notebooks find the repository root by looking for `config.yaml`, then run from that root. As a result, paths such as `data/...` and `outputs/...` resolve consistently whether Jupyter starts in the repository root or inside `notebooks/`.
+I made the notebooks look for `config.yaml` to find the project root. This means the `data/...` and `outputs/...` paths should still work whether Jupyter starts in the root folder or inside `notebooks/`.
 
 ## Setup
 
 1. Create and activate a Python environment.
-2. Install the dependencies with `pip install -r requirements.txt`.
-3. Run `playwright install chromium` only if the legacy browser-automation scripts are needed.
-4. Copy `main.env.example` to `main.env` and add the local API credentials. The real `main.env` file must not be committed.
-5. Start Jupyter from the repository root or from `notebooks/`.
+2. Install the packages with `pip install -r requirements.txt`.
+3. Only run `playwright install chromium` if you want to try the old browser scripts.
+4. Copy `main.env.example` to `main.env` and add the API details locally. The real `main.env` should never be committed.
+5. Start Jupyter from the project root or the `notebooks/` folder.
 
-The large market datasets are intentionally kept outside package installation. Existing data and research outputs remain in `data/`, `data_extended_2023_2026/` and `outputs/`.
+The market data is large, so it stays in `data/`, `data_extended_2023_2026/` and `outputs/` rather than being installed as part of a Python package.
 
 ## Main workflow
 
-The linked [workflow guide](docs/workflow.md) provides an end-to-end diagram, the companion documentation for every maintained stage and representative existing evidence.
+The [workflow guide](docs/workflow.md) gives a diagram and links to the guide for every stage. If I need to rebuild the project, this is the order I follow:
 
-The core analysis is designed to run in this order:
+1. `notebooks/massive_database_starter.ipynb` - check the API access and make sure the storage setup works.
+2. `notebooks/massive_database_raw_retrieve.ipynb` - download the underlying and option data in restartable batches.
+3. `notebooks/aligned_eda.ipynb` - line up SPY, SPX and VIX without looking forward.
+4. `notebooks/cleaning_modellingprep.ipynb` - clean the sessions and make the chronological splits.
+5. `notebooks/dataset_Splitting.ipynb` - create the strict and relaxed datasets on the same dates.
+6. `notebooks/modeling_baseline.ipynb` - compare simple rules, dummy models and ML baselines for RQ1-RQ3.
+7. `notebooks/hyperparameters_tuning.ipynb` - tune the shortlisted models with time-aware validation.
+8. `notebooks/hyperparameters_tuning_extended_robustness.ipynb` - check benchmarks, regimes, feature stability and confidence coverage.
+9. `notebooks/extended_2023_2026_full_pipeline.ipynb` - repeat the underlying pipeline on the separate longer history.
+10. `notebooks/lstm_intraday_sequence_extension.ipynb` - try the smaller LSTM sequence experiment.
+11. `notebooks/rq4_economic_meaningfulness.ipynb` - check whether the signals pick out more useful SPX moves.
+12. `notebooks/rq4_economic_meaningfulness_extended.ipynb` - repeat that RQ4 check on the longer history.
+13. `notebooks/rq5_options_data_retrieval.ipynb` - lock the dates and download the required option bars.
+14. `notebooks/rq5_options_backtest.ipynb` - run the fixed ATM strategy and mean-reversion comparison.
+15. `notebooks/rq5_exit_strategy_sensitivity.ipynb` - check the planned stop, target and other exit rules.
+16. `notebooks/rq5_strategy_robustness_and_multi_contract.ipynb` - look at concentration, path behaviour and multi-contract examples.
 
-1. `notebooks/massive_database_starter.ipynb` - confirm API access and storage behaviour.
-2. `notebooks/massive_database_raw_retrieve.ipynb` - retrieve the underlying and options data incrementally.
-3. `notebooks/aligned_eda.ipynb` - align SPY, SPX and VIX without look-ahead and perform EDA.
-4. `notebooks/cleaning_modellingprep.ipynb` - clean sessions and prepare chronological modelling splits.
-5. `notebooks/dataset_Splitting.ipynb` - build strict and relaxed dataset variants on common dates.
-6. `notebooks/modeling_baseline.ipynb` - compare rule, dummy and machine-learning baselines for RQ1-RQ3.
-7. `notebooks/hyperparameters_tuning.ipynb` - tune the selected families with nested time-aware validation.
-8. `notebooks/hyperparameters_tuning_extended_robustness.ipynb` - add fold-matched benchmarks, regimes, feature stability and selective-prediction checks.
-9. `notebooks/extended_2023_2026_full_pipeline.ipynb` - repeat the underlying-market pipeline on isolated 2023-2026 data.
-10. `notebooks/lstm_intraday_sequence_extension.ipynb` - test a small exploratory LSTM on minute sequences.
-11. `notebooks/rq4_economic_meaningfulness.ipynb` - assess whether the predictive signals identify economically larger opportunities.
-12. `notebooks/rq4_economic_meaningfulness_extended.ipynb` - repeat RQ4 using the extended-history outputs.
-13. `notebooks/rq5_options_data_retrieval.ipynb` - retrieve and audit the option contracts required for RQ5.
-14. `notebooks/rq5_options_backtest.ipynb` - run the frozen ATM strategy and required mean-reversion comparator.
-15. `notebooks/rq5_exit_strategy_sensitivity.ipynb` - test pre-specified exit and risk-management rules.
-16. `notebooks/rq5_strategy_robustness_and_multi_contract.ipynb` - test concentration, path dependence and multi-contract scaling.
+The `probe_massive_2021_2022_underlying_access.ipynb` notebook is only a small access check. I can run it before trying to extend the history. Everything under `notebooks/legacy/` is kept as background and isn't part of the final evidence.
 
-`notebooks/probe_massive_2021_2022_underlying_access.ipynb` is a non-destructive entitlement check and can be run before any historical expansion. The notebooks under `notebooks/legacy/` are exploratory records rather than dependencies of the final pipeline.
+## Checks I kept in place
 
-## Reproducibility and leakage controls
-
-- Feature values use information available before the 15:00 ET decision point.
-- SPX and VIX alignment is backward-looking only.
-- Train, validation and test blocks are chronological.
-- Imputation, clipping, scaling, regime thresholds and model selection are fitted on training data within the relevant fold.
-- Previously viewed test results are not described as fresh confirmatory evidence.
-- RQ5 trading rules and execution assumptions are frozen before any future holdout evaluation.
+- Features only use information available before the 15:00 ET decision time.
+- SPX and VIX are matched backwards, not to a later minute.
+- Train, Validation and Test are kept in date order.
+- Imputation, clipping, scaling, regime cut-offs and model selection are fitted inside the relevant training data.
+- I don't describe an already-viewed test result as if it were a fresh test.
+- The RQ5 trading and cost rules are fixed before any future holdout is used.
 
 ## Documentation and outputs
 
-Every executable has a matching file under `docs/notebooks/` or `docs/scripts/`. Each guide records its purpose, workflow, inputs, processing, outputs, representative evidence, findings or decisions, limitations and next steps. Generated evidence remains under `outputs/`; the canonical model filenames and metadata contract are documented in [models/README.md](models/README.md).
+Every notebook and executable script has its own guide under `docs/notebooks/` or `docs/scripts/`. The guides explain what I was trying to do, what went in, what came out and what I would do next. The actual saved evidence stays under `outputs/`. The planned model filenames are listed in [models/README.md](models/README.md).
 
-The tuning notebooks expose a `SAVE_MODEL_ARTIFACTS` switch for the selected RQ1-RQ3 classical models. The LSTM notebook uses the same switch for exploratory development refits and matching scalers. No model binaries are included by this refactor; they are generated only when those notebook cells are run.
+The two tuning notebooks can save the chosen RQ1-RQ3 classical models with `SAVE_MODEL_ARTIFACTS`. The LSTM notebook has the same switch for its exploratory refits and scalers. I haven't included the binary model files in this documentation change; they appear when those cells are actually run.
 
-The main limitations are the relatively small daily sample, changing market regimes, incomplete historical quote information for options, synthetic execution-cost assumptions and the absence of a genuinely fresh post-selection holdout in the current results.
+The main things to keep in mind are the small daily sample, changing market conditions, missing historical option quotes, made-up execution penalties and the lack of a completely fresh post-selection holdout so far.
