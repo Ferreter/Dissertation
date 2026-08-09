@@ -1,11 +1,11 @@
 # Legacy Gamma Chart Capture
 
 **Executable:** `scripts/legacy/disc-gamma-svg.py`  
-**Status:** Legacy exploratory work retained for provenance.
+**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
 
 ## Purpose
 
-I refined the earlier browser experiment so that it captures only the Highcharts SVG area rather than the complete page.
+I changed the earlier browser script so it captures just the Highcharts SVG instead of taking a screenshot of the whole page.
 
 ## Workflow
 
@@ -24,9 +24,9 @@ flowchart LR
 
 ## Processing and rationale
 
-- Open the page, handle the optional cookie prompt and wait for the SVG chart.
-- Remove overlays that can cover the chart without changing its data.
-- Capture only the chart and upload it through the configured webhook.
+- I open the page, deal with the cookie box if it appears and wait for the SVG.
+- I hide overlays that cover the chart, but I don't change the chart data.
+- I crop to the chart and optionally send it through the webhook.
 
 ## Outputs
 
@@ -39,14 +39,14 @@ No maintained artifact is expected. The experimental implementation remains in t
 
 ## Findings and decisions
 
-- Cropping to the SVG produced a cleaner exploratory artefact than a full-page image.
-- I still treat the method as provenance only because it does not provide stable historical observations.
+- The cropped version looked much cleaner than the full-page screenshot.
+- I still keep it as an old experiment because it doesn't give me stable historical observations.
 
 ## Limitations
 
-- CSS selectors and the chart implementation can change without notice.
-- The captured chart cannot replace contract-level or quote-level source data.
+- The CSS selectors and chart code can change without warning.
+- An image of a chart can't replace contract or quote data.
 
 ## Next steps
 
-- Do not use this browser experiment as input to the maintained dissertation models.
+- I don't use this script as an input to the maintained models.

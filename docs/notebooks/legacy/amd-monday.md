@@ -1,11 +1,11 @@
 # Legacy AMD Friday-to-Monday Exploration
 
 **Executable:** `notebooks/legacy/amd-monday.ipynb`  
-**Status:** Legacy exploratory work retained for provenance.
+**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
 
 ## Purpose
 
-I used this exploratory notebook to compare Friday closes with Monday opens and highs for AMD.
+This was one of my early side ideas. I used it to compare AMD's Friday close with the following Monday open and high.
 
 ## Workflow
 
@@ -22,8 +22,8 @@ flowchart LR
 
 ## Processing and rationale
 
-- Pair Friday and Monday observations.
-- Count weekend-gap relationships and plot the paired prices.
+- I pair each Friday with the next Monday.
+- I count the gap patterns and plot the two sets of prices.
 
 ## Outputs
 
@@ -35,12 +35,12 @@ No maintained research artifact is produced. The historical displays remain in t
 
 ## Findings and decisions
 
-- This was an early idea-development exercise and does not feed the SPX dissertation models.
+- It helped me think through trading patterns, but it doesn't feed into the SPX dissertation models.
 
 ## Limitations
 
-- The result changes with the live yfinance window and does not include transaction costs or formal validation.
+- The yfinance window changes when the notebook is rerun, and there are no costs or proper validation here.
 
 ## Next steps
 
-- Retain only as provenance; use the main SPX workflow for dissertation evidence.
+- I keep this only to show where the project started. The main SPX notebooks contain the dissertation evidence.

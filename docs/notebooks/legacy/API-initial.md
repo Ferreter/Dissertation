@@ -1,11 +1,11 @@
 # Legacy Massive API Entitlement Check
 
 **Executable:** `notebooks/legacy/API-initial.ipynb`  
-**Status:** Legacy exploratory work retained for provenance.
+**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
 
 ## Purpose
 
-I used this early notebook to understand which underlying, index and option endpoints were available for the dissertation.
+This was my first proper look at the Massive endpoints. I was mainly trying to work out what underlying, index and option data the account would actually let me use.
 
 ## Workflow
 
@@ -23,8 +23,8 @@ flowchart LR
 
 ## Processing and rationale
 
-- Call a small number of aggregate, contract and option endpoints.
-- Display response tables and interpret subscription limitations.
+- I make a few small aggregate, contract and option requests.
+- I display the replies and note where the subscription limits appear.
 
 ## Outputs
 
@@ -36,13 +36,13 @@ No maintained research artifact is produced. The response tables remain in the [
 
 ## Findings and decisions
 
-- The experiment clarified that contract and aggregate access does not imply historical Greeks, implied volatility or open-interest access.
+- The main lesson was that being able to see contracts and aggregates didn't mean I could also get historical Greeks, IV or open interest.
 
 ## Limitations
 
-- It is an early entitlement check, not the final retrieval pipeline.
-- API plans and history windows can change.
+- This is an early access test, not the final downloader.
+- The available history and API plan can change.
 
 ## Next steps
 
-- Use the maintained database notebooks and `scripts/massive_database.py` for reproducible collection.
+- For repeatable collection, I moved to the maintained database notebooks and `scripts/massive_database.py`.

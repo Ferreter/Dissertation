@@ -1,11 +1,11 @@
 # Legacy Preliminary EDA
 
 **Executable:** `notebooks/legacy/EDA.ipynb`  
-**Status:** Legacy exploratory work retained for provenance.
+**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
 
 ## Purpose
 
-I used this earlier notebook to prototype intraday features, daily targets and simple models with yfinance data.
+This is an older EDA notebook where I first tried out intraday features, daily targets and some very simple models using yfinance.
 
 ## Workflow
 
@@ -22,8 +22,8 @@ flowchart LR
 
 ## Processing and rationale
 
-- Clean sessions, combine tickers, engineer intraday features and inspect target behaviour.
-- Fit preliminary logistic-regression checks.
+- I clean the sessions, combine the tickers and try a first set of intraday features.
+- I also run a few early logistic-regression checks to see whether the target setup makes sense.
 
 ## Outputs
 
@@ -34,20 +34,20 @@ flowchart LR
 
 ![Interim final-hour return distribution](../../../outputs/Images/Interim-Report/final-hour-returns.png)
 
-*Provenance figure: an earlier exploratory view retained for the project history, not the final maintained evidence.*
+*This is an older project plot showing an earlier exploratory view retained for the project history, not the final maintained evidence.*
 
 ![Interim top features](../../../outputs/Images/Interim-Report/top-features.png)
 
-*Provenance figure: an early feature summary superseded by the maintained EDA and modelling notebooks.*
+*This is an older project plot showing an early feature summary superseded by the maintained EDA and modelling notebooks.*
 
 ## Findings and decisions
 
-- This work helped define timing and feature ideas but was superseded by the minute-level Massive database pipeline.
+- It was useful for working out the timing and feature ideas, but the later Massive minute-data pipeline replaced it.
 
 ## Limitations
 
-- yfinance intraday history is short and the early notebook predates the final leakage controls.
+- yfinance only gave me a short intraday history, and this notebook was written before I added the final leakage checks.
 
 ## Next steps
 
-- Use `notebooks/aligned_eda.ipynb` for the dissertation's maintained EDA.
+- I keep this as background only. `notebooks/aligned_eda.ipynb` is the maintained EDA.

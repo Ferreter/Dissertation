@@ -1,11 +1,11 @@
 # Legacy Gamma Page Capture
 
 **Executable:** `scripts/legacy/disc-gamma.py`  
-**Status:** Legacy exploratory work retained for provenance.
+**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
 
 ## Purpose
 
-I used this script to test whether a full public gamma-exposure page could be captured and delivered to Discord.
+This was the first browser version. I wanted to see whether I could save the full public gamma page and send it to Discord.
 
 ## Workflow
 
@@ -24,9 +24,8 @@ flowchart LR
 
 ## Processing and rationale
 
-- Open a visible Chromium session and wait for the page to load.
-- Accept the cookie prompt when it appears.
-- Save a full-page screenshot, then upload the saved file through the configured webhook.
+- I open Chromium, wait for the page and accept the cookie box if it shows up.
+- I save the whole page as an image and optionally upload it with the configured webhook.
 
 ## Outputs
 
@@ -39,14 +38,14 @@ No maintained artifact is expected. The experimental implementation remains in t
 
 ## Findings and decisions
 
-- The approach was useful as a browser-automation experiment but was not adopted as a dissertation data source.
-- I moved the webhook out of the code so no credential is stored in the repository.
+- It was useful for learning the browser automation, but I didn't use it as a dissertation data source.
+- I moved the webhook out of the script so it isn't stored in Git.
 
 ## Limitations
 
-- The page layout, cookie selector and anti-automation behaviour can change.
-- A screenshot is not a structured, reproducible historical dataset.
+- The layout, cookie button and anti-bot behaviour can all change.
+- A screenshot isn't a structured dataset that I can rebuild historically.
 
 ## Next steps
 
-- Keep this script separate from the main pipeline and prefer licensed API data for research evidence.
+- I keep this away from the main pipeline and use licensed API data for the actual evidence.

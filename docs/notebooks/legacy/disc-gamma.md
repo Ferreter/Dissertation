@@ -1,11 +1,11 @@
 # Legacy Gamma-Exposure Browser Experiment
 
 **Executable:** `notebooks/legacy/disc-gamma.ipynb`  
-**Status:** Legacy exploratory work retained for provenance.
+**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
 
 ## Purpose
 
-I used this short experiment to test browser capture and Discord delivery for a public gamma-exposure page.
+I made this quick experiment to see whether I could capture a public gamma page and send the image to Discord.
 
 ## Workflow
 
@@ -23,7 +23,7 @@ flowchart LR
 
 ## Processing and rationale
 
-- Open the page with Playwright, capture an image and optionally post it to Discord.
+- I open the page with Playwright, take a screenshot and optionally send it through a Discord webhook.
 
 ## Outputs
 
@@ -35,13 +35,13 @@ Any screenshot or message was local and is not dissertation evidence. The implem
 
 ## Findings and decisions
 
-- The browser method was exploratory and was not adopted as a reliable dissertation data source.
+- It worked as a browser experiment, but I didn't trust it enough to use as a dissertation data source.
 
 ## Limitations
 
-- Page structure and anti-automation controls can change.
-- The image is not a structured or historically reproducible dataset.
+- The page or its anti-automation behaviour can change at any time.
+- A screenshot isn't structured historical data and is hard to reproduce later.
 
 ## Next steps
 
-- Use licensed API data for the main research pipeline.
+- I use licensed API data for the actual research workflow.

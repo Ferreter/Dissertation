@@ -1,11 +1,11 @@
 # Legacy Weekend Gap Analysis
 
 **Executable:** `notebooks/legacy/yfinance_weekend_gap_analysis.ipynb`  
-**Status:** Legacy exploratory work retained for provenance.
+**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
 
 ## Purpose
 
-I compare Friday closes with Monday opens and subsequent Monday movement as an early trading-pattern exploration.
+This was another early pattern check. I compared Friday closes with Monday opens and then looked at what happened during Monday.
 
 ## Workflow
 
@@ -22,7 +22,7 @@ flowchart LR
 
 ## Processing and rationale
 
-- Pair consecutive Friday and Monday observations and chart gaps and Monday moves.
+- I pair each Friday with the next Monday and plot the opening gap and Monday move.
 
 ## Outputs
 
@@ -34,12 +34,12 @@ No maintained research artifact is produced. The exploratory results remain in t
 
 ## Findings and decisions
 
-- The notebook is exploratory provenance and is not used by the final SPX prediction pipeline.
+- It stays as project history and isn't used by the final SPX prediction pipeline.
 
 ## Limitations
 
-- The live download period changes over time and the analysis is not a controlled backtest.
+- The live download range changes over time, and this isn't a controlled backtest.
 
 ## Next steps
 
-- Keep the experiment separate from the dissertation results.
+- I keep it separate from the dissertation results.
