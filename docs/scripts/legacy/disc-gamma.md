@@ -7,6 +7,15 @@
 
 I used this script to test whether a full public gamma-exposure page could be captured and delivered to Discord.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Legacy browser page"] --> B["Experimental full-page capture and message flow"]
+    B --> C["Local image or message"]
+    C --> D["Provenance only"]
+```
+
 ## Inputs
 
 - The public NVDA gamma-exposure webpage.
@@ -21,8 +30,12 @@ I used this script to test whether a full public gamma-exposure page could be ca
 
 ## Outputs
 
-- `outputs/legacy_browser/nvda_gamma_page.png`
-- An optional Discord message containing the image.
+- A local, untracked full-page capture when the experiment is run.
+- An optional Discord message containing the image; neither item is maintained dissertation evidence.
+
+## Representative outputs
+
+No maintained artifact is expected. The experimental implementation remains in the [legacy script](../../../scripts/legacy/disc-gamma.py) as provenance only.
 
 ## Findings and decisions
 

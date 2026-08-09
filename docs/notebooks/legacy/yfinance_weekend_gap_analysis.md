@@ -7,6 +7,15 @@
 
 I compare Friday closes with Monday opens and subsequent Monday movement as an early trading-pattern exploration.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Downloaded weekend market prices"] --> B["Exploratory paired gap comparison"]
+    B --> C["Notebook-only tables and charts"]
+    C --> D["Provenance only"]
+```
+
 ## Inputs
 
 - Daily market data downloaded with yfinance
@@ -18,6 +27,10 @@ I compare Friday closes with Monday opens and subsequent Monday movement as an e
 ## Outputs
 
 - Displayed paired tables and charts
+
+## Representative outputs
+
+No maintained research artifact is produced. The exploratory results remain in the [legacy notebook](../../../notebooks/legacy/yfinance_weekend_gap_analysis.ipynb) as provenance only.
 
 ## Findings and decisions
 

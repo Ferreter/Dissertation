@@ -7,6 +7,15 @@
 
 I build two defensible session-quality variants so I can test whether a modest increase in sample size changes the modelling conclusions.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Clean split dataset"] --> B["Apply strict and relaxed inclusion rules"]
+    B --> C["Calendar-matched dataset variants"]
+    C --> D["Baseline modelling"]
+```
+
 ## Inputs
 
 - Aligned minute data
@@ -24,6 +33,14 @@ I build two defensible session-quality variants so I can test whether a modest i
 - `data/derived/daily_underlying_model_dataset_strict_split.parquet`
 - `data/derived/daily_underlying_model_dataset_relaxed_split.parquet`
 - `outputs/dataset_variants/`
+
+## Representative outputs
+
+![Strict and relaxed observation counts](../../outputs/dataset_variants/figures/strict_relaxed_observation_counts.png)
+
+*Figure: the sample-size trade-off created by the two data-quality definitions.*
+
+The complete rules are recorded in the [dataset-variant manifest](../../outputs/dataset_variants/dataset_variant_manifest.json).
 
 ## Findings and decisions
 

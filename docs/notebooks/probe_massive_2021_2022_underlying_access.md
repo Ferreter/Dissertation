@@ -7,6 +7,15 @@
 
 I check whether the current account can return one-minute SPY, SPX and VIX data for selected 2021 and 2022 dates before attempting an expansion.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Small historical entitlement requests"] --> B["Non-destructive API access probe"]
+    B --> C["Detail, summary and manifest"]
+    C --> D["Decide whether to extend history"]
+```
+
 ## Inputs
 
 - `main.env` with `MASSIVE_API_KEY`
@@ -22,6 +31,10 @@ I check whether the current account can return one-minute SPY, SPX and VIX data 
 
 - `outputs/underlying_history_probe/massive_2021_2022_probe_detail.csv`
 - Probe summary CSV and JSON manifest
+
+## Representative outputs
+
+The entitlement result is preserved in the [probe manifest](../../outputs/underlying_history_probe/massive_2021_2022_probe_manifest.json) and [probe summary](../../outputs/underlying_history_probe/massive_2021_2022_probe_summary.csv).
 
 ## Findings and decisions
 

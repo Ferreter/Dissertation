@@ -7,6 +7,15 @@
 
 I validate Massive access and test the incremental Parquet and DuckDB storage workflow before a full download.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["API credentials and small date sample"] --> B["Access, schema and storage checks"]
+    B --> C["Verified retrieval path and database"]
+    C --> D["Full incremental retrieval"]
+```
+
 ## Inputs
 
 - `main.env` with `MASSIVE_API_KEY`
@@ -23,6 +32,10 @@ I validate Massive access and test the incremental Parquet and DuckDB storage wo
 - `data/raw/`
 - `data/market.duckdb`
 - Ingestion-log and access-check tables displayed in the notebook
+
+## Representative outputs
+
+The successful storage path feeds the [underlying session audit Parquet](../../data/derived/underlying_session_audit.parquet) and the local `data/market.duckdb` database.
 
 ## Findings and decisions
 

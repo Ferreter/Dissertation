@@ -7,6 +7,15 @@
 
 I used this earlier notebook to prototype intraday features, daily targets and simple models with yfinance data.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Earlier derived market data"] --> B["Exploratory distributions and correlations"]
+    B --> C["Notebook plots and interim figures"]
+    C --> D["Superseded maintained EDA"]
+```
+
 ## Inputs
 
 - SPX, VIX and SPY intraday data from yfinance
@@ -19,7 +28,17 @@ I used this earlier notebook to prototype intraday features, daily targets and s
 ## Outputs
 
 - Displayed EDA tables and plots
-- `outputs/legacy/feature_target_correlations.png` after path cleanup
+- Interim figures under `outputs/Images/Interim-Report/`
+
+## Representative outputs
+
+![Interim final-hour return distribution](../../../outputs/Images/Interim-Report/final-hour-returns.png)
+
+*Provenance figure: an earlier exploratory view retained for the project history, not the final maintained evidence.*
+
+![Interim top features](../../../outputs/Images/Interim-Report/top-features.png)
+
+*Provenance figure: an early feature summary superseded by the maintained EDA and modelling notebooks.*
 
 ## Findings and decisions
 

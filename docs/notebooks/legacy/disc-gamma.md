@@ -7,6 +7,15 @@
 
 I used this short experiment to test browser capture and Discord delivery for a public gamma-exposure page.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Browser page and local credentials"] --> B["Experimental screenshot and message flow"]
+    B --> C["Local screenshot or message"]
+    C --> D["Provenance only"]
+```
+
 ## Inputs
 
 - Public Barchart page
@@ -19,6 +28,10 @@ I used this short experiment to test browser capture and Discord delivery for a 
 ## Outputs
 
 - A local screenshot and optional Discord message
+
+## Representative outputs
+
+Any screenshot or message was local and is not dissertation evidence. The implementation remains in the [legacy notebook](../../../notebooks/legacy/disc-gamma.ipynb) for provenance.
 
 ## Findings and decisions
 

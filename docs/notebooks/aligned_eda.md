@@ -7,6 +7,15 @@
 
 I align SPY, SPX and VIX minute observations without using future information, build the daily modelling table and examine the initial relationships with the final-hour SPX target.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Raw SPY, SPX and VIX minutes"] --> B["Backward alignment and EDA"]
+    B --> C["Aligned Parquet data and figures"]
+    C --> D["Cleaning and modelling preparation"]
+```
+
 ## Inputs
 
 - `data/market.duckdb`
@@ -24,6 +33,16 @@ I align SPY, SPX and VIX minute observations without using future information, b
 - `data/derived/underlying_session_audit.parquet`
 - `data/derived/daily_underlying_model_dataset.parquet`
 - `outputs/eda_figures/`
+
+## Representative outputs
+
+![SPX alignment staleness](../../outputs/eda_figures/02_spx_alignment_staleness.png)
+
+*Figure: the age of backward-looking SPX matches, used to confirm that the alignment is timely without looking forward.*
+
+![Feature-target correlations](../../outputs/eda_figures/15_feature_target_correlations.png)
+
+*Figure: the univariate relationships that guided later modelling while remaining descriptive rather than causal.*
 
 ## Findings and decisions
 

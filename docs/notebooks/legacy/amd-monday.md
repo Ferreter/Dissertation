@@ -7,6 +7,15 @@
 
 I used this exploratory notebook to compare Friday closes with Monday opens and highs for AMD.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Historical market observations"] --> B["Exploratory weekday comparison"]
+    B --> C["Notebook-only exploratory displays"]
+    C --> D["Provenance only"]
+```
+
 ## Inputs
 
 - Recent AMD daily data downloaded with yfinance
@@ -19,6 +28,10 @@ I used this exploratory notebook to compare Friday closes with Monday opens and 
 ## Outputs
 
 - Displayed counts and charts in the notebook
+
+## Representative outputs
+
+No maintained research artifact is produced. The historical displays remain in the [legacy notebook](../../../notebooks/legacy/amd-monday.ipynb) as provenance only.
 
 ## Findings and decisions
 

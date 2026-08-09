@@ -7,6 +7,15 @@
 
 I keep the common Massive API, normalisation, Parquet and DuckDB operations in one module so that every retrieval notebook follows the same rules.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["API parameters and local database paths"] --> B["Retrieve, normalise, partition and register"]
+    B --> C["DataFrames, Parquet partitions and DuckDB views"]
+    C --> D["Calling retrieval notebook"]
+```
+
 ## Inputs
 
 - A Massive API key passed by the calling notebook.
@@ -26,6 +35,10 @@ I keep the common Massive API, normalisation, Parquet and DuckDB operations in o
 - Normalised pandas DataFrames returned to the notebooks.
 - Partitioned files below `data/raw/` or the data root supplied by the caller.
 - DuckDB ingestion-log rows and registered analytical views.
+
+## Representative outputs
+
+The reusable functions feed the [underlying session audit](../../data/derived/underlying_session_audit.parquet) and the date-partitioned files below `data/raw/`.
 
 ## Findings and decisions
 

@@ -7,6 +7,15 @@
 
 I used this early notebook to understand which underlying, index and option endpoints were available for the dissertation.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Early API request"] --> B["Inspect response structure"]
+    B --> C["Notebook-only response tables"]
+    C --> D["Superseded retrieval workflow"]
+```
+
 ## Inputs
 
 - Massive API credentials
@@ -20,6 +29,10 @@ I used this early notebook to understand which underlying, index and option endp
 ## Outputs
 
 - Displayed API response tables; no required persistent research output
+
+## Representative outputs
+
+No maintained research artifact is produced. The response tables remain in the [legacy notebook](../../../notebooks/legacy/API-initial.ipynb) as provenance only.
 
 ## Findings and decisions
 

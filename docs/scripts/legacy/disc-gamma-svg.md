@@ -7,6 +7,15 @@
 
 I refined the earlier browser experiment so that it captures only the Highcharts SVG area rather than the complete page.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Legacy browser page"] --> B["Experimental browser capture and message flow"]
+    B --> C["Local image or message"]
+    C --> D["Provenance only"]
+```
+
 ## Inputs
 
 - The public NVDA gamma-exposure webpage.
@@ -21,8 +30,12 @@ I refined the earlier browser experiment so that it captures only the Highcharts
 
 ## Outputs
 
-- `outputs/legacy_browser/nvda_gamma_chart.png`
-- An optional Discord message containing the chart.
+- A local, untracked browser capture when the experiment is run.
+- An optional Discord message containing the chart; neither item is maintained dissertation evidence.
+
+## Representative outputs
+
+No maintained artifact is expected. The experimental implementation remains in the [legacy script](../../../scripts/legacy/disc-gamma-svg.py) as provenance only.
 
 ## Findings and decisions
 

@@ -7,6 +7,15 @@
 
 I retrieve the dissertation's underlying and selected option history incrementally and register it for later analysis.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["API credentials and requested dates"] --> B["Incremental retrieval, normalisation and ingestion"]
+    B --> C["Partitioned raw data and DuckDB records"]
+    C --> D["Alignment and EDA"]
+```
+
 ## Inputs
 
 - `main.env` with `MASSIVE_API_KEY`
@@ -24,6 +33,10 @@ I retrieve the dissertation's underlying and selected option history incremental
 - `data/raw/`
 - `data/market.duckdb`
 - DuckDB ingestion log
+
+## Representative outputs
+
+The maintained downstream audit is stored as [underlying session audit Parquet](../../data/derived/underlying_session_audit.parquet), while the raw retrievals remain in date-partitioned files below `data/raw/`.
 
 ## Findings and decisions
 

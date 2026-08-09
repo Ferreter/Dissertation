@@ -7,6 +7,15 @@
 
 I clean the aligned daily data, document session exclusions and prepare leakage-safe chronological datasets for modelling.
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A["Aligned daily dataset"] --> B["Eligibility checks, cleaning and chronological splits"]
+    B --> C["Clean development datasets and audit tables"]
+    C --> D["Strict and relaxed variants"]
+```
+
 ## Inputs
 
 - `data/derived/daily_underlying_model_dataset.parquet`
@@ -24,6 +33,14 @@ I clean the aligned daily data, document session exclusions and prepare leakage-
 - `data/derived/daily_underlying_model_dataset_clean_split.parquet`
 - `data/derived/daily_underlying_model_dataset_model_ready.parquet`
 - `outputs/cleaning/`
+
+## Representative outputs
+
+![Neutral-threshold sensitivity](../../outputs/cleaning/figures/neutral_threshold_sensitivity.png)
+
+*Figure: how the direction-label balance changes across plausible neutral-return thresholds.*
+
+The exact cleaning rules and retained rows are recorded in the [cleaning manifest](../../outputs/cleaning/cleaning_manifest.json).
 
 ## Findings and decisions
 
