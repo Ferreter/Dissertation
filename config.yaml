@@ -1,0 +1,24 @@
+project:
+  name: dissertation-trading
+  timezone: America/New_York
+
+paths:
+  data: data
+  extended_data: data_extended_2023_2026
+  notebooks: notebooks
+  scripts: scripts
+  models: models
+  outputs: outputs
+  documentation: docs
+  environment_file: main.env
+
+market:
+  regular_session_start_et: "09:30:00"
+  feature_cutoff_et: "14:59:00"
+  prediction_time_et: "15:00:00"
+  target_end_et: "15:59:00"
+
+reproducibility:
+  random_state: 42
+  split_method: chronological
+  project_root_marker: config.yaml

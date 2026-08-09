@@ -1,5 +1,10 @@
 /Meeting Notes and Documents
 Mahara-Secret-Link.txt
-.env
+/main.env
+/.env
+*.env.local
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
 /data_extended_2023_2026/raw
 outputs/extended_2023_2026.zip
