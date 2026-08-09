@@ -1,0 +1,37 @@
+rule,point_move_bin,sessions,share
+All intersection sessions,<5 points,136,0.32304038004750596
+All intersection sessions,5–10 points,120,0.2850356294536817
+All intersection sessions,10–15 points,62,0.14726840855106887
+All intersection sessions,15–20 points,30,0.07125890736342043
+All intersection sessions,20–30 points,45,0.10688836104513064
+All intersection sessions,30+ points,28,0.0665083135391924
+RQ1 high confidence,<5 points,46,0.36220472440944884
+RQ1 high confidence,5–10 points,40,0.31496062992125984
+RQ1 high confidence,10–15 points,13,0.10236220472440945
+RQ1 high confidence,15–20 points,10,0.07874015748031496
+RQ1 high confidence,20–30 points,9,0.07086614173228346
+RQ1 high confidence,30+ points,9,0.07086614173228346
+RQ3 large-move flag,<5 points,59,0.2489451476793249
+RQ3 large-move flag,5–10 points,54,0.22784810126582278
+RQ3 large-move flag,10–15 points,38,0.16033755274261605
+RQ3 large-move flag,15–20 points,23,0.0970464135021097
+RQ3 large-move flag,20–30 points,36,0.1518987341772152
+RQ3 large-move flag,30+ points,27,0.11392405063291139
+RQ1 high confidence + RQ3,<5 points,16,0.2222222222222222
+RQ1 high confidence + RQ3,5–10 points,22,0.3055555555555556
+RQ1 high confidence + RQ3,10–15 points,8,0.1111111111111111
+RQ1 high confidence + RQ3,15–20 points,9,0.125
+RQ1 high confidence + RQ3,20–30 points,8,0.1111111111111111
+RQ1 high confidence + RQ3,30+ points,9,0.125
+RQ1 high confidence + RQ2 >= 20 bps,<5 points,4,0.19047619047619047
+RQ1 high confidence + RQ2 >= 20 bps,5–10 points,2,0.09523809523809523
+RQ1 high confidence + RQ2 >= 20 bps,10–15 points,1,0.047619047619047616
+RQ1 high confidence + RQ2 >= 20 bps,15–20 points,4,0.19047619047619047
+RQ1 high confidence + RQ2 >= 20 bps,20–30 points,4,0.19047619047619047
+RQ1 high confidence + RQ2 >= 20 bps,30+ points,6,0.2857142857142857
+All three: RQ1 high confidence + RQ2 >= 20 bps + RQ3,<5 points,4,0.19047619047619047
+All three: RQ1 high confidence + RQ2 >= 20 bps + RQ3,5–10 points,2,0.09523809523809523
+All three: RQ1 high confidence + RQ2 >= 20 bps + RQ3,10–15 points,1,0.047619047619047616
+All three: RQ1 high confidence + RQ2 >= 20 bps + RQ3,15–20 points,4,0.19047619047619047
+All three: RQ1 high confidence + RQ2 >= 20 bps + RQ3,20–30 points,4,0.19047619047619047
+All three: RQ1 high confidence + RQ2 >= 20 bps + RQ3,30+ points,6,0.2857142857142857
