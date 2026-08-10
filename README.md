@@ -38,24 +38,25 @@ The market data is large, so it stays in `data/`, `data_extended_2023_2026/` and
 
 The [workflow guide](docs/workflow.md) gives a diagram and links to the guide for every stage. If I need to rebuild the project, this is the order I follow:
 
-1. `notebooks/massive_database_starter.ipynb` - check the API access and make sure the storage setup works.
-2. `notebooks/massive_database_raw_retrieve.ipynb` - download the underlying and option data in restartable batches.
-3. `notebooks/aligned_eda.ipynb` - line up SPY, SPX and VIX without looking forward.
-4. `notebooks/cleaning_modellingprep.ipynb` - clean the sessions and make the chronological splits.
-5. `notebooks/dataset_Splitting.ipynb` - create the strict and relaxed datasets on the same dates.
-6. `notebooks/modeling_baseline.ipynb` - compare simple rules, dummy models and ML baselines for RQ1-RQ3.
-7. `notebooks/hyperparameters_tuning.ipynb` - tune the shortlisted models with time-aware validation.
-8. `notebooks/hyperparameters_tuning_extended_robustness.ipynb` - check benchmarks, regimes, feature stability and confidence coverage.
-9. `notebooks/extended_2023_2026_full_pipeline.ipynb` - repeat the underlying pipeline on the separate longer history.
-10. `notebooks/lstm_intraday_sequence_extension.ipynb` - try the smaller LSTM sequence experiment.
-11. `notebooks/rq4_economic_meaningfulness.ipynb` - check whether the signals pick out more useful SPX moves.
-12. `notebooks/rq4_economic_meaningfulness_extended.ipynb` - repeat that RQ4 check on the longer history.
-13. `notebooks/rq5_options_data_retrieval.ipynb` - lock the dates and download the required option bars.
-14. `notebooks/rq5_options_backtest.ipynb` - run the fixed ATM strategy and mean-reversion comparison.
-15. `notebooks/rq5_exit_strategy_sensitivity.ipynb` - check the planned stop, target and other exit rules.
-16. `notebooks/rq5_strategy_robustness_and_multi_contract.ipynb` - look at concentration, path behaviour and multi-contract examples.
+1. `notebooks/01_massive_database_starter.ipynb` - check the API access and make sure the storage setup works.
+2. `notebooks/02_massive_database_raw_retrieve.ipynb` - download the underlying and option data in restartable batches.
+3. `notebooks/03_aligned_eda.ipynb` - line up SPY, SPX and VIX without looking forward.
+4. `notebooks/04_cleaning_modellingprep.ipynb` - clean the sessions and make the chronological splits.
+5. `notebooks/05_dataset_Splitting.ipynb` - create the strict and relaxed datasets on the same dates.
+6. `notebooks/06_modeling_baseline.ipynb` - compare simple rules, dummy models and ML baselines for RQ1-RQ3.
+7. `notebooks/07_hyperparameters_tuning.ipynb` - tune the shortlisted models with time-aware validation.
+8. `notebooks/08_hyperparameters_tuning_extended_robustness.ipynb` - check benchmarks, regimes, feature stability and confidence coverage.
+9. `notebooks/09_probe_massive_2021_2022_underlying_access.ipynb` - check whether older 2021-2022 data is available before extending the history.
+10. `notebooks/10_extended_2023_2026_full_pipeline.ipynb` - repeat the underlying pipeline on the separate longer history.
+11. `notebooks/11_lstm_intraday_sequence_extension.ipynb` - try the smaller LSTM sequence experiment.
+12. `notebooks/12_rq4_economic_meaningfulness.ipynb` - check whether the signals pick out more useful SPX moves.
+13. `notebooks/13_rq4_economic_meaningfulness_extended.ipynb` - repeat that RQ4 check on the longer history.
+14. `notebooks/14_rq5_options_data_retrieval.ipynb` - lock the dates and download the required option bars.
+15. `notebooks/15_rq5_options_backtest.ipynb` - run the fixed ATM strategy and mean-reversion comparison.
+16. `notebooks/16_rq5_exit_strategy_sensitivity.ipynb` - check the planned stop, target and other exit rules.
+17. `notebooks/17_rq5_strategy_robustness_and_multi_contract.ipynb` - look at concentration, path behaviour and multi-contract examples.
 
-The `probe_massive_2021_2022_underlying_access.ipynb` notebook is only a small access check. I can run it before trying to extend the history. Everything under `notebooks/legacy/` is kept as background and isn't part of the final evidence.
+Everything under `notebooks/legacy/` has its own separate numbering and is kept as background rather than final dissertation evidence.
 
 ## Checks I kept in place
 

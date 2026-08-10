@@ -12,7 +12,8 @@ flowchart TD
     D --> E["RQ1-RQ3 baseline models"]
     E --> F["Nested tuning and robustness"]
     F --> G["Saved classical development models"]
-    F --> H["Separate 2023-2026 extension"]
+    F --> H0["09: Older-history access probe"]
+    H0 --> H["10: Separate 2023-2026 extension"]
     H --> I["Exploratory LSTM analysis"]
     I --> J["Saved exploratory LSTM refits"]
     F --> K["RQ4 economic checks"]
@@ -25,15 +26,15 @@ flowchart TD
 
 ## How I split the work
 
-1. **Get the data** - [starter notebook](notebooks/massive_database_starter.md), [raw retrieval notebook](notebooks/massive_database_raw_retrieve.md) and [database helper](scripts/massive_database.md).
-2. **Line it up and clean it** - [aligned EDA](notebooks/aligned_eda.md), [cleaning and modelling preparation](notebooks/cleaning_modellingprep.md) and [dataset variants](notebooks/dataset_Splitting.md).
-3. **Build RQ1-RQ3 models** - [baseline modelling](notebooks/modeling_baseline.md), [nested tuning](notebooks/hyperparameters_tuning.md) and [robustness checks](notebooks/hyperparameters_tuning_extended_robustness.md).
-4. **Try the longer history and LSTM** - [2023-2026 pipeline](notebooks/extended_2023_2026_full_pipeline.md) and [exploratory LSTM](notebooks/lstm_intraday_sequence_extension.md).
-5. **Check whether the signals are useful** - [original RQ4](notebooks/rq4_economic_meaningfulness.md) and [extended RQ4](notebooks/rq4_economic_meaningfulness_extended.md).
-6. **Test the option idea** - [option-data retrieval](notebooks/rq5_options_data_retrieval.md), [fixed backtest](notebooks/rq5_options_backtest.md), [exit checks](notebooks/rq5_exit_strategy_sensitivity.md) and [strategy robustness](notebooks/rq5_strategy_robustness_and_multi_contract.md).
+1. **Get the data** - [starter notebook](notebooks/01_massive_database_starter.md), [raw retrieval notebook](notebooks/02_massive_database_raw_retrieve.md) and [database helper](scripts/massive_database.md).
+2. **Line it up and clean it** - [aligned EDA](notebooks/03_aligned_eda.md), [cleaning and modelling preparation](notebooks/04_cleaning_modellingprep.md) and [dataset variants](notebooks/05_dataset_Splitting.md).
+3. **Build RQ1-RQ3 models** - [baseline modelling](notebooks/06_modeling_baseline.md), [nested tuning](notebooks/07_hyperparameters_tuning.md) and [robustness checks](notebooks/08_hyperparameters_tuning_extended_robustness.md).
+4. **Try the longer history and LSTM** - [older-history access probe](notebooks/09_probe_massive_2021_2022_underlying_access.md), [2023-2026 pipeline](notebooks/10_extended_2023_2026_full_pipeline.md) and [exploratory LSTM](notebooks/11_lstm_intraday_sequence_extension.md).
+5. **Check whether the signals are useful** - [original RQ4](notebooks/12_rq4_economic_meaningfulness.md) and [extended RQ4](notebooks/13_rq4_economic_meaningfulness_extended.md).
+6. **Test the option idea** - [option-data retrieval](notebooks/14_rq5_options_data_retrieval.md), [fixed backtest](notebooks/15_rq5_options_backtest.md), [exit checks](notebooks/16_rq5_exit_strategy_sensitivity.md) and [strategy robustness](notebooks/17_rq5_strategy_robustness_and_multi_contract.md).
 7. **Save the models** - [artifact helper](scripts/model_artifacts.md) and [model folder notes](../models/README.md).
 
-I can run the [2021-2022 access probe](notebooks/probe_massive_2021_2022_underlying_access.md) before trying to download any older history.
+The numbered main notebooks now match the order shown above. The separately numbered legacy notebooks remain provenance only.
 
 ## A few outputs from the pipeline
 
