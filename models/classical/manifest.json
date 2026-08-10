@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-08-10T00:41:02.115043+00:00",
+  "artifact_set": "canonical RQ1-RQ3 classical development models",
+  "fit_policy": "Train + Validation only",
+  "replacement_policy": "atomic canonical overwrite",
+  "artifacts": [
+    {
+      "research_question": "RQ1",
+      "target": "target_up",
+      "source_notebook": "08_hyperparameters_tuning_extended_robustness.ipynb",
+      "model_family": "Histogram Gradient Boosting",
+      "dataset_variant": "Relaxed",
+      "feature_set": "Full",
+      "features": [
+        "ret_open_to_1500",
+        "ret_last_15m",
+        "ret_last_30m",
+        "ret_last_60m",
+        "momentum_accel_60m_vs_prior",
+        "vix_level_1500",
+        "vix_ret_last_15m",
+        "vix_ret_last_30m",
+        "vix_ret_last_60m",
+        "realized_vol_30m",
+        "realized_vol_60m",
+        "realized_vol_120m",
+        "rv_open_to_1500",
+        "spy_volume_last_30m",
+        "spy_volume_last_60m",
+        "spy_cum_volume_to_1500",
+        "spy_volume_accel_60m_vs_avg",
+        "spy_dist_from_vwap_pct",
+        "position_in_day_range",
+        "dist_from_day_high_pct",
+        "dist_from_day_low_pct",
+        "atr_pct_open_to_1500"
+      ],
+      "training_start": "2024-07-18 00:00:00",
+      "training_end": "2026-03-20 00:00:00",
+      "training_rows": 405,
+      "included_splits": [
+        "Train",
+        "Validation"
+      ],
+      "excluded_splits": [
+        "Test",
+        "fresh post-2026-07-17 holdout"
+      ],
+      "classification_threshold": 0.49614100295157765,
+      "threshold_objective": "balanced_accuracy",
+      "threshold_objective_value": 0.5936720997123681,
+      "best_parameters": {
+        "model__l2_regularization": 2.990542595437359,
+        "model__learning_rate": 0.06669254439997736,
+        "model__max_bins": 64,
+        "model__max_iter": 383,
+        "model__max_leaf_nodes": 16,
+        "model__min_samples_leaf": 19
+      },
+      "best_inner_score": 0.5896156881877901,
+      "estimator_class": "Pipeline",
+      "library_versions": {
+        "python": "3.11.9",
+        "numpy": "1.26.3",
+        "pandas": "3.0.3",
+        "scikit_learn": "1.4.0",
+        "joblib": "1.3.2"
+      },
+      "artifact_format": "joblib",
+      "artifact_path": "models/classical/rq1_direction.joblib",
+      "artifact_sha256": "a7b8e584536b1069e0720b962d304ede6f7e10249e26fe6c4db5a89b1694e353",
+      "verified_reload": true,
+      "verified_prediction": true
+    },
+    {
+      "research_question": "RQ2",
+      "target": "target_magnitude_bps",
+      "source_notebook": "08_hyperparameters_tuning_extended_robustness.ipynb",
+      "model_family": "RBF SVR",
+      "dataset_variant": "Relaxed",
+      "feature_set": "Reduced",
+      "features": [
+        "ret_open_to_1500",
+        "ret_last_15m",
+        "ret_last_60m",
+        "momentum_accel_60m_vs_prior",
+        "vix_level_1500",
+        "vix_ret_last_15m",
+        "vix_ret_last_60m",
+        "realized_vol_30m",
+        "realized_vol_120m",
+        "rv_open_to_1500",
+        "spy_volume_last_60m",
+        "spy_volume_accel_60m_vs_avg",
+        "spy_dist_from_vwap_pct",
+        "position_in_day_range",
+        "atr_pct_open_to_1500"
+      ],
+      "training_start": "2024-07-18 00:00:00",
+      "training_end": "2026-03-20 00:00:00",
+      "training_rows": 405,
+      "included_splits": [
+        "Train",
+        "Validation"
+      ],
+      "excluded_splits": [
+        "Test",
+        "fresh post-2026-07-17 holdout"
+      ],
+      "classification_threshold": null,
+      "threshold_objective": null,
+      "threshold_objective_value": null,
+      "best_parameters": {
+        "model__C": 88.62326508576255,
+        "model__epsilon": 2.5181994911882457,
+        "model__gamma": 0.0006235377135673159
+      },
+      "best_inner_score": -13.010025199415486,
+      "estimator_class": "Pipeline",
+      "library_versions": {
+        "python": "3.11.9",
+        "numpy": "1.26.3",
+        "pandas": "3.0.3",
+        "scikit_learn": "1.4.0",
+        "joblib": "1.3.2"
+      },
+      "artifact_format": "joblib",
+      "artifact_path": "models/classical/rq2_magnitude.joblib",
+      "artifact_sha256": "9ec90b52e25576ab82f02837c847def95decfb21cf5cca97840ee474eca84fb0",
+      "verified_reload": true,
+      "verified_prediction": true
+    },
+    {
+      "research_question": "RQ3",
+      "target": "target_large_move",
+      "source_notebook": "08_hyperparameters_tuning_extended_robustness.ipynb",
+      "model_family": "RBF SVC",
+      "dataset_variant": "Strict",
+      "feature_set": "Full",
+      "features": [
+        "ret_open_to_1500",
+        "ret_last_15m",
+        "ret_last_30m",
+        "ret_last_60m",
+        "momentum_accel_60m_vs_prior",
+        "vix_level_1500",
+        "vix_ret_last_15m",
+        "vix_ret_last_30m",
+        "vix_ret_last_60m",
+        "realized_vol_30m",
+        "realized_vol_60m",
+        "realized_vol_120m",
+        "rv_open_to_1500",
+        "spy_volume_last_30m",
+        "spy_volume_last_60m",
+        "spy_cum_volume_to_1500",
+        "spy_volume_accel_60m_vs_avg",
+        "spy_dist_from_vwap_pct",
+        "position_in_day_range",
+        "dist_from_day_high_pct",
+        "dist_from_day_low_pct",
+        "atr_pct_open_to_1500"
+      ],
+      "training_start": "2024-07-18 00:00:00",
+      "training_end": "2026-03-20 00:00:00",
+      "training_rows": 368,
+      "included_splits": [
+        "Train",
+        "Validation"
+      ],
+      "excluded_splits": [
+        "Test",
+        "fresh post-2026-07-17 holdout"
+      ],
+      "classification_threshold": 0.14610114098914934,
+      "threshold_objective": "f1",
+      "threshold_objective_value": 0.6024096385542169,
+      "best_parameters": {
+        "model__C": 0.1808939009276715,
+        "model__gamma": 0.010821382910613988
+      },
+      "best_inner_score": 0.5729053466408058,
+      "estimator_class": "Pipeline",
+      "library_versions": {
+        "python": "3.11.9",
+        "numpy": "1.26.3",
+        "pandas": "3.0.3",
+        "scikit_learn": "1.4.0",
+        "joblib": "1.3.2"
+      },
+      "artifact_format": "joblib",
+      "artifact_path": "models/classical/rq3_large_move.joblib",
+      "artifact_sha256": "134f2276f6d3934d978a72b3f54d00cf0102263a7ddb0d2da6c24727c2cbf6a1",
+      "verified_reload": true,
+      "verified_prediction": true
+    }
+  ]
+}

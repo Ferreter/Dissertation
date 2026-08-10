@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-08-10T00:45:09.188651+00:00",
+  "artifact_set": "exploratory RQ1-RQ3 LSTM development refits",
+  "fit_policy": "chronological selection followed by Train + Validation refit",
+  "independent_evaluation_status": "not independently evaluated",
+  "replacement_policy": "atomic canonical overwrite",
+  "artifacts": [
+    {
+      "research_question": "RQ1",
+      "target": "target_up",
+      "source_notebook": "11_lstm_intraday_sequence_extension.ipynb",
+      "model_family": "small regularised LSTM",
+      "artifact_status": "exploratory development refit; not independently evaluated",
+      "dataset_variant": "extended 2023-2026 sequence-eligible development sample",
+      "features": [
+        "spx_logret_1m",
+        "spx_logret_5m",
+        "spy_logret_1m",
+        "vix_logret_1m",
+        "vix_logret_5m",
+        "vix_level",
+        "spx_from_open_pct",
+        "spy_from_open_pct",
+        "spx_running_range_position",
+        "spx_rv_15m",
+        "spx_rv_30m",
+        "spy_log_volume",
+        "spy_log_cum_volume",
+        "spx_staleness_seconds",
+        "vix_staleness_seconds",
+        "sequence_time_fraction"
+      ],
+      "sequence_window_et": [
+        "13:00",
+        "14:59"
+      ],
+      "sequence_length_minutes": 120,
+      "training_start": "2023-02-15 00:00:00",
+      "training_end": "2026-01-28 00:00:00",
+      "training_rows": 573,
+      "included_splits": [
+        "Train",
+        "Validation"
+      ],
+      "excluded_splits": [
+        "Test",
+        "fresh post-2026-07-17 holdout"
+      ],
+      "classification_threshold": 0.6005091309547425,
+      "threshold_objective": "balanced_accuracy",
+      "threshold_objective_value": 0.5631868131868132,
+      "best_epoch": 1,
+      "selection_fit_rows": 458,
+      "selection_validation_rows": 115,
+      "best_parameters": {
+        "lstm_units": 32,
+        "dense_units": 16,
+        "dropout_rate": 0.2,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "shuffle": false
+      },
+      "library_versions": {
+        "python": "3.11.9",
+        "numpy": "1.26.3",
+        "pandas": "3.0.3",
+        "tensorflow": "2.15.0",
+        "keras": "bundled with TensorFlow",
+        "joblib": "1.3.2"
+      },
+      "artifact_format": "keras",
+      "artifact_path": "models/lstm/rq1_direction.keras",
+      "artifact_sha256": "6cb70f6d49f8c572bf7ecaabbbcf5d960e6636d0df3875bd2e3ee2b66ecd82f7",
+      "scaler_path": "models/lstm/rq1_direction_scaler.joblib",
+      "scaler_sha256": "fc40cfa4b71a677d6143d9df66d61bcc60643e31db035a07e7e42efa91049f1f",
+      "verified_reload": true,
+      "verified_prediction": true
+    },
+    {
+      "research_question": "RQ2",
+      "target": "target_magnitude_bps",
+      "source_notebook": "11_lstm_intraday_sequence_extension.ipynb",
+      "model_family": "small regularised LSTM",
+      "artifact_status": "exploratory development refit; not independently evaluated",
+      "dataset_variant": "extended 2023-2026 sequence-eligible development sample",
+      "features": [
+        "spx_logret_1m",
+        "spx_logret_5m",
+        "spy_logret_1m",
+        "vix_logret_1m",
+        "vix_logret_5m",
+        "vix_level",
+        "spx_from_open_pct",
+        "spy_from_open_pct",
+        "spx_running_range_position",
+        "spx_rv_15m",
+        "spx_rv_30m",
+        "spy_log_volume",
+        "spy_log_cum_volume",
+        "spx_staleness_seconds",
+        "vix_staleness_seconds",
+        "sequence_time_fraction"
+      ],
+      "sequence_window_et": [
+        "13:00",
+        "14:59"
+      ],
+      "sequence_length_minutes": 120,
+      "training_start": "2023-02-15 00:00:00",
+      "training_end": "2026-01-28 00:00:00",
+      "training_rows": 573,
+      "included_splits": [
+        "Train",
+        "Validation"
+      ],
+      "excluded_splits": [
+        "Test",
+        "fresh post-2026-07-17 holdout"
+      ],
+      "classification_threshold": null,
+      "threshold_objective": null,
+      "threshold_objective_value": null,
+      "best_epoch": 25,
+      "selection_fit_rows": 458,
+      "selection_validation_rows": 115,
+      "best_parameters": {
+        "lstm_units": 32,
+        "dense_units": 16,
+        "dropout_rate": 0.2,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "shuffle": false
+      },
+      "library_versions": {
+        "python": "3.11.9",
+        "numpy": "1.26.3",
+        "pandas": "3.0.3",
+        "tensorflow": "2.15.0",
+        "keras": "bundled with TensorFlow",
+        "joblib": "1.3.2"
+      },
+      "artifact_format": "keras",
+      "artifact_path": "models/lstm/rq2_magnitude.keras",
+      "artifact_sha256": "550f8cfed11e0d31438ef3b4231ff4bbcfc1e9d1eb2e059518221861115ed4da",
+      "scaler_path": "models/lstm/rq2_magnitude_scaler.joblib",
+      "scaler_sha256": "fc40cfa4b71a677d6143d9df66d61bcc60643e31db035a07e7e42efa91049f1f",
+      "verified_reload": true,
+      "verified_prediction": true
+    },
+    {
+      "research_question": "RQ3",
+      "target": "target_large_move",
+      "source_notebook": "11_lstm_intraday_sequence_extension.ipynb",
+      "model_family": "small regularised LSTM",
+      "artifact_status": "exploratory development refit; not independently evaluated",
+      "dataset_variant": "extended 2023-2026 sequence-eligible development sample",
+      "features": [
+        "spx_logret_1m",
+        "spx_logret_5m",
+        "spy_logret_1m",
+        "vix_logret_1m",
+        "vix_logret_5m",
+        "vix_level",
+        "spx_from_open_pct",
+        "spy_from_open_pct",
+        "spx_running_range_position",
+        "spx_rv_15m",
+        "spx_rv_30m",
+        "spy_log_volume",
+        "spy_log_cum_volume",
+        "spx_staleness_seconds",
+        "vix_staleness_seconds",
+        "sequence_time_fraction"
+      ],
+      "sequence_window_et": [
+        "13:00",
+        "14:59"
+      ],
+      "sequence_length_minutes": 120,
+      "training_start": "2023-02-15 00:00:00",
+      "training_end": "2026-01-28 00:00:00",
+      "training_rows": 573,
+      "included_splits": [
+        "Train",
+        "Validation"
+      ],
+      "excluded_splits": [
+        "Test",
+        "fresh post-2026-07-17 holdout"
+      ],
+      "classification_threshold": 0.5,
+      "threshold_objective": "f1",
+      "threshold_objective_value": 0.47058823529411764,
+      "best_epoch": 13,
+      "selection_fit_rows": 458,
+      "selection_validation_rows": 115,
+      "best_parameters": {
+        "lstm_units": 32,
+        "dense_units": 16,
+        "dropout_rate": 0.2,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "shuffle": false
+      },
+      "library_versions": {
+        "python": "3.11.9",
+        "numpy": "1.26.3",
+        "pandas": "3.0.3",
+        "tensorflow": "2.15.0",
+        "keras": "bundled with TensorFlow",
+        "joblib": "1.3.2"
+      },
+      "artifact_format": "keras",
+      "artifact_path": "models/lstm/rq3_large_move.keras",
+      "artifact_sha256": "a987fc30797e2d17b1bdf724811a2f3f52dc1c5fa76904acd478ad4c57dbe858",
+      "scaler_path": "models/lstm/rq3_large_move_scaler.joblib",
+      "scaler_sha256": "fc40cfa4b71a677d6143d9df66d61bcc60643e31db035a07e7e42efa91049f1f",
+      "verified_reload": true,
+      "verified_prediction": true
+    }
+  ]
+}
