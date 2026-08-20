@@ -8,3 +8,6 @@ __pycache__/
 .ipynb_checkpoints/
 /data_extended_2023_2026/raw
 outputs/extended_2023_2026.zip
+*.tex
+report/assets/ICA_Ethics_Application_Harsh.pdf
+report/archive/interim/reference.bib
