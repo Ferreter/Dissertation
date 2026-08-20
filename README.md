@@ -55,6 +55,7 @@ The [workflow guide](docs/workflow.md) gives a diagram and links to the guide fo
 15. `notebooks/15_rq5_options_backtest.ipynb` - run the fixed ATM strategy and mean-reversion comparison.
 16. `notebooks/16_rq5_exit_strategy_sensitivity.ipynb` - check the planned stop, target and other exit rules.
 17. `notebooks/17_rq5_strategy_robustness_and_multi_contract.ipynb` - look at concentration, path behaviour and multi-contract examples.
+18. `notebooks/18_fresh_holdout_end_to_end_evaluation.ipynb` - download observations after 17 July 2026 and evaluate the frozen RQ1-RQ5 workflow without refitting.
 
 Everything under `notebooks/legacy/` has its own separate numbering and is kept as background rather than final dissertation evidence.
 
@@ -71,7 +72,7 @@ Everything under `notebooks/legacy/` has its own separate numbering and is kept 
 
 Every notebook and executable script has its own guide under `docs/notebooks/` or `docs/scripts/`. The guides explain what I was trying to do, what went in, what came out and what I would do next. The actual saved evidence stays under `outputs/`. The planned model filenames are listed in [models/README.md](models/README.md).
 
-The two tuning notebooks can save the chosen RQ1-RQ3 classical models with `SAVE_MODEL_ARTIFACTS`. The LSTM notebook has the same switch for its exploratory refits and scalers. I haven't included the binary model files in this documentation change; they appear when those cells are actually run.
+The chosen RQ1-RQ3 classical models and exploratory LSTM refits are saved under `models/` with manifests, hashes and reload checks. The fresh-holdout notebook verifies those files before it scores any later observations.
 
 The main things to keep in mind are the small daily sample, changing market conditions, missing historical option quotes, made-up execution penalties and the lack of a completely fresh post-selection holdout so far.
 

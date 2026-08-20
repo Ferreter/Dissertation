@@ -22,6 +22,7 @@ flowchart TD
     M --> N["Fixed options backtest"]
     N --> O["Exit-rule checks"]
     O --> P["Robustness and multi-contract checks"]
+    P --> Q["18: Fresh post-freeze holdout evaluation"]
 ```
 
 ## How I split the work
@@ -33,6 +34,7 @@ flowchart TD
 5. **Check whether the signals are useful** - [original RQ4](notebooks/12_rq4_economic_meaningfulness.md) and [extended RQ4](notebooks/13_rq4_economic_meaningfulness_extended.md).
 6. **Test the option idea** - [option-data retrieval](notebooks/14_rq5_options_data_retrieval.md), [fixed backtest](notebooks/15_rq5_options_backtest.md), [exit checks](notebooks/16_rq5_exit_strategy_sensitivity.md) and [strategy robustness](notebooks/17_rq5_strategy_robustness_and_multi_contract.md).
 7. **Save the models** - [artifact helper](scripts/model_artifacts.md) and [model folder notes](../models/README.md).
+8. **Evaluate the frozen workflow once on later data** - [fresh holdout evaluation](notebooks/18_fresh_holdout_end_to_end_evaluation.md).
 
 The numbered main notebooks now match the order shown above. The separately numbered legacy notebooks remain provenance only.
 
@@ -56,4 +58,5 @@ The numbered main notebooks now match the order shown above. The separately numb
 - I choose the RQ1 and RQ3 cut-offs from chronological development predictions.
 - For the LSTM, I use the latest development block to choose the epoch count and cut-offs, then refit on the allowed development data.
 - The existing Test rows and anything after 17 July 2026 stay out of model fitting.
+- Once notebook 18 reveals the post-17 July outcomes, those dates are no longer described as untouched or reused to tune the frozen workflow.
 - Updating the documentation doesn't create any `.joblib` or `.keras` files. Those only appear when I run the saving cells.
