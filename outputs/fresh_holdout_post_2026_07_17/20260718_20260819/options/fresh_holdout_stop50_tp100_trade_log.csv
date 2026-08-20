@@ -1,0 +1,2 @@
+session_date,policy,exit_reason,exit_timestamp,capital_at_risk_usd,net_pnl_usd,net_return_on_premium
+2026-07-29,stop50_tp100,target_+100%,2026-07-29 15:05:00-04:00,1184.85,1062.0149999999999,0.8963286491961008

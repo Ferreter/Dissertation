@@ -1,0 +1,2 @@
+session_date,final_hour_return,target_up,target_magnitude_bps,target_large_move,spx_at_1500,spx_at_close,ret_last_60m,rq1_score,rq1_prediction,rq1_confidence_raw,rq1_high_confidence,rq2_predicted_move_bps,rq3_score,rq3_large_move_prediction,mean_reversion_60m_prediction,combined_signal,actual_ge_20bps,actual_ge_30bps
+2026-07-29,-0.016490728835397817,0,164.90728835397817,1,7442.97,7320.23,0.007544089538176646,0.11671078955628093,0,0.3794302133952967,True,25.106696392224336,0.6428540728398827,1,0,True,True,True

@@ -1,0 +1,6 @@
+research_question,primary_interpretation,eligible_sessions
+RQ1,"Balanced accuracy, accuracy and comparison with 60-minute mean reversion",18
+RQ2,"MAE/RMSE in basis points, R-squared and Spearman association",18
+RQ3,"Average precision relative to large-move prevalence, plus recall and F1",12
+RQ4,"Frozen combined-rule coverage, opportunity precision and lift",12
+RQ5,"Net P&L, win rate, drawdown and sensitivity strategies where option bars exist",1

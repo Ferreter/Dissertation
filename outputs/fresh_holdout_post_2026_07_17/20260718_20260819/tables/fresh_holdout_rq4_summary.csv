@@ -1,0 +1,2 @@
+eligible_sessions,selected_sessions,coverage,direction_accuracy_selected,mean_realised_move_selected_bps,base_rate_ge_20bps,selected_precision_ge_20bps,lift_ge_20bps,base_rate_ge_30bps,selected_precision_ge_30bps,lift_ge_30bps
+12,1,0.08333333333333333,1.0,164.90728835397817,0.08333333333333333,1.0,12.0,0.08333333333333333,1.0,12.0

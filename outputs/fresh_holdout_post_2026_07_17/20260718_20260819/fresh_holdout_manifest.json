@@ -1,0 +1,46 @@
+{
+  "analysis": "Fresh post-17-Jul-2026 holdout evaluation",
+  "created_at_utc": "2026-08-20T10:34:49.702703+00:00",
+  "holdout_start": "2026-07-18",
+  "holdout_end": "2026-08-19",
+  "holdout_consumed": true,
+  "models_refitted": false,
+  "classical_manifest_sha256": "59026d2bfb01f2aef007683e57ec688be91afcdfdabf6f4e75df1cd379d22a52",
+  "classical_artifact_hashes": {
+    "RQ1": "a7b8e584536b1069e0720b962d304ede6f7e10249e26fe6c4db5a89b1694e353",
+    "RQ2": "9ec90b52e25576ab82f02837c847def95decfb21cf5cca97840ee474eca84fb0",
+    "RQ3": "134f2276f6d3934d978a72b3f54d00cf0102263a7ddb0d2da6c24727c2cbf6a1"
+  },
+  "frozen_rules": {
+    "rq1_high_confidence_distance": 0.205260582211788,
+    "rq2_min_predicted_move_bps": 20.0,
+    "rq3_required": true,
+    "large_move_threshold_bps": 27.504041884352514,
+    "rq5_primary_strike_offset_points": 0,
+    "rq5_primary_execution_scenario": "medium_cost",
+    "rq5_entry_window_et": [
+      "15:00",
+      "15:05"
+    ],
+    "rq5_exit_window_et": [
+      "15:55",
+      "15:59"
+    ],
+    "rq5_primary_alternative_exit": "stop50_tp100"
+  },
+  "row_counts": {
+    "aligned_minutes": 8970,
+    "daily_with_targets": 23,
+    "strict_eligible": 12,
+    "relaxed_eligible": 18,
+    "rq4_intersection": 12,
+    "rq5_candidates": 1,
+    "usable_primary_option_trades": 1
+  },
+  "option_data_note": "Trade-derived minute aggregates; no historical NBBO quotes.",
+  "software": {
+    "python": "3.11.9",
+    "numpy": "1.26.3",
+    "pandas": "3.0.3"
+  }
+}
