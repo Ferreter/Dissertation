@@ -1,14 +1,14 @@
-# Legacy Script - My First Full-Page Gamma Capture
+# Legacy Gamma Page Capture
 
 **File:** [scripts/legacy/disc-gamma.py](../../../scripts/legacy/disc-gamma.py)
 
-**How I use it:** This is provenance from an abandoned data idea, not a maintained research tool.
+**Role in the project:** This is provenance from an abandoned data idea, not a maintained research tool.
 
-## The short version
+## Overview
 
-This was the first standalone version of the gamma screenshot idea. It opens a public page, saves the whole page and can send it to Discord. I keep it because it shows an early technical experiment, but it does not produce anything used by the SPX models or options backtest.
+This was the first standalone version of the gamma screenshot idea. It opens a public page, saves the whole page and can send it to Discord. It is retained as an early technical experiment but does not produce anything used by the SPX models or options backtest.
 
-## Where it sits in the workflow
+## Workflow
 
 ```mermaid
 flowchart LR
@@ -19,15 +19,15 @@ flowchart LR
 
 The script stands on its own and can be ignored when reproducing notebooks 01-18.
 
-## What it needs
+## Inputs
 
 - The public NVDA gamma-exposure page.
 - A Playwright Chromium browser.
 - A locally stored Discord webhook if upload is wanted.
 
-## What I actually do here
+## Processing
 
-This version deliberately does very little because it was just a proof of concept.
+This version has a limited scope because it was designed as a proof of concept.
 
 - I open the page and wait for it to load.
 - I accept the cookie prompt if it is present.
@@ -37,28 +37,28 @@ This version deliberately does very little because it was just a proof of concep
 
 It confirmed that the automation worked, but the page chrome made the output cluttered and the values were not reproducible data.
 
-## What it creates
+## Outputs
 
 - A local full-page screenshot when run.
 - An optional Discord message.
 - No tracked research output.
 
-## Outputs worth opening
+## Key outputs and figures
 
 No screenshot is maintained as dissertation evidence. The source remains in [the legacy full-page script](../../../scripts/legacy/disc-gamma.py), and the cleaner follow-up is explained in [the SVG version](disc-gamma-svg.md).
 
-## What I took from it
+## Findings and decisions
 
 - The browser and webhook flow worked as a technical test.
 - Capturing the entire page added noise around the chart.
 - More importantly, a webpage screenshot could not meet the project's historical-data needs.
 
-## Things I wouldn't overclaim
+## Limitations and considerations
 
 - Cookie prompts, layout and bot protection are unstable.
 - A captured image is difficult to validate or reproduce later.
 - The optional upload depends on an external service and local secret.
 
-## What I run next
+## Next stage
 
 This was superseded by the SVG-crop experiment, then abandoned in favour of [structured API retrieval](../massive_database.md).

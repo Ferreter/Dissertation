@@ -1,14 +1,14 @@
-# Legacy Script - Cropping the Gamma Chart Instead of the Whole Page
+# Legacy Gamma Chart Capture
 
 **File:** [scripts/legacy/disc-gamma-svg.py](../../../scripts/legacy/disc-gamma-svg.py)
 
-**How I use it:** This is an old browser experiment and is not used by the research pipeline.
+**Role in the project:** This is an old browser experiment and is not used by the research pipeline.
 
-## The short version
+## Overview
 
-After the full-page screenshot worked, I tried a cleaner version that captures only the chart SVG. It was nicer to look at and easier to send, but the underlying problem stayed the same: I would still be collecting pictures from a live webpage rather than reliable historical records.
+After the full-page screenshot worked, this version was created to capture only the chart SVG. It produced a clearer image and was easier to send, but it still collected images from a live webpage rather than reliable historical records.
 
-## Where it sits in the workflow
+## Workflow
 
 ```mermaid
 flowchart LR
@@ -19,13 +19,13 @@ flowchart LR
 
 This script has no maintained downstream consumer. Running it does not create data for any dissertation notebook.
 
-## What it needs
+## Inputs
 
 - The public NVDA gamma-exposure page.
 - Playwright with a local Chromium installation.
 - A local `DISCORD_WEBHOOK_URL` if delivery is enabled.
 
-## What I actually do here
+## Processing
 
 The main change from the older script is that I target the chart element rather than saving everything on the page.
 
@@ -37,28 +37,28 @@ The main change from the older script is that I target the chart element rather 
 
 The crop improved presentation, not research quality, so I archived the idea rather than building more around it.
 
-## What it creates
+## Outputs
 
 - A temporary chart image.
 - An optional Discord attachment.
 - No stable CSV, Parquet, figure or modelling artifact.
 
-## Outputs worth opening
+## Key outputs and figures
 
 There is no maintained image to link because the page is live and the capture was never accepted as evidence. The exact implementation is preserved in [the legacy SVG-capture script](../../../scripts/legacy/disc-gamma-svg.py), with the earlier version in [the full-page script](disc-gamma.md).
 
-## What I took from it
+## Findings and decisions
 
 - Targeting the SVG gave a much cleaner capture than a full-page screenshot.
 - The method still depended on selectors, page layout and live browser behaviour.
 - It was not suitable for reproducible historical feature construction.
 
-## Things I wouldn't overclaim
+## Limitations and considerations
 
 - The target webpage can change or block automation.
 - A chart image cannot be queried like structured observations.
 - The webhook creates an external message when enabled and must remain locally configured.
 
-## What I run next
+## Next stage
 
 I do not run this as part of the dissertation. The API-based workflow starts with [the database helper](../massive_database.md).

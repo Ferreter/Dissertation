@@ -1,14 +1,14 @@
-# 13 - Repeating the RQ4 Opportunity Checks on the Longer History
+# 13 - Extended RQ4 Economic Meaningfulness
 
 **File:** [notebooks/13_rq4_economic_meaningfulness_extended.ipynb](../../notebooks/13_rq4_economic_meaningfulness_extended.ipynb)
 
-**How I use it:** This is a period-sensitivity check. It does not replace the original RQ4 evidence.
+**Role in the project:** This is a period-sensitivity check. It does not replace the original RQ4 evidence.
 
-## The short version
+## Overview
 
-This notebook takes the out-of-fold predictions from the separate 2023-2026 run and repeats the same confidence, magnitude and opportunity-lift checks used in notebook 12. I wanted to know whether the broad story survives a different history, not whether I could discover a brand-new rule that looks best on the extension.
+This notebook takes the out-of-fold predictions from the separate 2023-2026 run and repeats the confidence, magnitude and opportunity-lift checks used in notebook 12. Its purpose is to assess whether the broad findings remain consistent across a different history, without selecting a new rule from the extended results.
 
-## Where it sits in the workflow
+## Workflow
 
 ```mermaid
 flowchart LR
@@ -19,14 +19,14 @@ flowchart LR
 
 Keeping the folder and results separate makes disagreement useful. If the extended pattern changes, I can discuss period sensitivity instead of overwriting the original result.
 
-## What it needs
+## Inputs
 
 - Extended selected-winner outer-fold predictions.
 - Extended strict and relaxed daily rows.
 - The same opportunity thresholds and interpretation rules used in notebook 12.
 - Extended tuning manifests and fold summaries.
 
-## What I actually do here
+## Processing
 
 I reuse the analysis structure rather than redesigning it around what the longer sample happens to show.
 
@@ -38,14 +38,14 @@ I reuse the analysis structure rather than redesigning it around what the longer
 
 The useful question is whether the direction of the conclusion is similar, not whether every number matches.
 
-## What it creates
+## Outputs
 
 - Extended joined prediction rows and combined-signal summaries.
 - Extended confidence, magnitude, regime, lift and bootstrap tables.
 - Four figures below `outputs/extended_2023_2026/rq4_economic_meaningfulness/`.
 - A separate generated draft for comparison with the original RQ4 run.
 
-## Outputs worth opening
+## Key outputs and figures
 
 ![Extended confidence and opportunity](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/figures/rq4_confidence_vs_accuracy_and_move_size.png)
 
@@ -61,19 +61,19 @@ The useful question is whether the direction of the conclusion is similar, not w
 
 The exact comparison material is in the [extended combined signal summary](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/tables/rq4_combined_signal_summary.csv), [opportunity lift table](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/tables/rq4_opportunity_precision_and_lift.csv) and [bootstrap summary](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/tables/rq4_moving_block_bootstrap_summary.csv).
 
-## What I took from it
+## Findings and decisions
 
 - The longer history gives a useful sensitivity check, but it does not turn the original development rule into independent evidence.
 - Direction, confidence and opportunity relationships changed with the modelling period, which matches the instability already seen in RQ1.
 - The combined filtering idea remained worth investigating, while the exact size of the lift was period-dependent.
-- I keep both sets of numbers so the discussion can show robustness and disagreement honestly.
+- Both sets of results are retained so the discussion can show areas of agreement and period sensitivity.
 
-## Things I wouldn't overclaim
+## Limitations and considerations
 
 - The extension was also used for model selection.
 - It shares the same target construction and many of the same provider limitations as the original pipeline.
 - There are still no option prices in this notebook, so economic opportunity is not the same as realised trade performance.
 
-## What I run next
+## Next stage
 
 I compare the original and extended RQ4 results in the discussion, but RQ5 contract selection follows the frozen original workflow documented in [14](14_rq5_options_data_retrieval.md).

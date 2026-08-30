@@ -2,13 +2,13 @@
 
 **File:** [notebooks/06_modeling_baseline.ipynb](../../notebooks/06_modeling_baseline.ipynb)
 
-**How I use it:** This is the benchmark stage. I use it to find out whether machine learning adds anything beyond simple rules.
+**Role in the project:** This is the benchmark stage used to assess whether machine learning adds value beyond simple rules.
 
-## The short version
+## Overview
 
 Before doing any serious tuning, I compare ordinary models with dummy predictions, persistence, momentum and mean reversion. That gives each research question a sensible reference point. A model result only matters if it improves on something I could have produced without all the extra machinery.
 
-## Where it sits in the workflow
+## Workflow
 
 ```mermaid
 flowchart LR
@@ -19,14 +19,14 @@ flowchart LR
 
 This notebook contains the first model comparisons, but it is not where I make strong final claims. It is mainly for baselines, sanity checks and narrowing the search.
 
-## What it needs
+## Inputs
 
 - Strict and relaxed chronological split Parquet files.
 - The full and reduced feature lists.
 - RQ1 direction, RQ2 absolute magnitude in basis points and RQ3 large-move targets.
 - Time-aware validation rather than random train/test shuffling.
 
-## What I actually do here
+## Processing
 
 I treat each RQ differently because accuracy is not the right metric for everything.
 
@@ -39,14 +39,14 @@ I treat each RQ differently because accuracy is not the right metric for everyth
 
 Seeing the simple rules next to the ML models kept me from treating a small score improvement as automatically meaningful.
 
-## What it creates
+## Outputs
 
 - Model-comparison tables and figures under `outputs/baseline_models/`.
 - Provisional validation winners and final locked-test results.
 - RQ3 feature and feature-group importance tables.
 - `validation_research_question_summary.json` with the baseline conclusions.
 
-## Outputs worth opening
+## Key outputs and figures
 
 ![RQ1 relaxed-sample comparison](../../outputs/baseline_models/figures/rq1_direction_models_relaxed.png)
 
@@ -62,19 +62,19 @@ Seeing the simple rules next to the ML models kept me from treating a small scor
 
 The numbers behind the figures are in [final locked test results](../../outputs/baseline_models/tables/final_locked_test_results.csv), [RQ1 rule baselines](../../outputs/baseline_models/tables/rq1_rule_baselines_validation.csv) and [RQ3 permutation importance](../../outputs/baseline_models/tables/rq3_validation_permutation_importance.csv).
 
-## What I took from it
+## Findings and decisions
 
 - Relaxed Extra Trees reached about 0.600 validation balanced accuracy for RQ1, only just above the 0.595 mean-reversion rule.
 - Relaxed Elastic Net improved RQ2 validation MAE by roughly 1.32 bps over the dummy benchmark.
 - The early RQ3 model beat prevalence on average precision, while its importance results pointed more toward volatility/volume information than a simple directional story.
 - The baseline scores were useful but not strong enough to justify a large unrestricted tuning search.
 
-## Things I wouldn't overclaim
+## Limitations and considerations
 
 - Validation and test blocks are small, so close model rankings can swap in another period.
 - The baseline test results had been viewed before final tuning; they are evidence, but not untouched evidence.
 - Feature importance explains the fitted model's reliance, not a causal market mechanism.
 
-## What I run next
+## Next stage
 
 I take a limited model shortlist into [07 - nested hyperparameter tuning](07_hyperparameters_tuning.md), keeping the previously viewed Test block out of the search.

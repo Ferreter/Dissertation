@@ -1,14 +1,14 @@
-# 18 - Testing the Frozen Workflow on Newer Market Data
+# 18 - Fresh Holdout End-to-End Evaluation
 
 **File:** [notebooks/18_fresh_holdout_end_to_end_evaluation.ipynb](../../notebooks/18_fresh_holdout_end_to_end_evaluation.ipynb)
 
-**How I use it:** This has now been run once for 20 July to 19 August 2026. Those dates are consumed holdout evidence and must not be used for tuning.
+**Role in the project:** This has now been run once for 20 July to 19 August 2026. Those dates are consumed holdout evidence and must not be used for tuning.
 
-## The short version
+## Overview
 
 This notebook downloads only observations after the previously viewed cutoff, rebuilds the same features, verifies the saved model hashes and scores the frozen RQ1-RQ3 models without calling `fit`. It then applies the fixed RQ4 filters and retrieves options only for dates selected by those rules. The result is mixed, which is useful: RQ1 generalised poorly, RQ2 had limited magnitude skill, while RQ3 and the combined rule caught one extreme down day that produced one very profitable hypothetical put trade.
 
-## Where it sits in the workflow
+## Workflow
 
 ```mermaid
 flowchart LR
@@ -19,7 +19,7 @@ flowchart LR
 
 This is a post-freeze temporal check, not a new development loop. Once the outcomes were viewed, the period could no longer be described as untouched.
 
-## What it needs
+## Inputs
 
 - `main.env` and the Massive API.
 - Hashed classical artifacts and manifests under `models/classical/`.
@@ -27,7 +27,7 @@ This is a post-freeze temporal check, not a new development loop. Once the outco
 - The frozen RQ1 confidence distance, RQ2 20-bps threshold and RQ3 large-move rule.
 - The original RQ5 strike, cost, entry, exit and stop/target assumptions.
 
-## What I actually do here
+## Processing
 
 The notebook does retrieval, processing, scoring and strategy evaluation in one controlled run so the newer dates are not explored in separate steps first.
 
@@ -39,16 +39,16 @@ The notebook does retrieval, processing, scoring and strategy evaluation in one 
 - Only the selected session reaches option retrieval and the same ATM/OTM, cost and exit sensitivities are evaluated.
 - A final manifest records that the holdout has been consumed.
 
-A weak or awkward result is not repaired inside this notebook. Any future model change needs a later, genuinely new evaluation period.
+A weak or mixed result does not lead to changes within this notebook. Any future model change needs a later, genuinely new evaluation period.
 
-## What it creates
+## Outputs
 
 - Isolated raw, aligned and daily holdout data under `data/fresh_holdout_post_2026_07_17/`.
 - Classification, regression, RQ4, candidate-session and LSTM tables.
 - Option contract, trade, strategy and exit-policy evidence.
 - Two figures and `fresh_holdout_manifest.json` under the dated output folder.
 
-## Outputs worth opening
+## Key outputs and figures
 
 ![Fresh RQ1 and RQ3 confusion matrices](../../outputs/fresh_holdout_post_2026_07_17/20260718_20260819/figures/fresh_holdout_confusion_matrices.png)
 
@@ -60,7 +60,7 @@ A weak or awkward result is not repaired inside this notebook. Any future model 
 
 The [classification metrics](../../outputs/fresh_holdout_post_2026_07_17/20260718_20260819/tables/fresh_holdout_classification_metrics.csv) show RQ1 at 33.3% accuracy versus 61.1% for mean reversion, and RQ3 at 12/12 on the strict subset. [RQ2 metrics](../../outputs/fresh_holdout_post_2026_07_17/20260718_20260819/tables/fresh_holdout_regression_metrics.csv) record MAE of about 12.96 bps and weak-to-moderate rank association. The selected 29 July session is in the [candidate table](../../outputs/fresh_holdout_post_2026_07_17/20260718_20260819/tables/fresh_holdout_rq5_candidate_sessions.csv), with its option result in the [trade log](../../outputs/fresh_holdout_post_2026_07_17/20260718_20260819/options/fresh_holdout_option_trade_log.csv).
 
-## What I took from it
+## Findings and decisions
 
 - RQ1 failed to generalise: 6 of 18 directions were correct, well below the 11 of 18 mean-reversion benchmark.
 - RQ2 gave some limited magnitude information but predicted only about 25.11 bps for the 164.91-bps extreme move.
@@ -69,13 +69,13 @@ The [classification metrics](../../outputs/fresh_holdout_post_2026_07_17/2026071
 - The ML and mean-reversion option strategies were identical on that date because both chose a put.
 - Only 12 of 23 sessions met the strict rule, mainly because later VIX gaps reduced coverage.
 
-## Things I wouldn't overclaim
+## Limitations and considerations
 
 - The relaxed sample was 18 sessions and the strict RQ3/RQ4 sample only 12, with one positive large-move event.
 - One winning trade cannot support a Sharpe ratio, stable win rate, profit factor or general profitability conclusion.
 - The option bars remain trade-derived rather than historical NBBO quotes.
 - The fresh results can be reported and discussed, but must not be used to alter these same models and then retested as if still unseen.
 
-## What I run next
+## Next stage
 
 I preserve this output folder unchanged and use it as a short post-freeze validation section in the dissertation. If I redesign a model later, I need to wait for a newer evaluation period rather than reusing July-August 2026.

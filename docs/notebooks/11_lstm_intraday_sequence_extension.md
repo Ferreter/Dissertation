@@ -1,14 +1,14 @@
-# 11 - Trying an LSTM on the Actual Intraday Sequence
+# 11 - LSTM Intraday Sequence Extension
 
 **File:** [notebooks/11_lstm_intraday_sequence_extension.ipynb](../../notebooks/11_lstm_intraday_sequence_extension.ipynb)
 
-**How I use it:** This is an exploratory extension. I do not treat it as the automatic replacement for the classical models.
+**Role in the project:** This is an exploratory extension. I do not treat it as the automatic replacement for the classical models.
 
-## The short version
+## Overview
 
 The classical models get one engineered row per day. This notebook asks whether the actual 13:00-14:59 path contains useful timing information that those summaries miss. Each usable session becomes a 120-minute sequence. The network is deliberately small because the number of daily examples is still tiny by deep-learning standards.
 
-## Where it sits in the workflow
+## Workflow
 
 ```mermaid
 flowchart LR
@@ -17,16 +17,16 @@ flowchart LR
     C --> D["Exploratory comparison and artifacts"]
 ```
 
-This is a model-family sensitivity check. A complicated network does not get extra credit just for being complicated.
+This is a model-family sensitivity check. A more complex network is not considered preferable solely because of its complexity.
 
-## What it needs
+## Inputs
 
 - Extended aligned one-minute SPY, SPX and VIX data.
 - The extended strict daily target/split file.
 - Sixteen sequence channels covering returns, volatility, volume, level, position, staleness and time.
 - Classical outer-fold results for an overlap comparison.
 
-## What I actually do here
+## Processing
 
 I keep the sequence definition fixed at 13:00-14:59 so every input is available before the final-hour target starts.
 
@@ -39,14 +39,14 @@ I keep the sequence definition fixed at 13:00-14:59 so every input is available 
 
 I compare on overlapping dates because a higher score on a different set of sessions would not be a fair classical-versus-LSTM comparison.
 
-## What it creates
+## Outputs
 
 - Fold histories, out-of-fold predictions and task summaries.
 - Sequence-quality and overlap-comparison tables.
 - LSTM importance and training figures.
 - Exploratory `.keras` models, scalers and a manifest when saving is enabled.
 
-## Outputs worth opening
+## Key outputs and figures
 
 ![Example sequence](../../outputs/extended_2023_2026/lstm_sequence_extension/figures/lstm_example_input_sequence.png)
 
@@ -62,20 +62,20 @@ I compare on overlapping dates because a higher score on a different set of sess
 
 The main numerical files are the [research-question summary](../../outputs/extended_2023_2026/lstm_sequence_extension/tables/lstm_research_question_summary.csv), [classical overlap comparison](../../outputs/extended_2023_2026/lstm_sequence_extension/tables/lstm_vs_classical_oof_overlap.csv) and [sequence quality audit](../../outputs/extended_2023_2026/lstm_sequence_extension/tables/lstm_sequence_quality.csv).
 
-## What I took from it
+## Findings and decisions
 
 - The sequence approach did not produce a clear, stable reason to replace the simpler classical models.
 - RQ1 remained difficult, and the fresh check later showed the LSTM's apparently better accuracy could come from predicting only the majority direction.
 - RQ2 and RQ3 sequence channels gave useful exploratory importance patterns, but fold variation was large.
 - Keeping the network small and reporting the comparison honestly was more useful than running a huge search.
 
-## Things I wouldn't overclaim
+## Limitations and considerations
 
 - There are only hundreds of daily sequences, which is very small for deep learning.
 - Neural results can move with random initialisation and training conditions.
 - The sequence inputs still contain no option premiums, spreads or order-book information.
 - The saved LSTM refits are exploratory development models, not independently established final models.
 
-## What I run next
+## Next stage
 
 I keep the classical models as the main pipeline and use this notebook as supporting sensitivity evidence. Both model families are evaluated without refitting in [18 - the fresh holdout](18_fresh_holdout_end_to_end_evaluation.md).

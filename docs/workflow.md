@@ -1,10 +1,10 @@
-# How the Dissertation Workflow Fits Together
+# Dissertation Artefact Workflow
 
-This page is my quick map of the whole artefact. I wrote the individual notebook guides so I can open one file and understand what it needs, what it does and what came out of it without reading every code cell first. This page does the same job at project level.
+This page provides an overview of the complete artefact. Each notebook and script has an individual guide explaining its purpose, inputs, processing and outputs. This page shows how those files connect at project level.
 
 The main workflow is numbered from 01 to 18. The files under `legacy/` are earlier ideas and experiments that I kept for provenance. They are useful for showing how the topic developed, but they are not mixed into the final evidence.
 
-## The full route
+## End-to-end workflow
 
 ```mermaid
 flowchart TD
@@ -22,27 +22,27 @@ flowchart TD
     L --> M["18: one post-freeze evaluation on newer data"]
 ```
 
-## If I only want to reproduce one part
+## Workflow by stage
 
 ### Getting and preparing the data
 
-I start with [01 - the database starter](notebooks/01_massive_database_starter.md), [02 - raw retrieval](notebooks/02_massive_database_raw_retrieve.md) and [the shared database helper](scripts/massive_database.md). Notebook 03 then aligns the sources backwards in time, which is important because it prevents a later SPX or VIX value from being matched to an earlier decision row. Notebooks [04](notebooks/04_cleaning_modellingprep.md) and [05](notebooks/05_dataset_Splitting.md) turn that aligned minute data into the final daily feature rows and chronological Train, Validation and Test variants.
+The workflow starts with [01 - the database starter](notebooks/01_massive_database_starter.md), [02 - raw retrieval](notebooks/02_massive_database_raw_retrieve.md) and [the shared database helper](scripts/massive_database.md). Notebook 03 then aligns the sources backwards in time, preventing a later SPX or VIX value from being matched to an earlier decision row. Notebooks [04](notebooks/04_cleaning_modellingprep.md) and [05](notebooks/05_dataset_Splitting.md) turn that aligned minute data into the final daily feature rows and chronological Train, Validation and Test variants.
 
 ![How old the matched SPX observations are](../outputs/eda_figures/02_spx_alignment_staleness.png)
 
-*This is one of the checks I use before modelling. A matched value can exist and still be too stale to trust.*
+*This checks whether the matched SPX observations are recent enough to support the aligned modelling rows.*
 
 ![Final-hour return distribution](../outputs/eda_figures/05_final_hour_return_distribution.png)
 
-*This gives a feel for the noisy target distribution and the relatively rare large-move days RQ3 is trying to identify.*
+*This shows the target distribution and the relatively rare large-move days addressed by RQ3.*
 
 ### Building RQ1, RQ2 and RQ3
 
-[06 - baseline modelling](notebooks/06_modeling_baseline.md) sets honest simple comparisons before tuning. [07 - nested tuning](notebooks/07_hyperparameters_tuning.md) selects and evaluates the classical models chronologically, while [08 - robustness and saving](notebooks/08_hyperparameters_tuning_extended_robustness.md) checks whether those conclusions survive alternative assumptions and creates the canonical artifacts. The [model helper](scripts/model_artifacts.md) handles atomic saving, reload checks, hashes and manifests; it does not fit or select anything itself.
+[06 - baseline modelling](notebooks/06_modeling_baseline.md) establishes simple comparisons before tuning. [07 - nested tuning](notebooks/07_hyperparameters_tuning.md) selects and evaluates the classical models chronologically, while [08 - robustness and saving](notebooks/08_hyperparameters_tuning_extended_robustness.md) checks whether those conclusions remain consistent under alternative assumptions and creates the canonical artifacts. The [model helper](scripts/model_artifacts.md) handles atomic saving, reload checks, hashes and manifests; it does not fit or select anything itself.
 
 ![RQ1 outer-fold balanced accuracy](../outputs/hyperparameter_tuning/figures/rq1_nested_balanced_accuracy.png)
 
-*The fold-to-fold movement matters more to me than one neat average because it shows how unstable direction prediction can be through time.*
+*The fold-to-fold variation provides important context for the average score because direction performance changes through time.*
 
 ![RQ3 feature importance](../outputs/hyperparameter_tuning/figures/rq3_outer_fold_permutation_importance.png)
 
@@ -52,9 +52,9 @@ The model filenames, training scope and warnings are summarised in [the model RE
 
 ### Longer-history and sequence-model checks
 
-[09](notebooks/09_probe_massive_2021_2022_underlying_access.md) checks whether the older provider history is genuinely available before I promise a bigger sample. [10](notebooks/10_extended_2023_2026_full_pipeline.md) is a separate period-sensitivity run rather than an extension that silently overwrites the original results. [11](notebooks/11_lstm_intraday_sequence_extension.md) compares an exploratory LSTM with matched classical models using chronological sequence data.
+[09](notebooks/09_probe_massive_2021_2022_underlying_access.md) checks whether the older provider history is available before the sample period is extended. [10](notebooks/10_extended_2023_2026_full_pipeline.md) is a separate period-sensitivity run and does not overwrite the original results. [11](notebooks/11_lstm_intraday_sequence_extension.md) compares an exploratory LSTM with matched classical models using chronological sequence data.
 
-I keep this evidence separate because changing the modelling period can change the conclusion. The LSTM development refits are saved for reproducibility, but they are labelled exploratory rather than independently evaluated final models.
+This evidence remains separate because changing the modelling period can change the conclusion. The LSTM development refits are saved for reproducibility, but they are labelled exploratory rather than independently evaluated final models.
 
 ### Turning predictions into an economic question
 
@@ -72,11 +72,11 @@ These notebooks still use the underlying index outcome. They do not claim that a
 
 ![RQ5 cumulative P&L under medium costs](../outputs/rq5_options_trading/figures/rq5_cumulative_pnl_medium_cost.png)
 
-*The line finishes positive, but there are only 17 trades and a large part of the result comes from a small number of winners.*
+*The cumulative result is positive, although the sample contains only 17 trades and a substantial share of P&L comes from a small number of winners.*
 
 ![RQ5 random-direction check](../outputs/rq5_options_trading/figures/rq5_random_direction_monte_carlo.png)
 
-*This gives the signal direction a more useful reality check than looking at profit by itself.*
+*This compares the selected signal direction with random call/put choices on the same opportunity dates.*
 
 The main exact numbers are in the [strategy summary](../outputs/rq5_options_trading/tables/rq5_strategy_summary.csv), [paired ML comparison](../outputs/rq5_options_trading/tables/rq5_paired_ml_vs_mean_reversion_summary.csv) and [profit-concentration table](../outputs/rq5_options_trading/tables/rq5_profit_concentration.csv).
 
@@ -86,17 +86,17 @@ The main exact numbers are in the [strategy summary](../outputs/rq5_options_trad
 
 ![Fresh RQ1 and RQ3 confusion matrices](../outputs/fresh_holdout_post_2026_07_17/20260718_20260819/figures/fresh_holdout_confusion_matrices.png)
 
-*The newer data gives a mixed picture rather than one tidy success story. I think that makes it more useful to discuss honestly.*
+*The newer period provides mixed evidence across the three prediction tasks, which is important when interpreting the single selected option trade.*
 
-## The rules I keep fixed
+## Rules maintained throughout the workflow
 
 - Train + Validation is the largest allowed fitting sample for the saved classical models. Test and post-17 July 2026 rows stay out.
 - RQ1 and RQ3 thresholds come from chronological development predictions, not from looking at Test outcomes.
 - The exploratory LSTM uses its internal chronological validation block for epoch and threshold choices before a clearly labelled development refit.
 - RQ5 dates, option side, strike offsets, cost cases and exit definitions are decided before the matching option outcome is used.
-- The July-August 2026 holdout is now consumed. I can report it, but I cannot tune on it and still call the same period fresh.
+- The July-August 2026 holdout is now consumed. It can be reported, but it cannot be used for tuning and still be described as fresh evidence.
 - Updating these guides does not change a notebook, model or stored research result. It only makes the existing workflow easier to follow.
 
-## Where the older files fit
+## Legacy files and provenance
 
 The five [legacy notebook guides](notebooks/legacy/01_EDA.md) and two legacy script guides document yfinance experiments, weekend-gap ideas and gamma-page browser captures. They show how I arrived at the final topic, but none of their values feed the maintained datasets, models or RQ5 trade log.

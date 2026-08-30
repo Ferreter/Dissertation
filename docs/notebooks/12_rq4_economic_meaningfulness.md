@@ -1,14 +1,14 @@
-# 12 - Checking Whether the Model Signals Point to Useful SPX Moves
+# 12 - RQ4 Economic Meaningfulness
 
 **File:** [notebooks/12_rq4_economic_meaningfulness.ipynb](../../notebooks/12_rq4_economic_meaningfulness.ipynb)
 
-**How I use it:** This is the bridge between predictive scores and the eventual option strategy.
+**Role in the project:** This is the bridge between predictive scores and the eventual option strategy.
 
-## The short version
+## Overview
 
-A balanced-accuracy or MAE result does not tell me whether the model finds tradable-looking situations. Here I join the out-of-fold RQ1, RQ2 and RQ3 signals by date and ask whether confidence or combined filters concentrate bigger and more directionally predictable final-hour moves. No option P&L is used yet, which keeps the signal choice separate from the backtest outcome.
+Balanced accuracy and MAE do not show whether the models identify potentially meaningful market opportunities. This notebook joins the out-of-fold RQ1, RQ2 and RQ3 signals by date and assesses whether confidence or combined filters concentrate larger and more directionally predictable final-hour moves. Option P&L is not used at this stage, keeping the signal choice separate from the backtest outcome.
 
-## Where it sits in the workflow
+## Workflow
 
 ```mermaid
 flowchart LR
@@ -19,14 +19,14 @@ flowchart LR
 
 The point is economic meaning, not another round of unrestricted model selection. Rules carried into RQ5 are fixed before option outcomes are inspected.
 
-## What it needs
+## Inputs
 
 - Selected-winner outer-fold predictions from notebook 08.
 - Strict and relaxed daily source rows for realised movement and market context.
 - Frozen RQ1 confidence, RQ2 magnitude and RQ3 large-move definitions.
 - Moving-block bootstrap settings for uncertainty.
 
-## What I actually do here
+## Processing
 
 I look at the signals individually first, then combine them so I can see which part is doing the filtering.
 
@@ -37,16 +37,16 @@ I look at the signals individually first, then combine them so I can see which p
 - Regime tables and moving-block bootstraps show how uncertain the concentrated results are.
 - The chosen RQ5 candidate dates are saved before option contracts or P&L are examined.
 
-This lets me say whether the signals concentrate opportunities without pretending that concentration automatically equals profit.
+This determines whether the signals concentrate larger opportunities without treating that concentration as automatic evidence of profit.
 
-## What it creates
+## Outputs
 
 - Joined RQ1-RQ3 prediction rows and combined-signal summaries.
 - Confidence, magnitude-quintile, lift, regime and bootstrap tables.
 - Four RQ4 figures and a generated dissertation draft.
 - The candidate-session evidence used by RQ5.
 
-## Outputs worth opening
+## Key outputs and figures
 
 ![Confidence versus accuracy and move size](../../outputs/rq4_economic_meaningfulness/figures/rq4_confidence_vs_accuracy_and_move_size.png)
 
@@ -62,19 +62,19 @@ This lets me say whether the signals concentrate opportunities without pretendin
 
 The [combined signal summary](../../outputs/rq4_economic_meaningfulness/tables/rq4_combined_signal_summary.csv), [opportunity precision and lift](../../outputs/rq4_economic_meaningfulness/tables/rq4_opportunity_precision_and_lift.csv) and [bootstrap summary](../../outputs/rq4_economic_meaningfulness/tables/rq4_moving_block_bootstrap_summary.csv) contain the numbers behind the plots.
 
-## What I took from it
+## Findings and decisions
 
 - Overall RQ1 balanced accuracy was about 0.532, below the matched 60-minute mean-reversion result of about 0.567.
 - At 30% coverage, RQ1 balanced accuracy improved to roughly 0.592 across 93 sessions, but those sessions did not also have a clearly larger mean realised move.
 - The three-model rule produced a much smaller and more concentrated set of larger opportunities in development.
 - That concentration was interesting enough to freeze for RQ5, but the bootstrap ranges warned against treating it as settled.
 
-## Things I wouldn't overclaim
+## Limitations and considerations
 
 - The combined rule was examined on development out-of-fold predictions, not a future untouched period.
-- Subgroup and high-confidence counts become small, so lift estimates can look dramatic.
+- Subgroup and high-confidence counts become small, so the resulting lift estimates can appear unusually large.
 - This stage ignores option premium, liquidity, spread, slippage, commission and intrahour path.
 
-## What I run next
+## Next stage
 
 I keep the chosen opportunity rule fixed and move to [14 - option-data retrieval](14_rq5_options_data_retrieval.md). The longer-history version is checked separately in [13](13_rq4_economic_meaningfulness_extended.md).

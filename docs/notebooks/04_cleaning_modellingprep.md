@@ -1,14 +1,14 @@
-# 04 - Cleaning the Daily Dataset Before Modelling
+# 04 - Data Cleaning and Modelling Preparation
 
 **File:** [notebooks/04_cleaning_modellingprep.ipynb](../../notebooks/04_cleaning_modellingprep.ipynb)
 
-**How I use it:** I use this to make the cleaning choices visible and to stop preprocessing from leaking later dates backwards.
+**Role in the project:** I use this to make the cleaning choices visible and to stop preprocessing from leaking later dates backwards.
 
-## The short version
+## Overview
 
-This is the tidy-up notebook. It reviews which sessions are genuinely usable, checks the feature definitions again, and creates the clean chronological datasets. The useful part is not just that rows are removed; it is that there is a table showing why each one was kept or rejected.
+This notebook reviews which sessions are suitable for modelling, checks the feature definitions and creates the cleaned chronological datasets. The session-level audit records why each row was retained or excluded, making the cleaning decisions traceable.
 
-## Where it sits in the workflow
+## Workflow
 
 ```mermaid
 flowchart LR
@@ -17,18 +17,18 @@ flowchart LR
     C --> D["Strict and relaxed variants"]
 ```
 
-I keep this separate from modelling so a changed score cannot tempt me to quietly change the cleaning rule afterwards.
+I keep this separate from modelling so the cleaning rules remain independent of later model scores.
 
-## What it needs
+## Inputs
 
 - `data/derived/daily_underlying_model_dataset.parquet`.
 - `data/derived/underlying_session_audit.parquet`.
 - The intended chronological Train, Validation and Test boundaries.
 - The feature-timing and target definitions from notebook 03.
 
-## What I actually do here
+## Processing
 
-I work through the boring checks here because they are exactly the things that can create a believable but invalid result later.
+I complete the validation checks here because errors at this stage could create apparently credible but invalid modelling results.
 
 - I remove duplicates, partial sessions, early closes and rows where the feature or target timestamps are not in the right order.
 - I check missing and infinite values, constant columns and highly correlated feature pairs.
@@ -38,14 +38,14 @@ I work through the boring checks here because they are exactly the things that c
 
 The model-ready file is convenient, but the later pipelines still keep preprocessing inside the training folds where possible.
 
-## What it creates
+## Outputs
 
 - `data/derived/daily_underlying_model_dataset_clean.parquet`.
 - `data/derived/daily_underlying_model_dataset_clean_split.parquet`.
 - `data/derived/daily_underlying_model_dataset_model_ready.parquet`.
 - Cleaning audits, parameters and a manifest under `outputs/cleaning/`.
 
-## Outputs worth opening
+## Key outputs and figures
 
 ![Neutral threshold sensitivity](../../outputs/cleaning/figures/neutral_threshold_sensitivity.png)
 
@@ -53,19 +53,19 @@ The model-ready file is convenient, but the later pipelines still keep preproces
 
 The [session eligibility review](../../outputs/cleaning/session_eligibility_review.csv) is the practical file for seeing which dates were removed and why. The [feature-definition review](../../outputs/cleaning/feature_definition_review.csv) records how each less-obvious feature was interpreted, while the [training preprocessing parameters](../../outputs/cleaning/training_preprocessing_parameters.csv) show the values learned without looking at Validation or Test. The final choices are summarised in the [cleaning manifest](../../outputs/cleaning/cleaning_manifest.json).
 
-## What I took from it
+## Findings and decisions
 
 - The strict binary-target table retained 434 sessions in the saved run.
 - Duplicate, target-formula and look-ahead checks passed.
 - Several features were highly correlated, which reinforced the decision to keep transformation and model fitting together inside validation.
 - Writing an eligibility table made the loss of sample size much easier to explain than a single cleaned-row count.
 
-## Things I wouldn't overclaim
+## Limitations and considerations
 
 - Strict cleaning reduces an already small daily sample.
 - A clean table can still contain regime shifts and weak signal.
 - The neutral-threshold exploration is descriptive; repeatedly choosing the best-looking threshold would be another form of tuning.
 
-## What I run next
+## Next stage
 
 The clean data moves into [05 - strict and relaxed datasets](05_dataset_Splitting.md), where I compare the sample-size and data-quality trade-off on the same calendar boundaries.
