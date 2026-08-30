@@ -1,58 +1,71 @@
-# Dataset Cleaning and Pre-Modelling Setup
+# 04 - Cleaning the Daily Dataset Before Modelling
 
-**Executable:** `notebooks/04_cleaning_modellingprep.ipynb`
-**Status:** I use this in the main dissertation workflow.
+**File:** [notebooks/04_cleaning_modellingprep.ipynb](../../notebooks/04_cleaning_modellingprep.ipynb)
 
-## Purpose
+**How I use it:** I use this to make the cleaning choices visible and to stop preprocessing from leaking later dates backwards.
 
-Here I tidy up the aligned daily data and get it ready for modelling. I also keep a record of the sessions I remove, as I didn't want the cleaning choices to become a hidden part of the project.
+## The short version
 
-## Workflow
+This is the tidy-up notebook. It reviews which sessions are genuinely usable, checks the feature definitions again, and creates the clean chronological datasets. The useful part is not just that rows are removed; it is that there is a table showing why each one was kept or rejected.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Aligned daily dataset"] --> B["Eligibility checks, cleaning and chronological splits"]
-    B --> C["Clean development datasets and audit tables"]
+    A["Aligned daily rows and session audit"] --> B["Eligibility and feature checks"]
+    B --> C["Clean split-ready datasets"]
     C --> D["Strict and relaxed variants"]
 ```
 
-## Inputs
+I keep this separate from modelling so a changed score cannot tempt me to quietly change the cleaning rule afterwards.
 
-- `data/derived/daily_underlying_model_dataset.parquet`
-- `data/derived/underlying_session_audit.parquet`
+## What it needs
 
-## Processing and rationale
+- `data/derived/daily_underlying_model_dataset.parquet`.
+- `data/derived/underlying_session_audit.parquet`.
+- The intended chronological Train, Validation and Test boundaries.
+- The feature-timing and target definitions from notebook 03.
 
-- I remove duplicates, partial sessions, early closes and rows where the timing doesn't make sense.
-- I check for missing values, infinite values, constant columns and features that are almost copies of each other.
-- For imputation and clipping, I learn the values from the training rows only. This is important because using later rows would leak information backwards.
+## What I actually do here
 
-## Outputs
+I work through the boring checks here because they are exactly the things that can create a believable but invalid result later.
 
-- `data/derived/daily_underlying_model_dataset_clean.parquet`
-- `data/derived/daily_underlying_model_dataset_clean_split.parquet`
-- `data/derived/daily_underlying_model_dataset_model_ready.parquet`
-- `outputs/cleaning/`
+- I remove duplicates, partial sessions, early closes and rows where the feature or target timestamps are not in the right order.
+- I check missing and infinite values, constant columns and highly correlated feature pairs.
+- I reconstruct the target from the saved SPX prices so I am not trusting a previously calculated column blindly.
+- Clipping and imputation values are learned from training rows only, then carried forward to later rows.
+- I compare plausible neutral-return thresholds but keep the final target definition explicit instead of choosing one because it improves a model.
 
-## Representative outputs
+The model-ready file is convenient, but the later pipelines still keep preprocessing inside the training folds where possible.
 
-![Neutral-threshold sensitivity](../../outputs/cleaning/figures/neutral_threshold_sensitivity.png)
+## What it creates
 
-*This plot shows how the direction-label balance changes across plausible neutral-return thresholds.*
+- `data/derived/daily_underlying_model_dataset_clean.parquet`.
+- `data/derived/daily_underlying_model_dataset_clean_split.parquet`.
+- `data/derived/daily_underlying_model_dataset_model_ready.parquet`.
+- Cleaning audits, parameters and a manifest under `outputs/cleaning/`.
 
-The exact cleaning rules and retained rows are recorded in the [cleaning manifest](../../outputs/cleaning/cleaning_manifest.json).
+## Outputs worth opening
 
-## Findings and decisions
+![Neutral threshold sensitivity](../../outputs/cleaning/figures/neutral_threshold_sensitivity.png)
 
-- The strict version left me with 434 sessions for the binary target.
-- The duplicate, target formula and look-ahead checks all passed in the saved run.
-- Some features were very highly correlated, so I keep the preprocessing inside each training fold later on.
+*This shows how quickly the direction classes change when I call very small returns neutral.*
 
-## Limitations
+The [session eligibility review](../../outputs/cleaning/session_eligibility_review.csv) is the practical file for seeing which dates were removed and why. The [feature-definition review](../../outputs/cleaning/feature_definition_review.csv) records how each less-obvious feature was interpreted, while the [training preprocessing parameters](../../outputs/cleaning/training_preprocessing_parameters.csv) show the values learned without looking at Validation or Test. The final choices are summarised in the [cleaning manifest](../../outputs/cleaning/cleaning_manifest.json).
 
-- The strict checks make the already small daily sample even smaller.
-- The ready-made table is handy for quick benchmarks, but it isn't a replacement for fitting preprocessing properly inside validation.
+## What I took from it
 
-## Next steps
+- The strict binary-target table retained 434 sessions in the saved run.
+- Duplicate, target-formula and look-ahead checks passed.
+- Several features were highly correlated, which reinforced the decision to keep transformation and model fitting together inside validation.
+- Writing an eligibility table made the loss of sample size much easier to explain than a single cleaned-row count.
 
-- The next job is to make strict and relaxed versions using the same date boundaries.
+## Things I wouldn't overclaim
+
+- Strict cleaning reduces an already small daily sample.
+- A clean table can still contain regime shifts and weak signal.
+- The neutral-threshold exploration is descriptive; repeatedly choosing the best-looking threshold would be another form of tuning.
+
+## What I run next
+
+The clean data moves into [05 - strict and relaxed datasets](05_dataset_Splitting.md), where I compare the sample-size and data-quality trade-off on the same calendar boundaries.

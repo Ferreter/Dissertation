@@ -1,53 +1,72 @@
-# Legacy Preliminary EDA
+# Legacy 01 - My First Proper Look at the Intraday Data
 
-**Executable:** `notebooks/legacy/01_EDA.ipynb`
-**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
+**File:** [notebooks/legacy/01_EDA.ipynb](../../../notebooks/legacy/01_EDA.ipynb)
 
-## Purpose
+**How I use it:** I keep this as project history. It helped shape the later work, but it is not part of the final evidence pipeline.
 
-This is an older EDA notebook where I first tried out intraday features, daily targets and some very simple models using yfinance.
+## The short version
 
-## Workflow
+This was the notebook where I first tried to make sense of the intraday SPX, SPY and VIX data. I tested some early features, looked at final-hour returns and ran a few simple models just to see whether the overall idea had any signal at all. A lot changed afterwards, especially the data source, alignment checks and validation design, so I would not quote these numbers as final results.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Earlier derived market data"] --> B["Exploratory distributions and correlations"]
-    B --> C["Notebook plots and interim figures"]
-    C --> D["Superseded maintained EDA"]
+    A["Early yfinance data"] --> B["First features and plots"]
+    B --> C["Interim figures"]
+    C --> D["Maintained EDA redesign"]
 ```
 
-## Inputs
+This sits before the numbered maintained workflow. It explains where several ideas came from, not how the final dataset was produced.
 
-- SPX, VIX and SPY intraday data from yfinance
+## What it needs
 
-## Processing and rationale
+- Short-window SPX, SPY and VIX intraday downloads from yfinance.
+- Early versions of the session times, targets and feature names.
+- The notebook's own exploratory settings rather than the later frozen config.
 
-- I clean the sessions, combine the tickers and try a first set of intraday features.
-- I also run a few early logistic-regression checks to see whether the target setup makes sense.
+## What I actually do here
 
-## Outputs
+I was mainly asking whether the dissertation idea was workable before spending time on the larger database pipeline.
 
-- Displayed EDA tables and plots
-- Interim figures under `outputs/Images/Interim-Report/`
+- I reshape and combine the three market series by session.
+- I inspect missing values, return distributions, correlations and simple feature relationships.
+- I create early versions of the final-hour direction and movement targets.
+- I try small logistic-regression checks to see whether the features behave sensibly.
+- I save a couple of figures that were useful in the interim report.
 
-## Representative outputs
+The useful output was the list of problems to fix: short history, loose alignment and a validation design that needed to be much more careful.
 
-![Interim final-hour return distribution](../../../outputs/Images/Interim-Report/final-hour-returns.png)
+## What it creates
 
-*This is an older project plot showing an earlier exploratory view retained for the project history, not the final maintained evidence.*
+- Tables and plots stored inside the notebook.
+- Two retained interim-report figures below `outputs/Images/Interim-Report/`.
+- Early feature and target ideas that were rebuilt later in notebooks 03-05.
 
-![Interim top features](../../../outputs/Images/Interim-Report/top-features.png)
+## Outputs worth opening
 
-*This is an older project plot showing an early feature summary superseded by the maintained EDA and modelling notebooks.*
+![Early final-hour return distribution](../../../outputs/Images/Interim-Report/final-hour-returns.png)
 
-## Findings and decisions
+*This was my first visual check of the outcome I wanted to model. It is useful background, but the maintained pipeline later rebuilt the data more carefully.*
 
-- It was useful for working out the timing and feature ideas, but the later Massive minute-data pipeline replaced it.
+![Early feature summary](../../../outputs/Images/Interim-Report/top-features.png)
 
-## Limitations
+*This helped me decide which feature families were worth carrying forward. It should not be confused with the later nested feature-importance result.*
 
-- yfinance only gave me a short intraday history, and this notebook was written before I added the final leakage checks.
+The remaining exploratory tables are still visible in the [legacy notebook](../../../notebooks/legacy/01_EDA.ipynb).
 
-## Next steps
+## What I took from it
 
-- I keep this as background only. `notebooks/03_aligned_eda.ipynb` is the maintained EDA.
+- The final-hour target was variable enough to be interesting but clearly noisy.
+- Momentum, volatility and price-positioning ideas looked worth testing in a better pipeline.
+- The exercise exposed how risky it would be to trust randomly split or very short intraday data.
+
+## Things I wouldn't overclaim
+
+- The yfinance intraday history was short and could change on rerun.
+- The timestamp matching and leakage controls were not yet the final versions.
+- The small model checks were exploratory and were not nested or independently evaluated.
+
+## What I run next
+
+For anything I cite as maintained data evidence, I move to [03 - aligned EDA](../03_aligned_eda.md).

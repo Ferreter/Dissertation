@@ -1,46 +1,62 @@
-# Legacy AMD Friday-to-Monday Exploration
+# Legacy 03 - A Quick AMD Friday-to-Monday Idea
 
-**Executable:** `notebooks/legacy/03_amd-monday.ipynb`
-**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
+**File:** [notebooks/legacy/03_amd-monday.ipynb](../../../notebooks/legacy/03_amd-monday.ipynb)
 
-## Purpose
+**How I use it:** This is an old side experiment and has no role in the final SPX dissertation results.
 
-This was one of my early side ideas. I used it to compare AMD's Friday close with the following Monday open and high.
+## The short version
 
-## Workflow
+I briefly explored whether AMD's Friday close said anything useful about the following Monday open or high. This came from an early trading idea rather than one of the final research questions. I left it in the repository because it shows how the project narrowed from several loose ideas into one controlled SPX final-hour study.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Historical market observations"] --> B["Exploratory weekday comparison"]
-    B --> C["Notebook-only exploratory displays"]
-    C --> D["Provenance only"]
+    A["Recent AMD daily prices"] --> B["Friday/Monday pairing"]
+    B --> C["Counts and plots"]
+    C --> D["Idea parked"]
 ```
 
-## Inputs
+This does not feed any numbered notebook. It is provenance only, so a reader can safely skip it when reproducing the dissertation.
 
-- Recent AMD daily data downloaded with yfinance
+## What it needs
 
-## Processing and rationale
+- Recent AMD daily OHLC data downloaded with yfinance.
+- Calendar weekdays used to match each Friday with the next available Monday.
 
-- I pair each Friday with the next Monday.
-- I count the gap patterns and plot the two sets of prices.
+## What I actually do here
 
-## Outputs
+The calculation is simple because I was checking the idea, not building a final strategy.
 
-- Displayed counts and charts in the notebook
+- I identify Friday observations and match the next Monday session.
+- I compare the Friday close with Monday's open and high.
+- I count the different gap patterns and inspect them in simple charts.
+- I keep the displayed examples in the notebook but do not export them into the final output folders.
 
-## Representative outputs
+It was interesting enough as a quick check, but it pulled the project away from the SPX research questions and did not justify a larger backtest.
 
-No maintained research artifact is produced. The historical displays remain in the [legacy notebook](../../../notebooks/legacy/03_amd-monday.ipynb) as provenance only.
+## What it creates
 
-## Findings and decisions
+- Paired Friday/Monday rows displayed in the notebook.
+- Basic gap counts and exploratory charts.
+- No maintained model, dataset or dissertation figure.
 
-- It helped me think through trading patterns, but it doesn't feed into the SPX dissertation models.
+## Outputs worth opening
 
-## Limitations
+The paired rows and plots remain inside the [AMD legacy notebook](../../../notebooks/legacy/03_amd-monday.ipynb). I have not copied them into the research output folders because doing that would make this abandoned idea look like part of the final evidence.
 
-- The yfinance window changes when the notebook is rerun, and there are no costs or proper validation here.
+## What I took from it
 
-## Next steps
+- The notebook helped me practise turning a loose market idea into a clearly defined comparison.
+- The apparent patterns were too dependent on a small, changing download window.
+- I decided to keep the dissertation focused on SPX intraday prediction and options rather than add another asset and horizon.
 
-- I keep this only to show where the project started. The main SPX notebooks contain the dissertation evidence.
+## Things I wouldn't overclaim
+
+- The download window changes over time.
+- There are no transaction costs, chronological validation rules or proper out-of-sample test.
+- Monday holidays and unusual sessions can complicate a simple weekday pairing.
+
+## What I run next
+
+There is no next pipeline stage. The maintained workflow begins with [01 - the Massive database starter](../01_massive_database_starter.md).

@@ -1,51 +1,64 @@
-# Legacy Gamma Page Capture
+# Legacy Script - My First Full-Page Gamma Capture
 
-**Executable:** `scripts/legacy/disc-gamma.py`  
-**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
+**File:** [scripts/legacy/disc-gamma.py](../../../scripts/legacy/disc-gamma.py)
 
-## Purpose
+**How I use it:** This is provenance from an abandoned data idea, not a maintained research tool.
 
-This was the first browser version. I wanted to see whether I could save the full public gamma page and send it to Discord.
+## The short version
 
-## Workflow
+This was the first standalone version of the gamma screenshot idea. It opens a public page, saves the whole page and can send it to Discord. I keep it because it shows an early technical experiment, but it does not produce anything used by the SPX models or options backtest.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Legacy browser page"] --> B["Experimental full-page capture and message flow"]
-    B --> C["Local image or message"]
-    C --> D["Provenance only"]
+    A["Live webpage"] --> B["Full-page browser capture"]
+    B --> C["Local file or message"]
+    C --> D["Experiment superseded"]
 ```
 
-## Inputs
+The script stands on its own and can be ignored when reproducing notebooks 01-18.
 
-- The public NVDA gamma-exposure webpage.
-- `DISCORD_WEBHOOK_URL` loaded locally from `main.env`.
-- A Playwright Chromium installation.
+## What it needs
 
-## Processing and rationale
+- The public NVDA gamma-exposure page.
+- A Playwright Chromium browser.
+- A locally stored Discord webhook if upload is wanted.
 
-- I open Chromium, wait for the page and accept the cookie box if it shows up.
-- I save the whole page as an image and optionally upload it with the configured webhook.
+## What I actually do here
 
-## Outputs
+This version deliberately does very little because it was just a proof of concept.
 
-- A local, untracked full-page capture when the experiment is run.
-- An optional Discord message containing the image; neither item is maintained dissertation evidence.
+- I open the page and wait for it to load.
+- I accept the cookie prompt if it is present.
+- I capture the complete page rather than one element.
+- I optionally attach the image to a Discord webhook request.
+- I keep the webhook out of the source file.
 
-## Representative outputs
+It confirmed that the automation worked, but the page chrome made the output cluttered and the values were not reproducible data.
 
-No maintained artifact is expected. The experimental implementation remains in the [legacy script](../../../scripts/legacy/disc-gamma.py) as provenance only.
+## What it creates
 
-## Findings and decisions
+- A local full-page screenshot when run.
+- An optional Discord message.
+- No tracked research output.
 
-- It was useful for learning the browser automation, but I didn't use it as a dissertation data source.
-- I moved the webhook out of the script so it isn't stored in Git.
+## Outputs worth opening
 
-## Limitations
+No screenshot is maintained as dissertation evidence. The source remains in [the legacy full-page script](../../../scripts/legacy/disc-gamma.py), and the cleaner follow-up is explained in [the SVG version](disc-gamma-svg.md).
 
-- The layout, cookie button and anti-bot behaviour can all change.
-- A screenshot isn't a structured dataset that I can rebuild historically.
+## What I took from it
 
-## Next steps
+- The browser and webhook flow worked as a technical test.
+- Capturing the entire page added noise around the chart.
+- More importantly, a webpage screenshot could not meet the project's historical-data needs.
 
-- I keep this away from the main pipeline and use licensed API data for the actual evidence.
+## Things I wouldn't overclaim
+
+- Cookie prompts, layout and bot protection are unstable.
+- A captured image is difficult to validate or reproduce later.
+- The optional upload depends on an external service and local secret.
+
+## What I run next
+
+This was superseded by the SVG-crop experiment, then abandoned in favour of [structured API retrieval](../massive_database.md).

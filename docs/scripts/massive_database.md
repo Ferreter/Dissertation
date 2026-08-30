@@ -1,58 +1,69 @@
-# Massive Database Helpers
+# Massive Database Helper - The Repeated Data Jobs in One Place
 
-**Executable:** `scripts/massive_database.py`  
-**Status:** I use this in the main dissertation workflow.
+**File:** [scripts/massive_database.py](../../scripts/massive_database.py)
 
-## Purpose
+**How I use it:** This is a maintained helper used by the main retrieval notebooks.
 
-I put the repeated Massive API and database jobs in this script so the notebooks don't each do them in a slightly different way. It handles the requests, tidy-up, Parquet files and DuckDB registration.
+## The short version
 
-## Workflow
+A few notebooks need to talk to the same API, clean the same response format and register the same Parquet files. I put that repeated work here so I only have one version to fix. The script is not an analysis by itself; it is the plumbing that makes the raw-data notebooks more repeatable and stops slightly different download code spreading across the project.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["API parameters and local database paths"] --> B["Retrieve, normalise, partition and register"]
-    B --> C["DataFrames, Parquet partitions and DuckDB views"]
-    C --> D["Calling retrieval notebook"]
+    A["API key, tickers and dates"] --> B["Request, tidy and partition"]
+    B --> C["Parquet files and DuckDB views"]
+    C --> D["Retrieval and modelling notebooks"]
 ```
 
-## Inputs
+The notebooks decide what period and data they need. This helper performs the request and storage work consistently.
 
-- A Massive API key passed by the calling notebook.
-- Tickers, date ranges and retrieval parameters.
-- A local data root and DuckDB connection.
+## What it needs
 
-## Processing and rationale
+- A Massive API key passed in by the calling notebook.
+- Tickers, date ranges, endpoint settings and overwrite choices.
+- A data-root path and DuckDB connection.
+- Optional option-contract and reference-price criteria for RQ5.
 
-- I wrap the API calls with pagination, retries and basic rate-limit handling.
-- I turn the underlying, option and contract responses into consistent tables.
-- I save one Parquet partition per day and keep the download result in DuckDB.
-- I only create a view if its Parquet data is actually there.
-- I also use the helper to choose near-ATM contracts and fetch repeatable reference prices.
+## What I actually do here
 
-## Outputs
+Most of the code deals with boring failure cases that matter a lot once the download becomes large.
 
-- Normalised pandas DataFrames returned to the notebooks.
-- Partitioned files below `data/raw/` or the data root supplied by the caller.
-- DuckDB ingestion-log rows and registered analytical views.
+- I paginate responses and retry short-lived request or rate-limit failures.
+- I normalise underlying aggregates, option bars and contract metadata into predictable tables.
+- I preserve UTC timestamps and derive New York session times where they are needed.
+- I save date-partitioned Parquet files so a failed run can restart without downloading completed days.
+- I log successful, empty and failed requests in DuckDB.
+- I create analytical views only when the required files actually exist.
+- I provide deterministic helpers for dated option discovery, near-ATM selection and reference prices.
 
-## Representative outputs
+A rerun normally skips a successful ticker-date partition unless I explicitly choose to overwrite it, which saves API calls and makes interruptions less painful.
 
-The reusable functions feed the [underlying session audit](../../data/derived/underlying_session_audit.parquet) and the date-partitioned files below `data/raw/`.
+## What it creates
 
-## Findings and decisions
+- Normalised pandas DataFrames returned to the caller.
+- Date-partitioned raw data below the selected data root.
+- DuckDB tables, views and ingestion logs.
+- Underlying session-audit data used to check coverage.
 
-- I keep `timestamp_utc` as the main timestamp and use New York time when filtering the trading session.
-- A successful ticker-date download is skipped next time unless I explicitly ask to overwrite it.
-- Empty and failed requests are logged instead of being hidden.
+## Outputs worth opening
 
-## Limitations
+The easiest persistent output to inspect is the [underlying session audit](../../data/derived/underlying_session_audit.parquet). The downloaded partitions sit below [the raw data folder](../../data/raw/), while [the DuckDB database](../../data/market.duckdb) gives the notebooks a consistent query layer. These are data products rather than presentation figures, which makes more sense for a helper script.
 
-- The script can't get anything outside the account's data entitlement.
-- Retries help with short failures but won't solve a long outage.
-- If the API response format changes, the normalising functions may need to be updated.
+## What I took from it
 
-## Next steps
+- Keeping one UTC timestamp and converting only for market-session rules avoided several timezone mistakes.
+- Partitioning by date made the multi-year download much easier to resume and audit.
+- Logging empty results separately from request failures was especially useful for the limited historical option sample.
 
-- I would add focused tests if this retrieval layer grows beyond the dissertation.
-- I also need to keep the endpoint assumptions in step with the provider's documentation.
+## Things I wouldn't overclaim
+
+- The helper cannot bypass provider entitlements or restore history the API no longer serves.
+- Retries deal with temporary failures, not a long outage or invalid subscription.
+- A provider schema change may require the normalising functions to be updated.
+- The calling notebook is still responsible for choosing dates without leaking future information.
+
+## What I run next
+
+The helper is used first by [01 - the database starter](../notebooks/01_massive_database_starter.md) and [02 - raw retrieval](../notebooks/02_massive_database_raw_retrieve.md), then again for the isolated fresh holdout.

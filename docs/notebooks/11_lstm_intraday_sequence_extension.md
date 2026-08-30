@@ -1,59 +1,81 @@
-# LSTM Intraday Sequence Extension
+# 11 - Trying an LSTM on the Actual Intraday Sequence
 
-**Executable:** `notebooks/11_lstm_intraday_sequence_extension.ipynb`
-**Status:** I use this in the main dissertation workflow.
+**File:** [notebooks/11_lstm_intraday_sequence_extension.ipynb](../../notebooks/11_lstm_intraday_sequence_extension.ipynb)
 
-## Purpose
+**How I use it:** This is an exploratory extension. I do not treat it as the automatic replacement for the classical models.
 
-I added this as a smaller side experiment to see whether the actual 13:00-14:59 price path contains something that the daily engineered features miss. It isn't meant to replace the classical models automatically.
+## The short version
 
-## Workflow
+The classical models get one engineered row per day. This notebook asks whether the actual 13:00-14:59 path contains useful timing information that those summaries miss. Each usable session becomes a 120-minute sequence. The network is deliberately small because the number of daily examples is still tiny by deep-learning standards.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Extended minute sequences and daily targets"] --> B["Expanding-fold LSTM evaluation and development refit"]
-    B --> C["Exploratory evidence and model artifacts"]
-    C --> D["Compare with classical evidence"]
+    A["Extended aligned minute data"] --> B["120-minute sequence construction"]
+    B --> C["Chronological LSTM folds"]
+    C --> D["Exploratory comparison and artifacts"]
 ```
 
-## Inputs
+This is a model-family sensitivity check. A complicated network does not get extra credit just for being complicated.
 
-- Extended aligned one-minute data
-- Extended strict daily split dataset
-- Classical tuned-model outputs
+## What it needs
 
-## Processing and rationale
+- Extended aligned one-minute SPY, SPX and VIX data.
+- The extended strict daily target/split file.
+- Sixteen sequence channels covering returns, volatility, volume, level, position, staleness and time.
+- Classical outer-fold results for an overlap comparison.
 
-- I turn each session into a 120-minute sequence with 16 market, volume, alignment and time features.
-- I fit the scaler inside each chronological fold and use the latest part of the training block for early stopping.
-- I run the same three research questions without touching the existing test block or the future holdout.
+## What I actually do here
 
-## Outputs
+I keep the sequence definition fixed at 13:00-14:59 so every input is available before the final-hour target starts.
 
-- `outputs/extended_2023_2026/lstm_sequence_extension/`
-- LSTM fold, prediction, importance, history and manifest files
+- I build exactly 120 ordered minutes for each complete strict session.
+- Scalers are fitted inside each chronological training fold, never on later sequences.
+- A latest-development block is used for early stopping and epoch selection.
+- Small regularised LSTMs are evaluated for RQ1, RQ2 and RQ3 with the same task-appropriate metrics.
+- Permutation checks shuffle one sequence channel at a time to see which inputs the network relies on.
+- Optional development refits and scalers are saved under `models/lstm/` and clearly labelled exploratory.
 
-## Representative outputs
+I compare on overlapping dates because a higher score on a different set of sessions would not be a fair classical-versus-LSTM comparison.
 
-![Example LSTM input sequence](../../outputs/extended_2023_2026/lstm_sequence_extension/figures/lstm_example_input_sequence.png)
+## What it creates
 
-*This plot shows the minute-by-minute channels presented to the sequence model before the decision time.*
+- Fold histories, out-of-fold predictions and task summaries.
+- Sequence-quality and overlap-comparison tables.
+- LSTM importance and training figures.
+- Exploratory `.keras` models, scalers and a manifest when saving is enabled.
 
-![LSTM validation loss](../../outputs/extended_2023_2026/lstm_sequence_extension/figures/lstm_validation_loss_curves.png)
+## Outputs worth opening
 
-*This plot shows the chronological training and validation behaviour used to assess overfitting and choose epochs.*
+![Example sequence](../../outputs/extended_2023_2026/lstm_sequence_extension/figures/lstm_example_input_sequence.png)
 
-## Findings and decisions
+*This is what one day looks like to the network. It helps explain the difference from the one-row classical models.*
 
-- I keep the LSTM as exploratory because the dataset is small for deep learning.
-- The network is deliberately small, and I didn't run a huge search just to find a better-looking result.
-- The saved predictions let me compare the LSTM and classical models on the dates they have in common.
+![Validation loss curves](../../outputs/extended_2023_2026/lstm_sequence_extension/figures/lstm_validation_loss_curves.png)
 
-## Limitations
+*I check this for overfitting and unstable epoch choices rather than assuming more training is better.*
 
-- Neural networks can move around between runs, and there aren't many daily sequences here.
-- The sequences don't include options variables and haven't been checked on a genuinely fresh holdout.
+![RQ3 sequence importance](../../outputs/extended_2023_2026/lstm_sequence_extension/figures/lstm_rq3_sequence_importance.png)
 
-## Next steps
+*This gives an exploratory view of which minute channels mattered for the LSTM large-move task.*
 
-- I compare it with the classical winners, but I would keep the simpler model unless the sequence result improves in a stable way.
+The main numerical files are the [research-question summary](../../outputs/extended_2023_2026/lstm_sequence_extension/tables/lstm_research_question_summary.csv), [classical overlap comparison](../../outputs/extended_2023_2026/lstm_sequence_extension/tables/lstm_vs_classical_oof_overlap.csv) and [sequence quality audit](../../outputs/extended_2023_2026/lstm_sequence_extension/tables/lstm_sequence_quality.csv).
+
+## What I took from it
+
+- The sequence approach did not produce a clear, stable reason to replace the simpler classical models.
+- RQ1 remained difficult, and the fresh check later showed the LSTM's apparently better accuracy could come from predicting only the majority direction.
+- RQ2 and RQ3 sequence channels gave useful exploratory importance patterns, but fold variation was large.
+- Keeping the network small and reporting the comparison honestly was more useful than running a huge search.
+
+## Things I wouldn't overclaim
+
+- There are only hundreds of daily sequences, which is very small for deep learning.
+- Neural results can move with random initialisation and training conditions.
+- The sequence inputs still contain no option premiums, spreads or order-book information.
+- The saved LSTM refits are exploratory development models, not independently established final models.
+
+## What I run next
+
+I keep the classical models as the main pipeline and use this notebook as supporting sensitivity evidence. Both model families are evaluated without refitting in [18 - the fresh holdout](18_fresh_holdout_end_to_end_evaluation.md).

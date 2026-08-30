@@ -1,51 +1,67 @@
-# Massive 2021-2022 Access Probe
+# 09 - Checking Whether 2021-2022 Data Was Actually Available
 
-**Executable:** `notebooks/09_probe_massive_2021_2022_underlying_access.ipynb`
-**Status:** I use this in the main dissertation workflow.
+**File:** [notebooks/09_probe_massive_2021_2022_underlying_access.ipynb](../../notebooks/09_probe_massive_2021_2022_underlying_access.ipynb)
 
-## Purpose
+**How I use it:** This is a non-destructive entitlement check, not a modelling notebook.
 
-Before trying to download whole years, I use this notebook to check a handful of 2021 and 2022 dates for SPY, SPX and VIX. It is only an access test and doesn't change the project database.
+## The short version
 
-## Workflow
+Before asking the downloader for two extra years, I test a few ordinary dates from 2021 and 2022 for all three underlying series. The notebook writes the replies to a separate output folder and does not touch the main database. It saved me from starting an extension based on an assumption about what the paid plan included.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Small historical entitlement requests"] --> B["Non-destructive API access probe"]
+    A["Selected 2021-2023 test dates"] --> B["Small entitlement requests"]
     B --> C["Detail, summary and manifest"]
-    C --> D["Decide whether to extend history"]
+    C --> D["Decision on history extension"]
 ```
 
-## Inputs
+The 2023 dates act as a control. If they work while 2021-2022 fail, that points toward history entitlement rather than a broken ticker or API key.
 
-- `main.env` with `MASSIVE_API_KEY`
-- Pre-selected dates in 2021, 2022 and the 2023 control year
+## What it needs
 
-## Processing and rationale
+- `main.env` with the Massive API key.
+- A small fixed set of normal weekdays in 2021 and 2022.
+- Equivalent 2023 control dates.
+- SPY, `I:SPX` and `I:VIX` aggregate requests.
 
-- I request a few normal weekdays for each ticker and year.
-- I label each result as available, empty or an error/entitlement problem.
-- I save the evidence separately and leave the main raw folders alone.
+## What I actually do here
 
-## Outputs
+I intentionally keep this separate from raw retrieval so the probe cannot partially extend the research dataset by accident.
 
-- `outputs/underlying_history_probe/massive_2021_2022_probe_detail.csv`
-- Probe summary CSV and JSON manifest
+- I request each ticker-date and record the HTTP/response outcome.
+- Responses are labelled as available, empty or error/entitlement-related.
+- The detail table keeps every attempt, while the summary collapses the result by ticker and year.
+- A manifest records when and how the check was run.
 
-## Representative outputs
+One date can always be odd, which is why the probe uses several dates before making a year-level decision.
 
-The entitlement result is preserved in the [probe manifest](../../outputs/underlying_history_probe/massive_2021_2022_probe_manifest.json) and [probe summary](../../outputs/underlying_history_probe/massive_2021_2022_probe_summary.csv).
+## What it creates
 
-## Findings and decisions
+- `massive_2021_2022_probe_detail.csv`.
+- `massive_2021_2022_probe_summary.csv`.
+- `massive_2021_2022_probe_manifest.json`.
+- No changes to the maintained raw-data folders.
 
-- The manifest shows exactly what the account returned without changing any research dataset.
-- I test more than one date because one odd market day isn't enough to judge a whole year.
+## Outputs worth opening
 
-## Limitations
+The [probe detail](../../outputs/underlying_history_probe/massive_2021_2022_probe_detail.csv) is where I check the exact ticker-date responses. The [summary](../../outputs/underlying_history_probe/massive_2021_2022_probe_summary.csv) makes the year-level pattern easier to read, and the [manifest](../../outputs/underlying_history_probe/massive_2021_2022_probe_manifest.json) preserves the account-dependent result.
 
-- A few successful dates don't guarantee complete coverage for the year.
-- The result can also change later if the account entitlements change.
+There is no chart because a small availability table is clearer than dressing a few entitlement checks up as analysis.
 
-## Next steps
+## What I took from it
 
-- I would only expand the history if all three series show usable access.
+- The notebook gave me a repeatable way to distinguish missing history from a general API failure.
+- Testing all three feeds mattered because a longer SPY history alone would not support the aligned feature set.
+- The account result is treated as a practical data constraint, not a research finding.
+
+## Things I wouldn't overclaim
+
+- A few successful dates cannot prove complete annual coverage.
+- Entitlements and rolling windows can change after the manifest is created.
+- The probe says whether rows are returned, not whether every minute inside those rows is complete.
+
+## What I run next
+
+I only expand the historical dataset when SPY, SPX and VIX all look usable. The separate longer run is documented in [10 - extended 2023-2026 pipeline](10_extended_2023_2026_full_pipeline.md).

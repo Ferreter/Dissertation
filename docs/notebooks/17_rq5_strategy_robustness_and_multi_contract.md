@@ -1,58 +1,80 @@
-# RQ5 Strategy Robustness and Multi-Contract Scaling
+# 17 - Checking Whether a Few Trades Drive RQ5
 
-**Executable:** `notebooks/17_rq5_strategy_robustness_and_multi_contract.ipynb`
-**Status:** I use this in the main dissertation workflow.
+**File:** [notebooks/17_rq5_strategy_robustness_and_multi_contract.ipynb](../../notebooks/17_rq5_strategy_robustness_and_multi_contract.ipynb)
 
-## Purpose
+**How I use it:** This is the final development robustness notebook for RQ5. It tries to explain the result rather than invent a better-looking one.
 
-The backtest only has a small number of trades, so I use this notebook to see what is driving the result. I look at big winners, recoveries, timing, option side, random directions and multi-contract exits.
+## The short version
 
-## Workflow
+The main backtest has only 17 trades, so one or two winners can completely change the story. Here I remove top trades, inspect recoveries after stop/target touches, follow P&L through the hour, compare calls with puts and test whether ML direction beats random choices. I also model simple multi-contract exits, but always compare them with holding the same number of contracts so extra capital is not mistaken for skill.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["RQ5 trades and intraday paths"] --> B["Concentration, timing, Monte Carlo and scaling checks"]
-    B --> C["Robustness and multi-contract evidence"]
-    C --> D["Future holdout evaluation"]
+    A["Primary trades and minute paths"] --> B["Concentration, timing and scaling checks"]
+    B --> C["Robustness tables and figures"]
+    C --> D["Frozen future evaluation"]
 ```
 
-## Inputs
+This notebook is mostly about reasons not to overclaim the backtest. That is useful evidence, even when it makes the headline result less exciting.
 
-- Primary RQ5 trade log
-- Selected contracts, candidate sessions and option-minute bars
+## What it needs
 
-## Processing and rationale
+- The primary RQ5 trade log.
+- Candidate-session and contract-selection tables.
+- Saved option-minute paths and path diagnostics.
+- Fixed cost, strike and account-capital assumptions.
 
-- I remove the top trades one at a time and check how concentrated the profit is.
-- I track what happens after a stop or target touch and how P&L develops through the hour.
-- For the multi-contract ideas, I compare them with simply holding the same number of contracts and show the capital that would have been needed.
+## What I actually do here
 
-## Outputs
+I break the result apart several ways so I can see whether it survives common sense checks.
 
-- `outputs/rq5_options_trading/strategy_robustness/`
-- Concentration, recovery, timing, random-direction, break-even-cost and multi-contract tables
+- Top winners are removed one at a time and their share of total P&L is recorded.
+- I check what happened after stop and target levels were first touched.
+- P&L and win rate are summarised at checkpoints through the final hour.
+- Calls, puts and random-direction simulations are compared with the actual signal direction.
+- Break-even cost and leave-one-trade-out tables show how much room there is for execution error.
+- Multi-contract scaling is compared with a same-size hold benchmark and the capital required is shown explicitly.
 
-## Representative outputs
+A strategy that only looks good after using more contracts or keeping one exceptional winner is not robust, even if its final dollar P&L is large.
+
+## What it creates
+
+- Profit-concentration, top-winner and leave-one-out tables.
+- Stop/target recovery, timing and random-direction evidence.
+- Break-even execution-cost and account-exposure tables.
+- Multi-contract trade logs, summaries, figures and a robustness manifest.
+
+## Outputs worth opening
 
 ![MFE versus MAE](../../outputs/rq5_options_trading/figures/rq5_mfe_vs_mae.png)
 
-*This plot shows the favourable and adverse intraday paths behind the final trade outcomes.*
+*This shows how much each option moved for and against the trade before the final exit.*
 
 ![Time-of-hour development](../../outputs/rq5_options_trading/figures/rq5_time_of_hour_development.png)
 
-*This plot shows when gains and losses develop during the final trading hour.*
+*I use this to see whether the edge appears early, late or only at the last bar.*
 
-## Findings and decisions
+![Random-direction comparison](../../outputs/rq5_options_trading/figures/rq5_random_direction_monte_carlo.png)
 
-- The largest trade made up about 41.6% of the main strategy's net P&L.
-- Of the trades that touched -50%, around 44.4% got back to entry and 22.2% later reached +100%. That shows why a hard stop changes the result so much.
-- The multi-contract rules made more raw dollars by using more capital, but they did worse than holding the same number of contracts in this sample.
+*This is a useful reality check on whether the observed direction choice is unusual relative to random calls and puts on the same opportunities.*
 
-## Limitations
+The [profit concentration](../../outputs/rq5_options_trading/tables/rq5_profit_concentration.csv), [stop recovery](../../outputs/rq5_options_trading/tables/rq5_stop50_recovery_summary.csv), [paired ML comparison](../../outputs/rq5_options_trading/tables/rq5_paired_ml_vs_mean_reversion_summary.csv) and [multi-contract summary](../../outputs/rq5_options_trading/tables/rq5_multi_contract_summary.csv) hold the main numbers.
 
-- Most of these checks still come from the same 17 dates.
-- The account-size examples are there to show scale and aren't personal investment advice.
+## What I took from it
 
-## Next steps
+- The largest trade contributed about 41.6% of the main strategy's net P&L.
+- About 44.4% of trades that touched -50% later recovered to entry, and about 22.2% later reached +100%.
+- Multi-contract rules produced more raw dollars because they used more capital, but they underperformed simply holding the same number of contracts in this sample.
+- The robustness checks made the limited sample and path dependence impossible to ignore, which is exactly their purpose.
 
-- I keep the main rule fixed from here and only judge it again when genuinely new option data is available.
+## Things I wouldn't overclaim
+
+- Nearly every check still uses the same 17 development dates.
+- Monte Carlo direction comparisons reuse the available option paths and do not create new market regimes.
+- Account examples illustrate required scale; they are not personal investment advice or evidence of live executability.
+
+## What I run next
+
+I freeze the development workflow here. The next honest check is [18 - the post-freeze holdout](18_fresh_holdout_end_to_end_evaluation.md), with no rule changes based on these later outcomes.

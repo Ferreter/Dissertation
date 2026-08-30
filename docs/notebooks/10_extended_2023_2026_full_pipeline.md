@@ -1,59 +1,79 @@
-# Extended 2023-2026 Underlying-Market Pipeline
+# 10 - Repeating the Full Pipeline on the 2023-2026 Extension
 
-**Executable:** `notebooks/10_extended_2023_2026_full_pipeline.ipynb`
-**Status:** I use this in the main dissertation workflow.
+**File:** [notebooks/10_extended_2023_2026_full_pipeline.ipynb](../../notebooks/10_extended_2023_2026_full_pipeline.ipynb)
 
-## Purpose
+**How I use it:** This is a large sensitivity run kept separate from the original pipeline and outputs.
 
-I used this notebook to repeat most of the market-data pipeline on a separate 2023-2026 dataset. I kept it isolated so I wouldn't accidentally overwrite the original data or results.
+## The short version
 
-## Workflow
+This notebook repeats almost everything from retrieval through tuning on a longer 2023-2026 underlying history. I kept its data, database and outputs isolated so it could not overwrite the original study. It is long and not especially elegant, but it answers an important question: do the model and feature conclusions change when I give them a different history?
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Isolated 2023-2026 market data"] --> B["Repeat alignment, cleaning, splitting and tuning"]
+    A["Separate 2023-2026 raw history"] --> B["Alignment through nested tuning"]
     B --> C["Extended evidence bundle"]
-    C --> D["LSTM and extended RQ4 checks"]
+    C --> D["LSTM and extended RQ4"]
 ```
 
-## Inputs
+I use this as a robustness extension, not as a reason to erase the original result when the preferred model changes.
 
-- Massive API access through `main.env`
-- `data_extended_2023_2026/`
-- Shared helper functions in `scripts/massive_database.py`
+## What it needs
 
-## Processing and rationale
+- Massive access through `main.env`.
+- The isolated `data_extended_2023_2026/` root and its own database.
+- The same ticker, session, feature and target definitions as the maintained pipeline.
+- Shared functions from `scripts/massive_database.py`.
 
-- I download and register the longer minute history in its own database area.
-- I rebuild the same pre-15:00 features and the strict/relaxed datasets.
-- I then repeat the baseline, tuning and robustness work using the same general time-split rules.
+## What I actually do here
 
-## Outputs
+The notebook is essentially a replay of notebooks 02-08 inside one isolated file.
 
-- `data_extended_2023_2026/`
-- `outputs/extended_2023_2026/`
+- I download the additional minute history into the extension folder.
+- SPY again acts as the clock and SPX/VIX are matched backwards using the same two-minute tolerance.
+- The same daily features, session-quality rules and chronological split logic are rebuilt rather than copied from the original data.
+- Baseline models, nested searches, thresholds, benchmarks and permutation importance are rerun on the longer history.
+- All outputs are written below `outputs/extended_2023_2026/` so original evidence remains unchanged.
 
-## Representative outputs
+A different winner here is useful evidence of period sensitivity. It is not automatically a mistake in either pipeline.
 
-![Extended feature-target correlations](../../outputs/extended_2023_2026/eda_figures/15_feature_target_correlations.png)
+## What it creates
 
-*This plot shows the descriptive relationships after expanding the underlying-market history.*
+- The isolated `data_extended_2023_2026/` data tree.
+- Extended EDA, cleaning, dataset, baseline and tuning folders.
+- A separate extended model-evidence bundle under `outputs/extended_2023_2026/`.
+- Inputs used later by the LSTM and extended RQ4 notebooks.
+
+## Outputs worth opening
+
+![Extended final-hour returns](../../outputs/extended_2023_2026/eda_figures/05_final_hour_return_distribution.png)
+
+*This lets me compare the shape of the longer period with the original sample before comparing models.*
 
 ![Extended RQ1 nested performance](../../outputs/extended_2023_2026/hyperparameter_tuning/figures/rq1_nested_balanced_accuracy.png)
 
-*This plot shows the time-aware RQ1 performance across extended-history outer folds.*
+*The fold movement matters more to me than the single average winner.*
 
-## Findings and decisions
+![Extended RQ3 importance](../../outputs/extended_2023_2026/hyperparameter_tuning/figures/rq3_outer_fold_permutation_importance.png)
 
-- This run chose strict Extra Trees for RQ1, relaxed RBF SVR for RQ2 and a strict reduced-feature RBF SVC for RQ3.
-- I use this as a check on the original findings, not as a replacement for the main RQ1-RQ5 results.
-- Anything after 17 July 2026 is still kept outside this development dataset.
+*The longer run again puts true-range and realised-volatility information near the top, which is one of the more stable RQ3 conclusions.*
 
-## Limitations
+The model choices are in [extended tuned winners](../../outputs/extended_2023_2026/hyperparameter_tuning/tables/nested_tuned_winners.csv), with feature evidence in the [extended importance stability table](../../outputs/extended_2023_2026/hyperparameter_tuning/tables/feature_importance_stability.csv).
 
-- This notebook does a lot in one place and takes a long time to rerun. The main pipeline is easier to inspect because its stages are split up.
-- The longer history is still development data, so it isn't a completely fresh final test.
+## What I took from it
 
-## Next steps
+- The longer run selected strict Extra Trees for RQ1, relaxed RBF SVR for RQ2 and a strict reduced-feature RBF SVC for RQ3.
+- RQ1 changing from the original winner showed that directional modelling was sensitive to the period.
+- RQ2 retained the same broad RBF SVR family, while RQ3 again relied most consistently on true range and realised volatility.
+- The extension is useful corroboration and sensitivity evidence, but it remains development data.
 
-- I use these outputs for the LSTM experiment and the extended RQ4 check.
+## Things I wouldn't overclaim
+
+- It is a very large notebook and slower to inspect than the split main pipeline.
+- Repeating selection on a longer dataset does not create an independent holdout.
+- The extension can still inherit provider gaps and the same feature limitations as the original data.
+
+## What I run next
+
+I use the aligned extended minute sequences in [11 - the LSTM experiment](11_lstm_intraday_sequence_extension.md) and the extended out-of-fold predictions in [13 - extended RQ4](13_rq4_economic_meaningfulness_extended.md).

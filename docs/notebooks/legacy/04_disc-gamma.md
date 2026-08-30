@@ -1,47 +1,64 @@
-# Legacy Gamma-Exposure Browser Experiment
+# Legacy 04 - Testing a Gamma-Chart Screenshot and Discord Message
 
-**Executable:** `notebooks/legacy/04_disc-gamma.ipynb`
-**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
+**File:** [notebooks/legacy/04_disc-gamma.ipynb](../../../notebooks/legacy/04_disc-gamma.ipynb)
 
-## Purpose
+**How I use it:** This is a browser-automation experiment. It was never used as model input or dissertation evidence.
 
-I made this quick experiment to see whether I could capture a public gamma page and send the image to Discord.
+## The short version
 
-## Workflow
+I wanted to see whether a public gamma-exposure page could be captured automatically and sent to Discord. The test worked as an automation idea, but an image from a changing webpage is not the kind of structured, historical and reproducible input I needed for the dissertation. I therefore kept the experiment but separated it from the proper data pipeline.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Browser page and local credentials"] --> B["Experimental screenshot and message flow"]
-    B --> C["Local screenshot or message"]
-    C --> D["Provenance only"]
+    A["Public chart page"] --> B["Browser screenshot"]
+    B --> C["Optional Discord upload"]
+    C --> D["Experiment archived"]
 ```
 
-## Inputs
+The file is useful for showing what I tried, but no arrow from it enters the research workflow.
 
-- Public Barchart page
-- Local `DISCORD_WEBHOOK_URL` when delivery is enabled
+## What it needs
 
-## Processing and rationale
+- The public gamma-exposure webpage.
+- A local Discord webhook when message delivery is enabled.
+- A Chromium browser controlled through Playwright.
 
-- I open the page with Playwright, take a screenshot and optionally send it through a Discord webhook.
+## What I actually do here
 
-## Outputs
+The notebook automates the same actions I would otherwise do manually in a browser.
 
-- A local screenshot and optional Discord message
+- I open the page and wait for its chart content.
+- I handle the cookie prompt if it appears.
+- I take a screenshot and inspect whether the important chart area is visible.
+- I optionally send the image through the local webhook.
+- I keep secrets outside the notebook and Git history.
 
-## Representative outputs
+This proved the browser idea, but it also showed why screenshots are a poor foundation for repeatable historical analysis.
 
-Any screenshot or message was local and is not dissertation evidence. The implementation remains in the [legacy notebook](../../../notebooks/legacy/04_disc-gamma.ipynb) for provenance.
+## What it creates
 
-## Findings and decisions
+- A temporary local screenshot when the notebook is run.
+- An optional Discord message.
+- No maintained table, research figure or model artifact.
 
-- It worked as a browser experiment, but I didn't trust it enough to use as a dissertation data source.
+## Outputs worth opening
 
-## Limitations
+The output is intentionally not kept in the dissertation folders because it can contain a live webpage capture. The code and its displayed run remain in the [legacy gamma notebook](../../../notebooks/legacy/04_disc-gamma.ipynb). The related standalone experiments are documented in [the full-page script](../../scripts/legacy/disc-gamma.md) and [the cropped-chart script](../../scripts/legacy/disc-gamma-svg.md).
 
-- The page or its anti-automation behaviour can change at any time.
-- A screenshot isn't structured historical data and is hard to reproduce later.
+## What I took from it
 
-## Next steps
+- Browser automation could capture and forward the chart.
+- The chart layout and anti-automation behaviour were too fragile for a research data source.
+- I chose licensed, timestamped API data for the models instead.
 
-- I use licensed API data for the actual research workflow.
+## Things I wouldn't overclaim
+
+- Page layout, selectors and access rules can change without notice.
+- A screenshot does not expose reliable historical values for modelling.
+- The optional message is an external side effect, so it stays disabled unless configured locally.
+
+## What I run next
+
+This branch stops here. The maintained data route is explained in [the central workflow](../../workflow.md).

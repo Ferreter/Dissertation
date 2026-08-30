@@ -1,60 +1,83 @@
-# RQ5 0DTE SPX Options Backtest
+# 15 - Running the Frozen 0DTE SPX Options Backtest
 
-**Executable:** `notebooks/15_rq5_options_backtest.ipynb`
-**Status:** I use this in the main dissertation workflow.
+**File:** [notebooks/15_rq5_options_backtest.ipynb](../../notebooks/15_rq5_options_backtest.ipynb)
 
-## Purpose
+**How I use it:** This is the main RQ5 backtest and the first point where the frozen signals are translated into option P&L.
 
-Here I finally test the frozen RQ1-RQ3 rule with 0DTE SPX options. I wanted to see what the result looks like after adding less generous entry and exit prices, not just under perfect execution.
+## The short version
 
-## Workflow
+Here I take the fixed candidate dates, direction signals and contract map and turn them into one-hour option trades. I use the first usable opening price from 15:00-15:05 and the last usable close from 15:55-15:59, then make those reference prices less generous under several synthetic cost assumptions. The notebook also compares ML with the 60-minute mean-reversion direction on the same dates.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Frozen signals and audited option bars"] --> B["Simulate ATM strategy, comparator and costs"]
-    B --> C["Trade logs and RQ5 evidence"]
-    C --> D["Exit and robustness checks"]
+    A["Frozen signals and option bars"] --> B["Entry, exit and cost simulation"]
+    B --> C["Trade logs and risk summaries"]
+    C --> D["Exit and concentration checks"]
 ```
 
-## Inputs
+RQ5 is a strategy question, so I report dollars, return on premium, drawdown and risk-adjusted summaries rather than presenting classifier accuracy as trading performance.
 
-- Saved RQ5 option bars and contract map
-- Frozen candidate sessions
-- RQ1 direction and 60-minute mean-reversion comparator
+## What it needs
 
-## Processing and rationale
+- Frozen candidate dates and contract selections from notebook 14.
+- Saved option-minute bars.
+- RQ1 ML direction and the matched 60-minute mean-reversion direction.
+- ATM as the primary strike plus OTM sensitivity offsets.
+- Frictionless, low, medium and severe synthetic execution-cost assumptions.
 
-- I use the planned ATM contract and the same entry and exit bars for every trade.
-- I run frictionless, low, medium and severe cost assumptions.
-- I also compare the ML direction with mean reversion and check affordability, strike choice, regimes and bootstrap uncertainty.
+## What I actually do here
 
-## Outputs
+The rules are intentionally simple enough that I can trace every trade back to a date, contract and bar.
 
-- `outputs/rq5_options_trading/backtest/`
-- RQ5 summary, comparator, cost, affordability, regime and bootstrap tables
-- `outputs/rq5_options_trading/rq5_backtest_manifest.json`
+- I choose calls for an up signal and puts for a down signal without using option outcomes.
+- Every strategy uses the same entry and exit window definitions.
+- Entry prices are increased and exit prices reduced by the chosen cost penalty, with commissions deducted separately.
+- ML and mean reversion are paired on the same candidate dates and strikes.
+- I summarise P&L, return on premium, win rate, profit factor, drawdown, near-total losses and non-annualised per-trade Sharpe/Sortino-style ratios.
+- Affordability, OTM distance, RQ2 threshold, transaction-cost and bootstrap sensitivity tables are saved rather than hiding behind the main ATM row.
 
-## Representative outputs
+The primary result is ATM with medium costs. The other rows tell me how fragile that result is; they are not extra chances to select a winner afterwards.
 
-![Cumulative PnL under medium costs](../../outputs/rq5_options_trading/figures/rq5_cumulative_pnl_medium_cost.png)
+## What it creates
 
-*This plot shows the cumulative path of the frozen strategy after the medium transaction-cost assumption.*
+- A complete trade log in CSV and Parquet under `backtest/`.
+- Strategy, ML-versus-mean-reversion, cost, strike and threshold summaries.
+- Affordability, break-even cost and bootstrap uncertainty tables.
+- Figures and `rq5_backtest_manifest.json`.
+
+## Outputs worth opening
+
+![Cumulative P&L under medium costs](../../outputs/rq5_options_trading/figures/rq5_cumulative_pnl_medium_cost.png)
+
+*This shows the order of gains and losses. I read it together with concentration and drawdown, not just the final point.*
 
 ![OTM affordability sensitivity](../../outputs/rq5_options_trading/figures/rq5_otm_affordability_sensitivity.png)
 
-*This plot shows the trade-off between cheaper contracts and the resulting strategy outcomes.*
+*Cheaper premium does not automatically mean a better strategy; this plot shows the affordability/performance trade-off.*
 
-## Findings and decisions
+![Break-even execution cost](../../outputs/rq5_options_trading/figures/rq5_break_even_execution_cost.png)
 
-- Across 17 historical trades, the ATM ML strategy made $11,855 before costs and was still positive under the planned medium-cost case.
-- On those same dates, the ML direction didn't consistently beat the 60-minute mean-reversion rule.
-- The bootstrap ranges were wide, so I wouldn't treat the positive P&L as a reliable expected return.
+*This gives some perspective on how much synthetic friction the result can absorb before it disappears.*
 
-## Limitations
+The [strategy summary](../../outputs/rq5_options_trading/tables/rq5_strategy_summary.csv) contains the main risk and return measures. The [paired comparison](../../outputs/rq5_options_trading/tables/rq5_paired_ml_vs_mean_reversion_summary.csv) is the fair ML benchmark, and the [bootstrap uncertainty table](../../outputs/rq5_options_trading/tables/rq5_primary_bootstrap_uncertainty.csv) shows why seventeen trades should not be treated as a stable expected return.
 
-- The biggest issue is that there are only 17 main trades and no historical bid-ask quotes.
-- The costs are synthetic, the dates are from development, and 0DTE results depend heavily on the path taken during the hour.
+## What I took from it
 
-## Next steps
+- The primary ATM ML strategy produced positive P&L under the medium-cost assumption across 17 trades.
+- Its medium-cost per-trade Sharpe-style ratio was about 0.377 and Sortino-style ratio about 0.564; these are not annualised portfolio Sharpe ratios.
+- The mean-reversion comparator was slightly stronger on several primary risk-adjusted measures, so ML did not clearly dominate the simple rule.
+- Further OTM contracts could create dramatic percentage returns on a winner but generally weaker risk-adjusted performance and more near-total losses.
+- Bootstrap ranges were wide, which is more important than the attractive point estimate.
 
-- Next I test the planned stop/take-profit rule and check how much the result depends on a few trades.
+## Things I wouldn't overclaim
+
+- Seventeen trades are not enough for a reliable annual performance estimate.
+- The cost model is synthetic because historical NBBO quotes were unavailable.
+- Per-trade Sharpe-style values are not directly comparable with an annualised daily portfolio Sharpe.
+- The candidate dates came from development out-of-fold analysis and the result is sensitive to a few large trades.
+
+## What I run next
+
+I keep the main trade set fixed and replay alternative exits in [16 - exit sensitivity](16_rq5_exit_strategy_sensitivity.md), then test concentration and multi-contract ideas in [17](17_rq5_strategy_robustness_and_multi_contract.md).

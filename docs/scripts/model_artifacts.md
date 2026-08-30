@@ -1,60 +1,71 @@
-# Model Artifact Helpers
+# Model Artifact Helper - Saving the Models Without Losing Track of Them
 
-**Executable:** `scripts/model_artifacts.py`
+**File:** [scripts/model_artifacts.py](../../scripts/model_artifacts.py)
 
-**Status:** I use this in the main dissertation workflow.
+**How I use it:** This is the maintained saving and checking helper for the classical and exploratory LSTM artifacts.
 
-## Purpose
+## The short version
 
-I use this small helper so I don't save each model in a different way. It writes the scikit-learn or Keras file, checks that it opens again and stores the details I would need later.
+Saving a model sounds like one line until I also need to know which notebook created it, what rows it saw, which threshold belongs with it and whether the file still opens. This helper keeps those jobs together. It saves to a temporary path first, replaces the canonical file only after a successful write, reloads the result and records a hash plus the training metadata in a manifest.
 
-## Workflow
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Fitted development model"] --> B["Atomic model save"]
-    B --> C["Reload verification"]
-    C --> D["SHA-256 hash"]
-    D --> E["Model manifest"]
+    A["Fitted development model and metadata"] --> B["Atomic save"]
+    B --> C["Immediate reload and prediction check"]
+    C --> D["Hashed artifact and manifest"]
 ```
 
-## Inputs
+This helper never chooses or fits a model. The modelling notebook must enforce the split rules before it calls the save function.
+
+## What it needs
 
 - A fitted scikit-learn estimator or Keras model.
-- A fitted scaler for sequence models.
-- Stable artifact destinations below `models/`.
-- Training, feature, threshold and library metadata supplied by the calling notebook.
+- A fitted sequence scaler when the model is an LSTM.
+- A stable path below `models/classical/` or `models/lstm/`.
+- Research question, target, features, dates, row counts, split exclusions, threshold, parameters and library versions.
+- A small verification input for checking the prediction interface after reload.
 
-## Processing and rationale
+## What I actually do here
 
-- I write to a temporary file first, then replace the normal filename once the save has finished.
-- I immediately reload the model and scaler and try the expected prediction interface.
-- I hash the files so I can tell if an artifact has changed.
-- I tidy numpy values and paths before putting them into JSON.
-- Finally, I write one manifest for the three research-question models.
+The main aim is to make a saved binary understandable and safe to replace on a later clean rerun.
 
-## Outputs
+- I create the destination folder and write the artifact to a temporary sibling path.
+- I move the finished temporary artifact over the canonical filename atomically.
+- I immediately load it again with joblib or Keras.
+- I check that the reloaded object has the expected structure and can predict on the verification input.
+- I calculate a SHA-256 hash of every saved file.
+- I convert NumPy values, dates and paths into clean JSON values.
+- I write the three RQ entries into one stable manifest instead of producing timestamped duplicates.
 
-- Scikit-learn `.joblib` files.
-- Keras `.keras` files and matching scaler `.joblib` files.
-- A JSON manifest with artifact paths, hashes and reproducibility metadata.
+If saving or reloading fails, the normal artifact should not be reported as successfully created. That is the reason for the temporary file and verification step.
 
-## Representative outputs
+## What it creates
 
-The canonical filenames and manifest fields are listed in [the model-artifact README](../../models/README.md). Binary files appear only after a modelling notebook is run with saving enabled.
+- Canonical `.joblib` pipelines for RQ1-RQ3 under `models/classical/`.
+- Exploratory `.keras` models and matching scaler `.joblib` files under `models/lstm/`.
+- A `manifest.json` in each model family folder.
+- Hashes and metadata that notebook 18 can verify before fresh scoring.
 
-## Findings and decisions
+## Outputs worth opening
 
-- Rerunning a notebook replaces the normal filename instead of leaving lots of timestamped copies.
-- I only report the save as successful if the artifact reloads properly.
-- The notebooks still decide which model to fit. This script only deals with saving and checking it.
+The [model folder README](../../models/README.md) lists the intended filenames and explains what is final classical evidence versus an exploratory LSTM refit. The current [classical manifest](../../models/classical/manifest.json) and [LSTM manifest](../../models/lstm/manifest.json) are the quickest outputs to inspect because they show features, thresholds, training scope and hashes without opening a binary file.
 
-## Limitations
+## What I took from it
 
-- A saved binary can stop loading if the Python or library versions change too much.
-- Reloading proves the file is usable, not that the model will work well on new data.
-- The notebook still has to enforce the Test and holdout rules before it calls this helper.
+- Stable filenames are easier for the fresh-holdout notebook to load and verify.
+- A hash tells me whether the file changed, while the manifest explains why it changed.
+- Reloading catches broken or incomplete saves, but it does not say anything about future model quality.
+- Keeping thresholds beside classifiers matters because the project does not always use the library's default 0.5 cutoff.
 
-## Next steps
+## Things I wouldn't overclaim
 
-- When I need the actual binaries, I run the tuning or LSTM notebook with `SAVE_MODEL_ARTIFACTS = True`.
+- Binary compatibility can still break after large Python or library-version changes.
+- The helper trusts the training metadata supplied by the notebook.
+- It cannot prevent leakage if a notebook fits on Test or holdout rows before calling it.
+- Exploratory LSTM refits are clearly labelled because they are not independently evaluated final models.
+
+## What I run next
+
+The saving cells in notebooks [07](../notebooks/07_hyperparameters_tuning.md), [08](../notebooks/08_hyperparameters_tuning_extended_robustness.md) and [11](../notebooks/11_lstm_intraday_sequence_extension.md) call this helper when `SAVE_MODEL_ARTIFACTS = True`. Notebook [18](../notebooks/18_fresh_holdout_end_to_end_evaluation.md) then verifies and loads the frozen files without fitting them again.

@@ -1,52 +1,64 @@
-# Legacy Gamma Chart Capture
+# Legacy Script - Cropping the Gamma Chart Instead of the Whole Page
 
-**Executable:** `scripts/legacy/disc-gamma-svg.py`  
-**Status:** I kept this as provenance from an older experiment. It isn't part of the final dissertation evidence.
+**File:** [scripts/legacy/disc-gamma-svg.py](../../../scripts/legacy/disc-gamma-svg.py)
 
-## Purpose
+**How I use it:** This is an old browser experiment and is not used by the research pipeline.
 
-I changed the earlier browser script so it captures just the Highcharts SVG instead of taking a screenshot of the whole page.
+## The short version
 
-## Workflow
+After the full-page screenshot worked, I tried a cleaner version that captures only the chart SVG. It was nicer to look at and easier to send, but the underlying problem stayed the same: I would still be collecting pictures from a live webpage rather than reliable historical records.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Legacy browser page"] --> B["Experimental browser capture and message flow"]
-    B --> C["Local image or message"]
+    A["Live gamma webpage"] --> B["Find and crop chart SVG"]
+    B --> C["Local image or Discord message"]
     C --> D["Provenance only"]
 ```
 
-## Inputs
+This script has no maintained downstream consumer. Running it does not create data for any dissertation notebook.
 
-- The public NVDA gamma-exposure webpage.
-- `DISCORD_WEBHOOK_URL` loaded locally from `main.env`.
-- A Playwright Chromium installation.
+## What it needs
 
-## Processing and rationale
+- The public NVDA gamma-exposure page.
+- Playwright with a local Chromium installation.
+- A local `DISCORD_WEBHOOK_URL` if delivery is enabled.
 
-- I open the page, deal with the cookie box if it appears and wait for the SVG.
-- I hide overlays that cover the chart, but I don't change the chart data.
-- I crop to the chart and optionally send it through the webhook.
+## What I actually do here
 
-## Outputs
+The main change from the older script is that I target the chart element rather than saving everything on the page.
 
-- A local, untracked browser capture when the experiment is run.
-- An optional Discord message containing the chart; neither item is maintained dissertation evidence.
+- I launch the browser and wait for the chart SVG.
+- I dismiss the cookie panel and hide overlays when necessary.
+- I crop the screenshot to the chart area without modifying its displayed data.
+- I save the image locally and can upload it through the configured webhook.
+- I leave the generated image untracked.
 
-## Representative outputs
+The crop improved presentation, not research quality, so I archived the idea rather than building more around it.
 
-No maintained artifact is expected. The experimental implementation remains in the [legacy script](../../../scripts/legacy/disc-gamma-svg.py) as provenance only.
+## What it creates
 
-## Findings and decisions
+- A temporary chart image.
+- An optional Discord attachment.
+- No stable CSV, Parquet, figure or modelling artifact.
 
-- The cropped version looked much cleaner than the full-page screenshot.
-- I still keep it as an old experiment because it doesn't give me stable historical observations.
+## Outputs worth opening
 
-## Limitations
+There is no maintained image to link because the page is live and the capture was never accepted as evidence. The exact implementation is preserved in [the legacy SVG-capture script](../../../scripts/legacy/disc-gamma-svg.py), with the earlier version in [the full-page script](disc-gamma.md).
 
-- The CSS selectors and chart code can change without warning.
-- An image of a chart can't replace contract or quote data.
+## What I took from it
 
-## Next steps
+- Targeting the SVG gave a much cleaner capture than a full-page screenshot.
+- The method still depended on selectors, page layout and live browser behaviour.
+- It was not suitable for reproducible historical feature construction.
 
-- I don't use this script as an input to the maintained models.
+## Things I wouldn't overclaim
+
+- The target webpage can change or block automation.
+- A chart image cannot be queried like structured observations.
+- The webhook creates an external message when enabled and must remain locally configured.
+
+## What I run next
+
+I do not run this as part of the dissertation. The API-based workflow starts with [the database helper](../massive_database.md).

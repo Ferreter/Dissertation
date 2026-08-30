@@ -1,56 +1,79 @@
-# Extended-History RQ4 Economic Meaningfulness
+# 13 - Repeating the RQ4 Opportunity Checks on the Longer History
 
-**Executable:** `notebooks/13_rq4_economic_meaningfulness_extended.ipynb`
-**Status:** I use this in the main dissertation workflow.
+**File:** [notebooks/13_rq4_economic_meaningfulness_extended.ipynb](../../notebooks/13_rq4_economic_meaningfulness_extended.ipynb)
 
-## Purpose
+**How I use it:** This is a period-sensitivity check. It does not replace the original RQ4 evidence.
 
-I repeat the RQ4 checks on the longer, separate dataset here. The idea is to see whether the same opportunity story still appears when the history changes.
+## The short version
 
-## Workflow
+This notebook takes the out-of-fold predictions from the separate 2023-2026 run and repeats the same confidence, magnitude and opportunity-lift checks used in notebook 12. I wanted to know whether the broad story survives a different history, not whether I could discover a brand-new rule that looks best on the extension.
+
+## Where it sits in the workflow
 
 ```mermaid
 flowchart LR
-    A["Extended out-of-fold RQ1-RQ3 signals"] --> B["Repeat economic-opportunity analysis"]
-    B --> C["Extended RQ4 evidence"]
-    C --> D["Compare period sensitivity"]
+    A["Extended RQ1-RQ3 OOF predictions"] --> B["Same RQ4 checks"]
+    B --> C["Separate extended evidence"]
+    C --> D["Period comparison"]
 ```
 
-## Inputs
+Keeping the folder and results separate makes disagreement useful. If the extended pattern changes, I can discuss period sensitivity instead of overwriting the original result.
 
-- Extended selected-winner predictions
-- Extended strict and relaxed datasets
-- Extended tuning outputs
+## What it needs
 
-## Processing and rationale
+- Extended selected-winner outer-fold predictions.
+- Extended strict and relaxed daily rows.
+- The same opportunity thresholds and interpretation rules used in notebook 12.
+- Extended tuning manifests and fold summaries.
 
-- I reuse the same confidence, magnitude and large-move checks from the main RQ4 notebook.
-- I compare lift, regimes and uncertainty without changing the original results.
+## What I actually do here
 
-## Outputs
+I reuse the analysis structure rather than redesigning it around what the longer sample happens to show.
 
-- `outputs/extended_2023_2026/rq4_economic_meaningfulness/`
+- RQ1 confidence and direction accuracy are compared across coverage levels.
+- RQ2 prediction bands are checked against realised move size.
+- RQ3 and the combined filters are evaluated for opportunity precision and lift.
+- Regime and moving-block bootstrap summaries are recreated on the extended rows.
+- All evidence is written below the extended output root.
 
-## Representative outputs
+The useful question is whether the direction of the conclusion is similar, not whether every number matches.
+
+## What it creates
+
+- Extended joined prediction rows and combined-signal summaries.
+- Extended confidence, magnitude, regime, lift and bootstrap tables.
+- Four figures below `outputs/extended_2023_2026/rq4_economic_meaningfulness/`.
+- A separate generated draft for comparison with the original RQ4 run.
+
+## Outputs worth opening
 
 ![Extended confidence and opportunity](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/figures/rq4_confidence_vs_accuracy_and_move_size.png)
 
-*This plot shows the same confidence-versus-opportunity relationship on the extended history.*
+*I compare this directly with the original plot rather than reading it on its own.*
 
-![Extended opportunity lift](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/figures/rq4_30bps_opportunity_lift.png)
+![Extended 30-bps lift](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/figures/rq4_30bps_opportunity_lift.png)
 
-*This plot shows the extended-period lift for moves of at least 30 basis points.*
+*This shows whether the longer-period filters still concentrate larger moves.*
 
-## Findings and decisions
+![Extended direction by realised move](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/figures/rq4_direction_by_realised_move_threshold.png)
 
-- This gives me a sensitivity check using more history but the same interpretation rules.
-- I keep it separate from the original result and from any genuinely untouched future holdout.
+*This helps separate general direction skill from performance on economically larger days.*
 
-## Limitations
+The exact comparison material is in the [extended combined signal summary](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/tables/rq4_combined_signal_summary.csv), [opportunity lift table](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/tables/rq4_opportunity_precision_and_lift.csv) and [bootstrap summary](../../outputs/extended_2023_2026/rq4_economic_meaningfulness/tables/rq4_moving_block_bootstrap_summary.csv).
 
-- The extended sample was also used during development and model selection.
-- It still doesn't answer whether the signals make money at option level.
+## What I took from it
 
-## Next steps
+- The longer history gives a useful sensitivity check, but it does not turn the original development rule into independent evidence.
+- Direction, confidence and opportunity relationships changed with the modelling period, which matches the instability already seen in RQ1.
+- The combined filtering idea remained worth investigating, while the exact size of the lift was period-dependent.
+- I keep both sets of numbers so the discussion can show robustness and disagreement honestly.
 
-- I compare the two RQ4 runs, then only carry pre-specified signals into RQ5.
+## Things I wouldn't overclaim
+
+- The extension was also used for model selection.
+- It shares the same target construction and many of the same provider limitations as the original pipeline.
+- There are still no option prices in this notebook, so economic opportunity is not the same as realised trade performance.
+
+## What I run next
+
+I compare the original and extended RQ4 results in the discussion, but RQ5 contract selection follows the frozen original workflow documented in [14](14_rq5_options_data_retrieval.md).
